@@ -48,6 +48,5 @@ with open("acc_output.txt", "w") as text_file:
 </gene>"""
     
     test = SearchAcc(dummy)
- #   data = {'acc':test[0], 'genid':test[1], 'product':test[2], 'location':test[3]}
     print(xmlTemplate%test, file=text_file)
 
