@@ -3,8 +3,8 @@
 """ Gene Identifiers List"""
 
 """
-Program:    Gene_list
-File:       Gene_list.py
+Program:    Gene_list_class
+File:       Gene_list_class.py
 
 Version:    1.0
 Date:       15.03.18
