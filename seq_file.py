@@ -13,7 +13,7 @@ Function:   Retrieve sequence for a given accession number
 
 Author:     Jennifer J. Stiens
 
-Course:     MSc Bioninformatics, Birkbeck University of London
+Course:     MSc Bioinformatics, Birkbeck University of London
             Biocomputing2 Coursework Assignment
 
 _____________________________________________________________________________
@@ -60,11 +60,11 @@ for line in file:
     seq_list.append(dna)
         
 with open ('seq_file_out.txt', 'w') as text_file:
-    print('<?xml version="1.0" encoding="UTF-8"?>') ##, file=text_file)
+    print('<?xml version="1.0" encoding="UTF-8"?>'), file=text_file)
  
     for x in seq_list:
         seq = {'sequence': x}
-        print(xml_seq%seq)  ##, file=text_file)
+        print(xml_seq%seq, file=text_file)
 
     
 
