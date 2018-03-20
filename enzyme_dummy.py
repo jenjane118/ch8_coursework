@@ -6,26 +6,6 @@
 import re
 from re import finditer
 
-def number_seq(sequence):
-    """ Number base pairs in dna seq."""
-    count       = 0
-    base_count  = {}
-
-    sequence = sequence.replace(' ', '')
-    sequence = sequence.replace('\n', '')
-    for x in sequence:
-        count += 1
-        base_count[count] = x
-    return base_count
- 
-        
-
-def GeneSeq(gene):
-    """Mapping dna sequence into xml map."""
-    if gene in seq:
-        seq_map = {'sequence' : seq[gene]}
-    return seq_map
-
 
 
 def get_enzyme(enzyme, sequence):
@@ -37,16 +17,6 @@ def get_enzyme(enzyme, sequence):
     return cut_list
 
     
-
-gene_1 = {'AB12345':'ATGGCGGCGCTGTGTCGGACCCGTGCTGTGGCTGCCGAGAGCCATTTTCTGCGAGTGTTTCTCTTCTTCA\
-        GGCCCTTTCGGGGTGTAGGCACTGAGAGTGGATCCGAAAGTGGTAGTTCCAATGCCAAGGAGCCTAAGA\
-        CGCGCGCAGGCGGTTTCGCGAGCGCGTTGGAGCGGCACTCGGAGCTTCTACAGAAGGTGGAGCCCCTACA\
-        GAAGGGTTCTCCAAAAAATGTGGAATCCTTTGCATCTATGCTGAGACATTCTCCTCTTACACAGATGGGA\
-        CCTGCAAAGGATAAACTGGTCATTGGACGGATCTTTCATATTGTGGAGAATGATCTGTACATAGATTTTG\
-        GTGGAAAGTTTCATTGTGTATGTAGAAGACCAGAAGTGGATGGAGAGAAATACCAGAAAGGAACCAGGGT\
-        CCGGTTGCGGCTATTAGATCTTGAACTTACGTCTAGGTTCCTGGGAGCAACAACAGATACAACTGTACTA\
-        GAGGCTAATGCAGTTCTCTTGGGAATCCAGGAGAGTAAAGACTCAAGATCGAAAGAAGAACATCATGAAA\
-        AAT'}
 
 enz = 'fake enzyme'
 fake_cut = 'AATGCAGT'
@@ -62,24 +32,24 @@ seq1 = 'ATGGCAATGCAGTGGCGCTGTGTCGGACCCGTGCTGTGGCTGCCGAGAGCCATTTTCTGCGAGTGTTTCTCT
         GAGGCTAATGCAGTTCTCTTGGGAATCCAGGAGAGTAAAGACTCAAGATCGAAAGAAGAACATCATGAAA\
         AAT'
 
-##        
+##  run get_enzyme function and output into list       
 
 span_list = []
-n_cuts = 0
 span_list = get_enzyme(fake_cut, seq1)
-cut_list = ''
+
+## convert list of match items to strings. Add one to each position (starts at 0). Append to new list
 new_list =[]
+n_cuts = 0
 #print(span_list)
 for x in span_list:
     n_cuts += 1
-    # have to add one to start and stop because starts numbering at 0
     span   =  str(x[0]+1) + '-' + str(x[1]+1)
     new_list.append(span)
 #print(new_list)
-
 #print(n_cuts)
 
 
+## print output in xml to file
 
 from xml.dom import minidom
 import sys
@@ -118,26 +88,6 @@ file_handle.close()
 
 
 
-## for annotating exon boundaries, etc:
-
-
-##new_seq = number_seq(seq1)
-##
-##base = []
-##base_num = []
-##
-##for x in new_seq:
-##    base.append(new_seq[x])
-##    base_num.append(str(x))
-##num_seq = zip(base_num, base)
-
-##
-##exon1 = ''
-##
-##for x in seq1[:20]:
-##    exon1 += x
-##print(exon1)
-##
 
 
 
