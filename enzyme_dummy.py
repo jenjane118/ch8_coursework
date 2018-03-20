@@ -111,9 +111,9 @@ for i in range (0, n_cuts):
 
 doc.writexml(sys.stdout, addindent='    ', newl='\n')
     
-##file_handle = open('enz_dummy.xml', 'wb')
-##doc.writexml(file_handle, addindent='   ',newl='\n')
-##file_handle.close()
+file_handle = open('enz_dummy.xml', 'w')
+doc.writexml(file_handle, addindent='   ',newl='\n')
+file_handle.close()
 
 
 
