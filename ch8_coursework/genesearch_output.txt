@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<gene>
+<geneidentifiers>
+    <accession>AB098765</accession>
+    <genid>genid1</genid>
+    <product>product1</product>
+    <location>location1</location>
+</geneidentifiers>
+</gene>
