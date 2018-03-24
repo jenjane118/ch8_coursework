@@ -13,7 +13,7 @@ Function:   Retrieve all gene identifier info for every gene on
 
 Author:     Jennifer J. Stiens
 
-Course:     MSc Bioninformatics, Birkbeck University of London
+Course:     MSc Bioinformatics, Birkbeck University of London
             Biocomputing2 Coursework Assignment
 
 _____________________________________________________________________________
