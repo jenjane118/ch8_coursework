@@ -71,8 +71,9 @@ def annotateSeq(acc, seq, exon_list=None):
         exon_seq = s.replace(' ','')
     if exon_list != None:
         for x in exon_list:
-            start   = x[0]
-            end     = x[1]
+            acc     = x[0]
+            start   = x[1]
+            end     = x[2]
             exon_seq     = exon_seq[:start] + '<exon' + exon_seq[start:end] +'exon>' + exon_seq[end:]
         return exon_seq
 
@@ -91,28 +92,30 @@ def codingSeq(acc, seq, exon_list=None):
     if exon_list != None:
         coding_seq = ''
         for x in exon_list:
-            start       = x[0]
-            end         = x[1]
-            code_start = x[2]
+            start       = x[1]
+            end         = x[2]
+            #code_start = x[3]
             coding_seq += seq[start:end]
-            coding_seq = coding_seq[code_start:]
+            #coding_seq = coding_seq[code_start:]
         return coding_seq
 
 # dummy data (sequence in file, acc and exon_list below)
 with open ('seq_file1.txt', 'r') as f:
     file = f.read().splitlines()
 
-exon_list = [(36, 807, 3), (2010, 2222, 1)]
-acc = 'AB12345'
+exon_list = [('AB12345.1', 36, 807), ('AB232010.1', 2222, 2311)]
+acc = 'AB12345.1'
 
 # call functions
 line_seq = getSequence(acc, file)
 
 ann_seq = annotateSeq(acc, file, exon_list)
 
+#print(ann_seq)
+
 code_seq = codingSeq(acc, file, exon_list)
 
-print(code_seq)
+#print(code_seq)
 
 
 # print to file in xml format
