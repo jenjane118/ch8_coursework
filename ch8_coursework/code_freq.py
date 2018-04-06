@@ -2,7 +2,34 @@
 
 """ Codon Usage Module """
 
+"""
+Program:        Codon_Usage_module
+File:           Codon_Usage_module.py
 
+Version:        1.0
+Date:           22.03.18
+Function:       Returns codon frequency and codon usage ratio and percentage for a particular gene.
+
+Author:         Jennifer J Stiens
+
+Course:         MSc Bioinformatics, Birkbeck University of London
+                Biocomputing 2 Coursework
+
+______________________________________________________________________________
+
+Description:
+============
+This program will calculate codon usage frequency, percentage, and ratio of codon usage preference for a particular gene.
+
+
+Usage:
+======
+
+Revision History:
+=================
+
+
+"""
 #*****************************************************************************
 # Import libraries
 
@@ -59,32 +86,76 @@ def codon_freq(acc, dna):
     return CodonsDict
 
 
-def codon_usage (acc, freq_table):
-    """Returns usage ratio and codon usage percentage for specified gene."""
+def codonPercent (acc, freq_table):
+    """Returns percentage use of a particular codon in sequence (per 100 bp sequence)
+    Input           acc                 Accession number
+                    freq_table          Codon frequency dictionary
 
+    Output          percentDict         Dictionary of codon and usage per 100bp
+    """
 
-    codon_table = {
-        'ATA': 'I', 'ATC': 'I', 'ATT': 'I', 'ATG': 'M',
-        'ACA': 'T', 'ACC': 'T', 'ACG': 'T', 'ACT': 'T',
-        'AAC': 'N', 'AAT': 'N', 'AAA': 'K', 'AAG': 'K',
-        'AGC': 'S', 'AGT': 'S', 'AGA': 'R', 'AGG': 'R',
-        'CTA': 'L', 'CTC': 'L', 'CTG': 'L', 'CTT': 'L',
-        'CCA': 'P', 'CCC': 'P', 'CCG': 'P', 'CCT': 'P',
-        'CAC': 'H', 'CAT': 'H', 'CAA': 'Q', 'CAG': 'Q',
-        'CGA': 'R', 'CGC': 'R', 'CGG': 'R', 'CGT': 'R',
-        'GTA': 'V', 'GTC': 'V', 'GTG': 'V', 'GTT': 'V',
-        'GCA': 'A', 'GCC': 'A', 'GCG': 'A', 'GCT': 'A',
-        'GAC': 'D', 'GAT': 'D', 'GAA': 'E', 'GAG': 'E',
-        'GGA': 'G', 'GGC': 'G', 'GGG': 'G', 'GGT': 'G',
-        'TCA': 'S', 'TCC': 'S', 'TCG': 'S', 'TCT': 'S',
-        'TTC': 'F', 'TTT': 'F', 'TTA': 'L', 'TTG': 'L',
-        'TAC': 'Y', 'TAT': 'Y', 'TAA': '_', 'TAG': '_',
-        'TGC': 'C', 'TGT': 'C', 'TGA': '_', 'TGG': 'W'}
+    total_codons = 0
+    percentDict = {}
+    for codon in freq_table:
+        total_codons += freq_table[codon]
+    for codon in freq_table:
+        percent = (freq_table[codon] / total_codons)*100
+        percentDict[codon] = round(percent, 1)
+    return percentDict
 
 
 
+def usageRatio (acc, freq_table):
+    """Returns codon usage ratio.
+    Input       acc             Accession number
+                freq_table      Codon frequency dict returned from codon_freq function
+
+    Output      aaDict          Dictionary of amino acids: codons used and ratio of codon usage
+    """
+
+    SynCodons = {
+        'C': ['TGT', 'TGC'],
+        'D': ['GAT', 'GAC'],
+        'S': ['TCT', 'TCG', 'TCA', 'TCC', 'AGC', 'AGT'],
+        'Q': ['CAA', 'CAG'],
+        'M': ['ATG'],
+        'N': ['AAC', 'AAT'],
+        'P': ['CCT', 'CCG', 'CCA', 'CCC'],
+        'K': ['AAG', 'AAA'],
+        'T': ['ACC', 'ACA', 'ACG', 'ACT'],
+        'F': ['TTT', 'TTC'],
+        'A': ['GCA', 'GCC', 'GCG', 'GCT'],
+        'G': ['GGT', 'GGG', 'GGA', 'GGC'],
+        'I': ['ATC', 'ATA', 'ATT'],
+        'L': ['TTA', 'TTG', 'CTC', 'CTT', 'CTG', 'CTA'],
+        'H': ['CAT', 'CAC'],
+        'R': ['CGA', 'CGC', 'CGG', 'CGT', 'AGG', 'AGA'],
+        'W': ['TGG'],
+        'V': ['GTA', 'GTC', 'GTG', 'GTT'],
+        'E': ['GAG', 'GAA'],
+        'Y': ['TAT', 'TAC'],
+        '_': ['TAG', 'TGA', 'TAA']}
+
+    aa_list = ['C', 'D', 'S', 'Q', 'M', 'N', 'P', 'K', 'T', 'F', 'A', 'G', 'I', 'L', 'H', 'R', 'W', 'V', 'E', 'Y', '_']
 
 
+
+    aaDict = {}
+    for aa in aa_list:
+        if aa in SynCodons:
+            codon_list = SynCodons[aa]
+            sum = 0
+            ratio = 0
+            codonDict = {}
+            for x in codon_list:
+                sum += freq_table[x]
+            for x in codon_list:
+                ratio = (freq_table[x]) / sum
+                codonDict[x] = round(ratio, 2)
+        aaDict[aa] = codonDict
+    return aaDict
+
+## ratio is incorrect for first one (always 1.0). Also need to restrict float to two decimal places
 
 with open ('seq_file1.txt', 'r') as f:
     file = f.read().splitlines()
@@ -92,4 +163,13 @@ with open ('seq_file1.txt', 'r') as f:
 acc = 'AB12345'
 
 freq_table = codon_freq(acc, file)
-print(freq_table)
+#print(freq_table)
+
+ratio = usageRatio(acc, freq_table)
+for k,v in ratio.items():
+    print(k, ':', v)
+
+percent = codonPercent(acc, freq_table)
+for a in percent:
+    print(a, percent[a])
+
