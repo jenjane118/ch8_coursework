@@ -39,7 +39,7 @@ import sys
 
 #****************************************************************************
 
-def codon_freq(acc, dna):
+def codonFreq(acc, dna):
     """Returns frequency of each codon possibility in particular sequence.
     Input       acc                     accession number
                 dna                     coding sequence (dna)
@@ -162,7 +162,7 @@ with open ('seq_file1.txt', 'r') as f:
 
 acc = 'AB12345'
 
-freq_table = codon_freq(acc, file)
+freq_table = codonFreq(acc, file)
 #print(freq_table)
 
 # print each amino acid and codon usage ratio
@@ -174,4 +174,5 @@ for k,v in ratio.items():
 percent = codonPercent(acc, freq_table)
 for a in percent:
     print(a, percent[a])
+
 
