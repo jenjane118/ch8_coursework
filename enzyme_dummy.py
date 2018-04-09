@@ -38,7 +38,11 @@ def show_cutDNA(enzyme, sequence):
 ## You can use either enzyme name ('EcoRI', 'BamHI', or 'BsuMI') or enter custom
 ## restriction sequence
 
+<<<<<<< HEAD
 enz = 'BamHI'
+=======
+enz = 'GTGGCG'
+>>>>>>> 9c983194764d472402e36b84574685a119e2be84
 
 acc  = 'AB12345'
 seq1 = 'ATGGCAATGCAGTGGCGCTGTGTCGGACCCGTGCTGTGGCTGCCGAGAGCCATTTTCTGCGAGTGTTTCTCTTCTTCA\
@@ -51,11 +55,19 @@ seq1 = 'ATGGCAATGCAGTGGCGCTGTGTCGGACCCGTGCTGTGGCTGCCGAGAGCCATTTTCTGCGAGTGTTTCTCT
         GAGGCTAATGCAGTTCTCTTGGGAATCCAGGAGAGTAAAGACTCAAGATCGAAAGAAGAACATCATGAAA\
         AAT'
 
+<<<<<<< HEAD
 # call function with paramenters of enzyme and sequence
 
 new_seq = show_cutDNA(enz, seq1)
 
 # write output in xml to file
+=======
+## call function with paramenters of enzyme and sequence
+
+new_seq = show_cutDNA(enz, seq1)
+
+## write output in xml to file
+>>>>>>> 9c983194764d472402e36b84574685a119e2be84
 
 from xml.dom import minidom
 
