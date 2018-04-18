@@ -42,6 +42,7 @@ import seq_module
 
 import Codon_Usage
 
+import pickle, shelve
 #****************************************************************************
 
 # test sequence
@@ -87,9 +88,17 @@ print(total_freq)
 gene = 'total'
 
 whole_genome_ratio = Codon_Usage.usageRatio(gene, total_freq)
-for k,v in whole_genome_ratio.items():
-    print(k, ':', v)
+#for k,v in whole_genome_ratio.items():
+#    print(k, ':', v)
 
 whole_genome_percent = Codon_Usage.codonPercent(gene, total_freq)
-for k,v in whole_genome_percent.items():
-    print(k, ':', v)
+#for k,v in whole_genome_percent.items():
+#    print(k, ':', v)
+
+#write to file (in pickled format)
+
+f = open('whole_genome_usage.dat', 'wb')
+
+pickle.dump(whole_genome_ratio, f)
+pickle.dump(whole_genome_percent, f)
+f.close()
