@@ -1,24 +1,95 @@
+
+#!/usr/bin python3
+
+""" Whole Genome Codon Usage program """
+
+"""
+Program:        whole_genome_freq
+File:           whole_genome_freq.py
+
+Version:        1.0
+Date:           18.04.18
+Function:       Returns codon frequency and codon usage ratio and percentage for entire chromosome.
+
+Author:         Jennifer J Stiens
+
+Course:         MSc Bioinformatics, Birkbeck University of London
+                Biocomputing 2 Coursework
+
+______________________________________________________________________________
+
+Description:
+============
+This program will calculate codon usage frequency, percentage, and ratio of codon usage preference for entire chromosome.
+
+
+Usage:
+======
+
+
+Revision History:
+=================
+
+
+V1.0           18.04.18         Original        By: JJS
+
+"""
+#*****************************************************************************
+# Import libraries
+import sys
+
 import seq_module
+
+import Codon_Usage
+
+#****************************************************************************
+
+# test sequence
+#seq1 = 'CTAAGAATGGCGGCGCTGTGTCGGACCCGTGCTGTGGCTGCCGAGAGCCATTTTCTGCGAGTGTTTCTCTTCTTCAGGCCCTTTCGGGGTGTAGGCACTGAGAGTGGATCCGAAAGTGGTAGTTCCAATGCCAAGGAGCCGCGCGCAGGCGGTTTCGCGAGCGCGTTGGAGCGGCACTCGGAGCTTCTACAGAAGGTGGAGCCCCTACAGAAGGGTTCTCCAAAAAATGTGGAATCCTTTGCATCTATGCTGAGACATTCTCCTCTTACACAGATGGGACCTGCAAAGGATAAACTGGTCATTGGACGGATCTTTCATATTGTGGAGAATGATCTGTACATAGATTTTGGTGGAAAGTTTCATTGTGTATGTAGAAGACCAGAAGTGGATGGAGAGAAATACCAGAAAGGAACCAGGGTCCGGTTGCGGCTATTAGATCTTGAACTTACGTCTAGGTTCCTGGGAGCAACAACAGATACAACTGTACTAGAGGCTAATGCAGTTCTCTTGGGAATCCAGGAGAGTAAAGACTCAAGATCGAAAGAAGAACATCATGAAAAATTT'
+#gene = 'AB12345'
+#codon_freq = codonFreq(gene, seq1)
+#print(codon_freq)
 
 
 # for each gene in gene_list:
-    # run codingSeq to get coding sequence
-    # run codon freq (output freq table/dict)
-    # update values in whole genome dictionary
+    # run seq_module.codingSeq to get coding sequence
 
+# run with dummy data as coding sequence
+gene_list = []
+with open('seq_file.txt', 'r') as f:
+    file = f.read().splitlines()
+    for x in file:
+        gene_list.append(x)
 
+# extract accession number and sequence from list of genes
 
-## for calculating whole genome codon frequency
-genome_freq = {}
-for gene in gene_list:
-    seq         = getSequence(gene)
-    code_seq    = codingSeq(seq)
-    code_freq   = codonFreq
-    for key in code_freq:
-        if key in genome_freq:
-            genome_freq[key] += code_freq[key]
+codon_table = {}
+total_freq  = {}
+for x in gene_list:
+    gene = str(x[:7])
+    seq  = str(x[8:])
+
+    #for s in seq:
+    #    seq_format = s.replace(' ', '')
+
+    codon_table = Codon_Usage.codonFreq(acc=gene, dna=seq)
+    #print(codon_table)
+
+    #assert isinstance(codon_table, object)
+    for key in codon_table:
+        if key in total_freq:
+            total_freq[key] += codon_table[key]
         else:
-            genome_freq = {key : code_freq[key]}
-for k, v in genome_freq.items():
-    print(k, v)
+            total_freq[key] = codon_table[key]
+print(total_freq)
 
+# calculate codon usage ratio for whole genome
+gene = 'total'
+
+whole_genome_ratio = Codon_Usage.usageRatio(gene, total_freq)
+for k,v in whole_genome_ratio.items():
+    print(k, ':', v)
+
+whole_genome_percent = Codon_Usage.codonPercent(gene, total_freq)
+for k,v in whole_genome_percent.items():
+    print(k, ':', v)
