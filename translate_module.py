@@ -119,7 +119,7 @@ if __name__ == "__main__":
         """
     translate_map = {'acc':acc, 'codon_seq': peptide[0], 'amino_acid_seq' : peptide[1]}
 
-    with open('translate_output', 'w') as text_file:
+    with open('translate_output.txt', 'w') as text_file:
         print('<?xml version="1.0" encoding="UTF-8"?>', file=text_file)
         print(xml_translate %translate_map, file=text_file)
     text_file.close()
