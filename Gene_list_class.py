@@ -39,6 +39,7 @@ Revision History:
 # Import libraries
 
 import os
+import pickle, shelve
 
 #*****************************************************************************
 
@@ -60,7 +61,7 @@ identity =[('AB061209', 'MRPS28', 'mitochondrial ribosomal protein s28', '8q21.1
             ('AB098765', 'genid1', 'product1', 'location1'),
             ('AC012345', 'genid2', 'product2', 'location2')]
 
-
+#*************************************************************************************
 class Gene:
     """ A class for handling associated gene identifiers and sequence data."""
     count = 0
@@ -71,8 +72,13 @@ class Gene:
         """ Static method to return current number of gene objects in file.
         """
         return Gene.count
-    
+
+#*************************************************************************************
+
     def __init__(self, acc= str() , genid = str(), product=str(), location=str()):
+
+        """ Identifies the gene object and its identifiers
+        """
         self.number     = Gene.count
         self.acc        = acc
         self.genid      = genid
@@ -80,39 +86,50 @@ class Gene:
         self.location   = location
         Gene.count      += 1
 
+#**************************************************************************************
+
+
     def __str__(self):
+        """ Function for printing the gene object and identifiers.
+        """
         rep = ''
         rep += 'acc: ' + self.acc + '\n' + 'genid: ' + self.genid + '\n' + 'product: ' \
                + self.product  + '\n' + 'location: ' + self.location
         return rep
+
+#***************************************************************************************
  
     def Gene_dict(self):
-        """Create a dictionary for mapping to xml template.
+        """Creates a dictionary for mapping to xml template.
         """
         
-        gene_dict = {'acc': self.acc, 'genid': self.genid, 'product': self.product, 'location': self.location} 
+        gene_dict = {'acc': self.acc, 'genid': self.genid, 'product': self.product, 'location': self.location}
         return gene_dict
 
 
+#**************************************************************************************
+ # Main Program
 
-## Writes output to file in xml format
-with open('genelist_output.txt', 'w') as text_file:
-    print('<?xml version="1.0" encoding="UTF-8"?>\n', file=text_file)
-    
-    gene_list = []
-    gene_map = {}
+gene_list = []
 
-## Uses initialisation functin to create a gene object for each listing from database
-## Had to put into a list as function won't work straight from tuple    
-    for x in identity:
-        gene_list.append(Gene(x[0], x[1], x[2], x[3]))
+## Uses initialisation function to create a gene object for each listing from database
+        ## Had to put into a list as function won't work straight from tuple
+for x in identity:
+    gene_list.append(Gene(x[0], x[1], x[2], x[3]))
         
-## Uses gene dictionary function to create a mapping of attributes for printing in xml
-    for y in gene_list:
-        gene_map = y.Gene_dict()
-        print(xmlTemplate%gene_map, file=text_file)
 
 ## Prints total number of gene objects using static function
 print(Gene.total())
 
+## Writes pickled data (dictionary) to .dat file
+f = open('genelist_output.dat', 'wb')
+pickle.dump(gene_list, f)
+f.close()
 
+
+## Uses gene dictionary function to create a mapping of attributes for printing in xml (if not using .dat file)
+#print('<?xml version="1.0" encoding="UTF-8"?>\n')
+#gene_map = {}
+#for y in gene_list:
+ #   gene_map = y.Gene_dict()
+  #  print(xmlTemplate%gene_map, file=text_file)
