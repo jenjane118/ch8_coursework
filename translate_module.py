@@ -33,8 +33,8 @@ Revision History:
 """
 #*****************************************************************************
 # Import libraries
-
-from seq_module import codingSeq
+import sys
+import seq_module
 
 
 #****************************************************************************
@@ -62,38 +62,64 @@ def translate(acc, dna):
     }
     codon_list = []
     codon = ''
-    count = 0
+
+    #alternative way to count out codons:
+    #count = 0
     #for i in range(1, len(dna)):
-    for x in dna:
         #count += 1
+
+    #divides string into list of codons
+    for x in dna:
         codon += x
         if len(codon) == 3:
             #codon_list.append(x[i]:x[i+3])
             codon_list.append(codon)
             codon = ''
-        else:
-            continue
+
+    #finds corresponding amino acid for codon in list
     for codon in codon_list:
         if codon in codon_table:
             aa_seq += codon_table[codon]
-    return aa_seq
+    return codon_list, aa_seq
 
 
 
-exon_list = [('AB12345', 36, 807), ('AB12345', 2010, 2222)]
-acc = 'AB12345'
+# main
+if __name__ == "__main__":
 
-with open ('seq_file1.txt', 'r') as f:
-    file = f.read().splitlines()
+    # dummy data to try
+    exon_list = [('AB12345', 36, 807), ('AB12345', 2010, 2222)]
+    acc = 'AB12345'
 
-code_seq = codingSeq(acc, file, exon_list)
-print(code_seq)
+    # may also need to use codon start information to know where to start translating in codingSeq function
 
-peptide =  translate(acc, code_seq)
+    with open ('seq_file1.txt', 'r') as f:
+        file = f.read().splitlines()
 
-print(peptide)
+    code_seq = seq_module.codingSeq(acc, file, exon_list)
 
-# will need to use codon start information to know where to start translating in codingSeq function
+    peptide =  translate(acc, code_seq)
 
+    # print with codons lined up with amino acids for error checking
+    #for x in peptide[0]:
+    #    print(x, end=' ')
+    #print('/n')
+    #for x in peptide[1]:
+    #    print( x, end='   ')
 
+    # write results to file in xml format
 
+    xml_translate = """
+        <gene>
+            <sequence acc=%(acc)s>
+                <codon_seq>%(codon_seq)s</codon_seq>
+                <amino_acid_seq>%(amino_acid_seq)s</amino_acid_seq>
+            </sequence>
+        </gene>
+        """
+    translate_map = {'acc':acc, 'codon_seq': peptide[0], 'amino_acid_seq' : peptide[1]}
+
+    with open('translate_output', 'w') as text_file:
+        print('<?xml version="1.0" encoding="UTF-8"?>', file=text_file)
+        print(xml_translate %translate_map, file=text_file)
+    text_file.close()

@@ -47,14 +47,16 @@ def getSequence(acc, seq):
     Input               acc                 Accession ID
                         seq                 Sequence
 
-    Output              num_seq             Tuples of line number and 60 bp of seq
+    Output              num_seq             Dictionary of numbered bp of sequence
     """
-
+    seq_upper = ''
     for s in seq:
-        dna = s.replace(' ', '')
+        seq = s.replace(' ', '')
+        seq_upper += s.upper()
+
     num_seq = {}
     count = 0
-    for x in dna:
+    for x in seq_upper:
         count += 1
         num_seq[count] = x
     return num_seq
@@ -65,11 +67,12 @@ def annotateSeq(acc, seq, exon_list=None):
                         seq                 Sequence
                         exon_list           List of exon boundaries
 
-    Output              seq                 Annotated sequence with inserted <exon> boundaries
+    Output              exon_seq            Annotated sequence with inserted <exon> boundaries
     """
-
+    exon_seq = ''
     for s in seq:
-        exon_seq = s.replace(' ','')
+        seq = s.replace(' ','')
+        exon_seq += s.upper()
     if exon_list != None:
         for x in exon_list:
             acc     = x[0]
@@ -87,16 +90,18 @@ def codingSeq(acc, seq, exon_list=None):
 
     Output          coding_seq          Coding sequence
     """
-
+    seq_upper = ''
+    #change formatting of string
     for s in seq:
-        seq = s.replace(' ', '')
+        seq         = s.replace(' ', '')
+        seq_upper  += s.upper()
     if exon_list != None:
         coding_seq = ''
         for x in exon_list:
             start       = x[1]
             end         = x[2]
             #code_start = x[3]
-            coding_seq += seq[start:end]
+            coding_seq += seq_upper[start:end]
             #coding_seq = coding_seq[code_start:]
         return coding_seq
     else:
@@ -117,14 +122,13 @@ if __name__ == "__main__":
 
 # call functions
     line_seq = getSequence(acc, file)
+    #print(line_seq)
 
     ann_seq = annotateSeq(acc, file, exon_list)
-
-#print(ann_seq)
+    #print(ann_seq)
 
     code_seq = codingSeq(acc, file, exon_list)
-
-#print(code_seq)
+    #print(code_seq)
 
 
 # print to file in xml format
