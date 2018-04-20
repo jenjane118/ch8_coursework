@@ -30,7 +30,8 @@ Usage:
 
 Revision History:
 =================
-
+V1.0            18.03.18                Original                    By: JJS
+V1.1            18.04.18                added 'main'                    JJS
 
 
 """
@@ -153,24 +154,27 @@ class Gene:
             if location in gene_instance.location:
                 return(gene_instance.acc, gene_instance.genid, gene_instance.product, gene_instance.location)
 
+# main
+if __name__ == "__main__":
 ## Writes output to file in xml format
-with open('genesearch_output.txt', 'w') as text_file:
-    print('<?xml version="1.0" encoding="UTF-8"?>\n', file=text_file)
+    with open('genesearch_output.txt', 'w') as text_file:
+        print('<?xml version="1.0" encoding="UTF-8"?>\n', file=text_file)
     
-    gene_list = []
-    search_results = []
-    search_map = {}
+        gene_list = []
+        search_results = []
+        search_map = {}
 
 ## Uses initialisation function to create a gene object for each listing from database
 ## Create a list of gene objects    
-    for x in identity:
-        gene_list.append(Gene(x[0], x[1], x[2], x[3]))
+        for x in identity:
+            gene_list.append(Gene(x[0], x[1], x[2], x[3]))
         
 ## Uses gene dictionary function to create a mapping of attributes for printing in xml
-    search_results = Gene.Search_acc(gene_list, 'AB098765')
-    search_map = search_results.Gene_dict()
-    print(xmlTemplate%search_map, file=text_file)
- 
+        search_results = Gene.Search_acc(gene_list, 'AB098765')
+        search_map = search_results.Gene_dict()
+        print(xmlTemplate%search_map, file=text_file)
+    text_file.close()
+
 
 
 

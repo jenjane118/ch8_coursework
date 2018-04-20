@@ -21,6 +21,7 @@ ______________________________________________________________________________
 Description:
 ============
 This program will calculate codon usage frequency, percentage, and ratio of codon usage preference for entire chromosome.
+Saves data to a .dat file.
 
 
 Usage:
