@@ -28,9 +28,9 @@ Usage:
 
 Revision History:
 =================
-V1.0            Original                        By: JJS
-V1.1            Revised as module                   JJS
-
+V1.0            22.03.18    Original                        By: JJS
+V1.1            06.04.18    Revised as module                   JJS
+V1.2            21.04.18    Combined translate function         JJS
 """
 #*****************************************************************************
 # Import libraries
@@ -107,6 +107,38 @@ def codingSeq(acc, seq, exon_list=None):
     else:
         return coding_seq
 
+def translate(acc, dna):
+    aa_seq = ''
+    codon_table = {
+            'ATA': 'I', 'ATC': 'I', 'ATT': 'I', 'ATG': 'M',
+            'ACA': 'T', 'ACC': 'T', 'ACG': 'T', 'ACT': 'T',
+            'AAC': 'N', 'AAT': 'N', 'AAA': 'K', 'AAG': 'K',
+            'AGC': 'S', 'AGT': 'S', 'AGA': 'R', 'AGG': 'R',
+            'CTA': 'L', 'CTC': 'L', 'CTG': 'L', 'CTT': 'L',
+            'CCA': 'P', 'CCC': 'P', 'CCG': 'P', 'CCT': 'P',
+            'CAC': 'H', 'CAT': 'H', 'CAA': 'Q', 'CAG': 'Q',
+            'CGA': 'R', 'CGC': 'R', 'CGG': 'R', 'CGT': 'R',
+            'GTA': 'V', 'GTC': 'V', 'GTG': 'V', 'GTT': 'V',
+            'GCA': 'A', 'GCC': 'A', 'GCG': 'A', 'GCT': 'A',
+            'GAC': 'D', 'GAT': 'D', 'GAA': 'E', 'GAG': 'E',
+            'GGA': 'G', 'GGC': 'G', 'GGG': 'G', 'GGT': 'G',
+            'TCA': 'S', 'TCC': 'S', 'TCG': 'S', 'TCT': 'S',
+            'TTC': 'F', 'TTT': 'F', 'TTA': 'L', 'TTG': 'L',
+            'TAC': 'Y', 'TAT': 'Y', 'TAA': '_', 'TAG': '_',
+            'TGC': 'C', 'TGT': 'C', 'TGA': '_', 'TGG': 'W'
+    }
+
+    # divides string into list of codons
+    codon_list = []
+    codon = ''
+    for x in dna:
+        codon += x
+        if len(codon) == 3:
+            codon_list.append(codon)
+        for codon in codon_list:            # finds corresponding amino acid for codon in list
+            if codon in codon_table:
+                aa_seq += codon_table[codon]
+        return codon_list, aa_seq
 
 
 # main
