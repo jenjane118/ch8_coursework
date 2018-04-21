@@ -3,8 +3,8 @@
 """ Sequence annotations module """
 
 """
-Program:        Sequence_module
-File:           Sequence_module.py
+Program:        Seq_module
+File:           Seq_module.py
 
 Version:        1.0
 Date:           22.03.18
@@ -35,7 +35,7 @@ V1.1            Revised as module                   JJS
 #*****************************************************************************
 # Import libraries
 
-import re
+
 
 
 

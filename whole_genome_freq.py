@@ -37,7 +37,6 @@ V1.0           18.04.18         Original        By: JJS
 """
 #*****************************************************************************
 # Import libraries
-import sys
 
 import seq_module
 
@@ -83,7 +82,7 @@ for x in gene_list:
             total_freq[key] += codon_table[key]
         else:
             total_freq[key] = codon_table[key]
-print(total_freq)
+#print(total_freq)
 
 # calculate codon usage ratio for whole genome
 gene = 'total'

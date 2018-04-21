@@ -33,7 +33,7 @@ Revision History:
 """
 #*****************************************************************************
 # Import libraries
-import sys
+
 import seq_module
 
 

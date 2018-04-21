@@ -3,8 +3,8 @@
 """ Gene Search Tool"""
 
 """
-Program:    Gene_class_Search
-File:       Gene_class_Search.py
+Program:    Gene_search
+File:       Gene_search.py
 
 Version:    1.0
 Date:       18.03.18
@@ -39,7 +39,11 @@ V1.1            18.04.18                added 'main'                    JJS
 #******************************************************************************
 # Import libraries
 
-import os
+#import os
+import pickle, shelve
+import GeneModule
+
+
 
 #*****************************************************************************
 
@@ -63,37 +67,7 @@ identity =[('AB061209', 'MRPS28', 'mitochondrial ribosomal protein s28', '8q21.1
 
 
 class Gene:
-    """ A class for handling associated gene identifiers and sequence data."""
-    count = 0
- #   list_of_genes = []
-    
-    @staticmethod
-    def total():
-        """ Static method to return current number of gene objects in file.
-        """
-        return Gene.count
-    
-    def __init__(self, acc= str() , genid = str(), product=str(), location=str()):
-        self.number     = Gene.count
-        self.acc        = acc
-        self.genid      = genid
-        self.product    = product
-        self.location   = location
- #       Gene.list_of_genes.append(self)
-        Gene.count      += 1
-
-    def __str__(self):
-        rep = ''
-        rep += 'acc: ' + self.acc + '\n' + 'genid: ' + self.genid + '\n' + 'product: ' \
-               + self.product  + '\n' + 'location: ' + self.location
-        return rep
- 
-    def Gene_dict(self):
-        """Create a dictionary for mapping to xml template.
-        """
-        
-        gene_dict = {'acc': self.acc, 'genid': self.genid, 'product': self.product, 'location': self.location} 
-        return gene_dict
+    """ Define new functions for searching on attributes of gene objects. """
 
     def Search_acc(list_of_genes, acc):
         """ Search list of genes by accession code and return the
@@ -167,7 +141,7 @@ if __name__ == "__main__":
 ## Uses initialisation function to create a gene object for each listing from database
 ## Create a list of gene objects    
         for x in identity:
-            gene_list.append(Gene(x[0], x[1], x[2], x[3]))
+            gene_list.append(GeneModule.Gene(x[0], x[1], x[2], x[3]))
         
 ## Uses gene dictionary function to create a mapping of attributes for printing in xml
         search_results = Gene.Search_acc(gene_list, 'AB098765')
@@ -200,7 +174,7 @@ if __name__ == "__main__":
 
 
 #### here i directly accessed object's attributes outside of its class definition
-##   --not recommended
+##   --not recommended, use __str__ method to print, or Gene_dict to map instead
 ##        gene_map = {'acc': gene_list[j].acc, 'genid': gene_list[j].genid, 'product': gene_list[j].product, 'location': gene_list[j].location}
 ##        print(xmlTemplate%gene_map, file=text_file)
 ##
