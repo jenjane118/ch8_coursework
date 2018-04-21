@@ -36,7 +36,7 @@ V1.2            21.04.18    Combined translate function         JJS
 # Import libraries
 
 
-
+import re
 
 
 #****************************************************************************
@@ -67,7 +67,7 @@ def annotateSeq(acc, seq, exon_list=None):
                         seq                 Sequence
                         exon_list           List of exon boundaries
 
-    Output              exon_seq            Annotated sequence with inserted <exon> boundaries
+    Output              exon_seq            Annotated sequence with inserted *exon/exon* boundaries
     """
     exon_seq = ''
     for s in seq:
@@ -78,7 +78,7 @@ def annotateSeq(acc, seq, exon_list=None):
             acc     = x[0]
             start   = x[1]
             end     = x[2]
-            exon_seq     = exon_seq[:start] + '<exon' + exon_seq[start:end] +'exon>' + exon_seq[end:]
+            exon_seq     = exon_seq[:start] + '*exon' + exon_seq[start:end] +'exon*' + exon_seq[end:]
         return exon_seq
 
 
@@ -141,6 +141,51 @@ def translate(acc, dna):
         return codon_list, aa_seq
 
 
+def enz_cut(acc, sequence, enzyme=None):
+    """ Will indicate any cleavage sites from popular restriction enzymes in
+        restriction enzyme dictionary. User can also search a custom cleavage site.
+        Sequence is returned with indicated cutting sites ('@' symbol) and exon boundaries ('<exon' and 'exon>').
+
+    Input           acc                 accession number for gene
+                    sequence            gene sequence (raw)
+                    enzyme              optional custom cleavage site
+
+    Output          cut_tuple           tuple containing:
+                                        (enzyme/cleavage sequence, no. of cleavage sites, annotated seq)
+    """
+
+    enz_dict = {
+        'EcoRI': 'GAATTC', 'BamHI': 'GGATCC',
+        'BsuMI': 'CTCGAG', 'HindIII': 'AAGCTT',
+        'EcoRV': 'GATATC'}
+
+    cut_dict = {}
+    ## if a custom cleavage site is included, will indicate number and position of cleavage sites in sequence
+    if enzyme != None:
+        count = 0
+        cut = enzyme
+        new_seq = sequence.replace(' ', '')
+        p = re.compile(r'(' + cut + ')')
+        it = p.finditer(new_seq)
+        for match in it:
+            count += 1
+        cut_seq = re.sub(r'(' + cut + ')', r'@\1@', new_seq)
+        cut_dict[enzyme] = (count, cut_seq)
+
+    ## for each enzyme in dictionary, it will search and return only the enzymes which have cleavage sites in sequence
+    for enzyme in enz_dict:
+        count = 0
+        cut = enz_dict[enzyme]
+        new_seq = sequence.replace(' ', '')
+        p = re.compile(r'(' + cut + ')')
+        it = p.finditer(new_seq)
+        for match in it:
+            count += 1
+        cut_seq = re.sub(r'(' + cut + ')', r'@\1@', new_seq)
+        if count != 0:
+            cut_dict[enzyme] = (count, cut_seq)
+    return cut_dict
+
 # main
 if __name__ == "__main__":
 
@@ -161,6 +206,10 @@ if __name__ == "__main__":
 
     code_seq = codingSeq(acc, file, exon_list)
     #print(code_seq)
+
+    enz_seq = enz_cut(acc, ann_seq)
+    #for k, v in enz_seq.items():
+    #    print(k,v)
 
 
 # print to file in xml format
@@ -183,6 +232,7 @@ if __name__ == "__main__":
     </gene>
     """
     seq_map2 = {'acc':acc, 'coding_seq': code_seq}
+
 
 
 
