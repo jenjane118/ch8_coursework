@@ -103,4 +103,11 @@ class Gene:
         gene_dict = {'acc': self.acc, 'genid': self.genid, 'product': self.product, 'location': self.location}
         return gene_dict
 
-# **************************************************************************************
+    # **************************************************************************************
+
+    def GeneList(self):
+        """Creates a dictionary of gene identifiers.
+        """
+
+        gene_dict = {self.acc: (self.genid, self.product, self.location)}
+        return gene_dict

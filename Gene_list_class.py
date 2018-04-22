@@ -39,84 +39,56 @@ Revision History:
 # Import libraries
 
 import os
+import GeneModule
 import pickle, shelve
+import dicttoxml
 
 #*****************************************************************************
-
-
-xmlTemplate = """
-<gene>
-<geneidentifiers>
-    <accession>%(acc)s</accession>
-    <genid>%(genid)s</genid>
-    <product>%(product)s</product>
-    <location>%(location)s</location>
-</geneidentifiers>
-</gene>"""
 
 ## dummy data here--in reality would need to import list of gene identifiers
 ## ideally in lists of tuples for indexing
 
 identity =[('AB061209', 'MRPS28', 'mitochondrial ribosomal protein s28', '8q21.1-q21.2'),
             ('AB098765', 'genid1', 'product1', 'location1'),
-            ('AC012345', 'genid2', 'product2', 'location2')]
-
-#*************************************************************************************
-class Gene:
-    """ A class for handling associated gene identifiers and sequence data."""
-    count = 0
-    names = []
-
-    @staticmethod
-    def total():
-        """ Static method to return current number of gene objects in file.
-        """
-        return Gene.count
+            ('AC012345', 'genid2', 'product2', 'location2'),
+            ('AC034567', 'genid3', 'product3', 'location3'),
+            ('AR456789', 'genid4', 'product4', 'location4')]
 
 #*************************************************************************************
 
-    def __init__(self, acc= str() , genid = str(), product=str(), location=str()):
+def GeneList(self):
+    """Creates a dictionary of gene identifiers.
+    """
 
-        """ Identifies the gene object and its identifiers
-        """
-        self.number     = Gene.count
-        self.acc        = acc
-        self.genid      = genid
-        self.product    = product
-        self.location   = location
-        Gene.count      += 1
+    gene_dict = {self.acc: (self.genid, self.product, self.location)}
+    return gene_dict
 
-#**************************************************************************************
-
-
-    def __str__(self):
-        """ Function for printing the gene object and identifiers.
-        """
-        rep = ''
-        rep += 'acc: ' + self.acc + '\n' + 'genid: ' + self.genid + '\n' + 'product: ' \
-               + self.product  + '\n' + 'location: ' + self.location
-        return rep
-
-#***************************************************************************************
- 
-    def Gene_dict(self):
-        """Creates a dictionary for mapping to xml template.
-        """
-        
-        gene_dict = {'acc': self.acc, 'genid': self.genid, 'product': self.product, 'location': self.location}
-        return gene_dict
-
-
-#**************************************************************************************
- # Main Program
+#***********************************************************************************
+# Main Program
 
 gene_list = []
-
+all_genes = {}
+genes = {}
 ## Uses initialisation function to create a gene object for each listing from database
-        ## Had to put into a list as function won't work straight from tuple
+
 for x in identity:
-    gene_list.append(Gene(x[0], x[1], x[2], x[3]))
-        
+    gene_list.append(GeneModule.Gene(x[0], x[1], x[2], x[3]))
+
+for x in gene_list:
+    genes =  GeneList(x)
+    for k in genes:
+        all_genes[k] = genes[k]
+#print(all_genes)
+
+
+genes_xml = dicttoxml.dicttoxml(all_genes, attr_type=False, custom_root='gene_list')
+xml_file = open('genelist_output.xml', 'w')
+print(genes_xml, file=xml_file)
+xml_file.close()
+
+
+##****************************************************************
+## Other processes:
 
 ## Prints total number of gene objects using static function
 #print(Gene.total())
@@ -124,19 +96,11 @@ for x in identity:
 #for y in gene_list:
 #    print(y)
 
-
 ## Writes pickled data (dictionary) to .dat file
-f = open('genelist_output.dat', 'wb')
-pickle.dump(gene_list, f)
-f.close()
+#f = open('genelist_output.dat', 'wb')
+#pickle.dump(gene_list, f)
+#f.close()
 
 
 
-
-## Uses gene dictionary function to create a mapping of attributes for printing in xml (if not using .dat file)
-#print('<?xml version="1.0" encoding="UTF-8"?>\n')
-#gene_map = {}
-#for y in gene_list:
-#    gene_map = y.Gene_dict()
-#    print(xmlTemplate%gene_map)
 

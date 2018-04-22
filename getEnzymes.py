@@ -87,7 +87,7 @@ for k,v in exon_cut.items():
 
 doc.writexml(sys.stdout, addindent='    ', newl='\n')
 
-file_handle = open('geEnzymes_out.xml', 'w')
+file_handle = open('getEnzymes_out.xml', 'w')
 doc.writexml(file_handle, addindent='   ',newl='\n')
 file_handle.close()
 
