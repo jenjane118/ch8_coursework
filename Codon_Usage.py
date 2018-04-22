@@ -29,14 +29,18 @@ Usage:
 Revision History:
 =================
 
-V1.0           22.03.18         Original                             By: JJS
-V1.1           18.04.18         Renamed (from 'Codon_Usage_module')      JJS
-
+V1.0           22.03.18         Original                                By: JJS
+V1.1           18.04.18         Renamed (from 'Codon_Usage_module')         JJS
+V1.2           22.04.18         Added dicttoxml library                     JJS
+                                Fixed bugs with uppercase and zero division JJS
+                                
 """
 #*****************************************************************************
 # Import libraries
 
 import sys
+import dicttoxml
+
 
 
 #****************************************************************************
@@ -64,11 +68,18 @@ def codonFreq(acc, dna):
         'CGG': 0, 'AGT': 0, 'AGC': 0, 'AGA': 0, 'AGG': 0,
         'GGT': 0, 'GGC': 0, 'GGA': 0, 'GGG': 0}
 
-    # make a list of codon strings
+
+    # format sequence to unbroken uppercase string
+    seq = ''
+    for x in dna:
+        dna = x.replace(' ', '')
+        seq = x.upper()
+
+    # divide sequence into a list of codons
     codon = ''
     codon_list = []
-    for x in dna:
-        codon += x
+    for s in seq:
+        codon += s
         if len(codon) == 3:
             codon_list.append(codon)
             codon = ''
@@ -144,7 +155,10 @@ def usageRatio (acc, freq_table):
             for x in codon_list:
                 sum += freq_table[x]
             for x in codon_list:
-                ratio = (freq_table[x]) / sum
+                try:
+                    ratio = (freq_table[x]) / sum
+                except ZeroDivisionError:
+                    ratio = 0
                 codonDict[x] = round(ratio, 2)
         aaDict[aa] = codonDict
     return aaDict
@@ -155,24 +169,33 @@ if __name__ == "__main__":
 
 # main
 
-#
+    #dummy data
     with open ('seq_file1.txt', 'r') as f:
         file = f.read().splitlines()
-# #replace spaces in dna sequence
-    seq = ''
-    for s in file:
-        seq = s.replace(' ', '')
     gene = 'AB12345'
-    codon_freq = codonFreq(gene, seq)
-    print(codon_freq)
+
+    #replace spaces in dna sequence
+    #seq = ''
+    #for s in file:
+    #    seq += s.replace(' ', '')
+
+    codon_freq = codonFreq(gene, file)
+    freq_xml = dicttoxml.dicttoxml(codon_freq, attr_type=False, custom_root='freq')
+    print(freq_xml)
+    #for k,v in codon_freq.items():
+     #   print(k, ':', v)
 
 ##print each amino acid and codon usage ratio
-    ratio = usageRatio(gene, codon_freq)
-    for k,v in ratio.items():
-        print(k, ':', v)
+    ratio       = usageRatio(gene, codon_freq)
+    ratio_xml   = dicttoxml.dicttoxml(ratio, attr_type=False, custom_root='ratio')
+    print(ratio_xml)
+    #for k,v in ratio.items():
+     #   print(k, ':', v)
 
 # # print each codon and percent usage (per 100 bp)
-    percent = codonPercent(gene, codon_freq)
-    for a in percent:
-        print(a, percent[a])
+    percent     = codonPercent(gene, codon_freq)
+    percent_xml = dicttoxml.dicttoxml(percent, attr_type=False, custom_root='percent')
+    print(percent_xml)
+    #for a in percent:
+     #   print(a, percent[a])
     f.close()
