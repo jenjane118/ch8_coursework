@@ -23,7 +23,6 @@ Description:
 This program returns a list of all gene identifiers associated with every gene located
 on Human Chromosome 8 for display on website.
 
-Eventually, will link to a call for detail page for individual genes
 
 Usage:
 ======
@@ -68,26 +67,62 @@ def GeneList(self):
 #***********************************************************************************
 # Main Program
 
-gene_list = []
-all_genes = {}
-genes = {}
-## Uses initialisation function to create a gene object for each listing from database
+##  once we have database parser up and running will import python object (tuple or dictionary)
+## from pymysql program import genbank
 
-for x in identity:
-    gene_list.append(GeneModule.Gene(x[0], x[1], x[2], x[3]))
+#gene_list = []
+#all_genes = {}
+#genes = {}
 
-for x in gene_list:
-    genes =  GeneList(x)
-    for k in genes:
-        all_genes[k] = genes[k]
-#print(all_genes)
+xmlTemplate = """
+<gene>
+<geneidentifiers>
+    <accession>%(acc)s</accession>
+    <genid>%(genid)s</genid>
+    <product>%(product)s</product>
+    <location>%(location)s</location>
+</geneidentifiers>
+</gene>"""
 
 
-genes_xml = dicttoxml.dicttoxml(all_genes, attr_type=False, custom_root='gene_list')
-xml_file = open('genelist_output.xml', 'w')
-print(genes_xml, file=xml_file)
+
+with open('genelist_output.xml', 'w') as xml_file:
+    print('<?xml version="1.0" encoding="UTF-8"?>\n', file=xml_file)
+
+    gene_list = []
+    gene_map = {}
+
+    ## Uses initialisation functin to create a gene object for each listing from database
+    ## Had to put into a list as function won't work straight from tuple
+    for x in identity:
+        gene_list.append(GeneModule.Gene(x[0], x[1], x[2], x[3]))
+
+    ## Uses gene dictionary function to create a mapping of attributes for printing in xml
+    for y in gene_list:
+        gene_map = y.Gene_dict()
+        print(xmlTemplate % gene_map, file=xml_file)
+
+## Prints total number of gene objects using static function
+print(GeneModule.Gene.total())
 xml_file.close()
 
+
+# ## Uses initialisation function to create a gene object for each listing from database
+# for x in identity:
+#     gene_list.append(GeneModule.Gene(x[0], x[1], x[2], x[3]))
+#
+# ## Creates dictionary of gene identifiers
+# for x in gene_list:
+#     genes =  GeneList(x)
+#     for k in genes:
+#         all_genes[k] = genes[k]
+#
+# ## Writes to xml file
+# genes_xml = dicttoxml.dicttoxml(all_genes, attr_type=False, custom_root='gene_list')
+# xml_file = open('genelist_output.xml', 'w')
+# print(genes_xml, file=xml_file)
+# xml_file.close()
+#
 
 ##****************************************************************
 ## Other processes:

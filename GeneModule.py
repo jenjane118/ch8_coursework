@@ -20,8 +20,7 @@ _____________________________________________________________________________
 
 Description:
 ============
-This program returns a list of all gene identifiers associated with every gene located
-on Human Chromosome 8 for display on website.
+This program includes all functions for class of objects called genes
 
 Eventually, will link to a call for detail page for individual genes
 
