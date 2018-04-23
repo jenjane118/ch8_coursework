@@ -70,10 +70,6 @@ def codonFreq(acc, dna):
 
 
     # format sequence to unbroken uppercase string
-    #seq = ''
-    #for x in dna:
-     #   seq = x.replace(' ', '')
-     #   seq = x.upper()
     dna = dna.upper()
     # divide sequence into a list of codons
     codon = ''

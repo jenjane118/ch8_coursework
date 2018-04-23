@@ -52,29 +52,32 @@ import pickle, shelve
 #print(codon_freq)
 
 
-# for each gene in gene_list:
+
+
+## get data from sequence config file
+
+import seq_config
+genelist = seq_config.gene_list
+
+
+# for each gene in genelist:
     # run seq_module.codingSeq to get coding sequence
 
-# run with dummy data as coding sequence
-gene_list = []
-with open('seq_file.txt', 'r') as f:
-    file = f.read().splitlines()
-    for x in file:
-        gene_list.append(x)
-
 ## extract accession number and sequence from list of genes
-
-codon_table = {}
-total_freq  = {}
-for x in gene_list:
+for x in genelist:
     gene = str(x[:7])
     freq_seq  = str(x[9:])
 
+
+
 ##  call function to determine codon frequency for each gene
+
+    codon_table = {}
     codon_table = Codon_Usage.codonFreq(gene, freq_seq)
-    #print(codon_table)
+#print(codon_table)
 
 ##  add each to total codon frequency dictionary
+    total_freq = {}
     for key in codon_table:
         if key in total_freq:
             total_freq[key] += codon_table[key]
