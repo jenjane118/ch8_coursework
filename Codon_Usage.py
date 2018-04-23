@@ -39,7 +39,7 @@ V1.2           22.04.18         Added dicttoxml library                     JJS
 # Import libraries
 
 import sys
-import dicttoxml
+#import dicttoxml
 
 
 
@@ -180,22 +180,24 @@ if __name__ == "__main__":
     #    seq += s.replace(' ', '')
 
     codon_freq = codonFreq(gene, file)
-    freq_xml = dicttoxml.dicttoxml(codon_freq, attr_type=False, custom_root='freq')
-    print(freq_xml)
-    #for k,v in codon_freq.items():
-     #   print(k, ':', v)
+    #freq_xml = dicttoxml.dicttoxml(codon_freq, attr_type=False, custom_root='freq')
+    #print(freq_xml)
+    for k,v in codon_freq.items():
+        print(k, ':', v)
 
 ##print each amino acid and codon usage ratio
     ratio       = usageRatio(gene, codon_freq)
-    ratio_xml   = dicttoxml.dicttoxml(ratio, attr_type=False, custom_root='ratio')
-    print(ratio_xml)
-    #for k,v in ratio.items():
-     #   print(k, ':', v)
+    #ratio_xml   = dicttoxml.dicttoxml(ratio, attr_type=False, custom_root='ratio')
+    #print(ratio_xml)
+    for k,v in ratio.items():
+        print(k, ':', v)
 
 # # print each codon and percent usage (per 100 bp)
     percent     = codonPercent(gene, codon_freq)
-    percent_xml = dicttoxml.dicttoxml(percent, attr_type=False, custom_root='percent')
-    print(percent_xml)
-    #for a in percent:
-     #   print(a, percent[a])
+    #percent_xml = dicttoxml.dicttoxml(percent, attr_type=False, custom_root='percent')
+    #print(percent_xml)
+    for a in percent:
+        print(a, percent[a])
+
+
     f.close()
