@@ -29,6 +29,7 @@ Usage:
 Revision History:
 =================
 V1.0           20.04.18             Original            By:JJS
+V1.1           23.04.18             Debuggin               JJS
 
 """
 #*****************************************************************************
@@ -46,16 +47,18 @@ acc = 'AB12345'
 with open('seq_file1.txt', 'r') as f:
     file = f.read().splitlines()
 
+## use codingSeq function to get coding sequence
 code_seq = seq_module.codingSeq(acc, file, exon_list)
 
+## use tranlate function to get codon list and amino acid translation
 peptide = seq_module.translate(acc, code_seq)
 
-# print with codons lined up with amino acids for error checking
-# for x in peptide[0]:
-#    print(x, end=' ')
-# print('/n')
-# for x in peptide[1]:
-#    print( x, end='   ')
+##print with codons lined up with amino acids for error checking
+for x in peptide[0]:
+   print(x, end=' ')
+print('')
+for x in peptide[1]:
+   print( x, end='   ')
 
 # write results to file in xml format
 
@@ -69,7 +72,7 @@ xml_translate = """
     """
 translate_map = {'acc': acc, 'codon_seq': peptide[0], 'amino_acid_seq': peptide[1]}
 
-with open('translate_output.txt', 'w') as text_file:
-    print('<?xml version="1.0" encoding="UTF-8"?>', file=text_file)
-    print(xml_translate % translate_map, file=text_file)
-text_file.close()
+with open('translate_output.xml', 'w') as xml_file:
+    print('<?xml version="1.0" encoding="UTF-8"?>', file=xml_file)
+    print(xml_translate % translate_map, file=xml_file)
+xml_file.close()

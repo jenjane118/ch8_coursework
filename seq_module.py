@@ -90,18 +90,18 @@ def codingSeq(acc, seq, exon_list=None):
 
     Output          coding_seq          Coding sequence
     """
-    seq_upper = ''
+
     #change formatting of string
     for s in seq:
-        seq         = s.replace(' ', '')
-        seq_upper  += s.upper()
+        seq = s.replace(' ', '')
+        seq = s.upper()
     if exon_list != None:
         coding_seq = ''
         for x in exon_list:
             start       = x[1]
             end         = x[2]
             #code_start = x[3]
-            coding_seq += seq_upper[start:end]
+            coding_seq += seq[start:end]
             #coding_seq = coding_seq[code_start:]
         return coding_seq
     else:
@@ -110,35 +110,38 @@ def codingSeq(acc, seq, exon_list=None):
 def translate(acc, dna):
     aa_seq = ''
     codon_table = {
-            'ATA': 'I', 'ATC': 'I', 'ATT': 'I', 'ATG': 'M',
-            'ACA': 'T', 'ACC': 'T', 'ACG': 'T', 'ACT': 'T',
-            'AAC': 'N', 'AAT': 'N', 'AAA': 'K', 'AAG': 'K',
-            'AGC': 'S', 'AGT': 'S', 'AGA': 'R', 'AGG': 'R',
-            'CTA': 'L', 'CTC': 'L', 'CTG': 'L', 'CTT': 'L',
-            'CCA': 'P', 'CCC': 'P', 'CCG': 'P', 'CCT': 'P',
-            'CAC': 'H', 'CAT': 'H', 'CAA': 'Q', 'CAG': 'Q',
-            'CGA': 'R', 'CGC': 'R', 'CGG': 'R', 'CGT': 'R',
-            'GTA': 'V', 'GTC': 'V', 'GTG': 'V', 'GTT': 'V',
-            'GCA': 'A', 'GCC': 'A', 'GCG': 'A', 'GCT': 'A',
-            'GAC': 'D', 'GAT': 'D', 'GAA': 'E', 'GAG': 'E',
-            'GGA': 'G', 'GGC': 'G', 'GGG': 'G', 'GGT': 'G',
-            'TCA': 'S', 'TCC': 'S', 'TCG': 'S', 'TCT': 'S',
-            'TTC': 'F', 'TTT': 'F', 'TTA': 'L', 'TTG': 'L',
-            'TAC': 'Y', 'TAT': 'Y', 'TAA': '_', 'TAG': '_',
-            'TGC': 'C', 'TGT': 'C', 'TGA': '_', 'TGG': 'W'
+        'ATA': 'I', 'ATC': 'I', 'ATT': 'I', 'ATG': 'M',
+        'ACA': 'T', 'ACC': 'T', 'ACG': 'T', 'ACT': 'T',
+        'AAC': 'N', 'AAT': 'N', 'AAA': 'K', 'AAG': 'K',
+        'AGC': 'S', 'AGT': 'S', 'AGA': 'R', 'AGG': 'R',
+        'CTA': 'L', 'CTC': 'L', 'CTG': 'L', 'CTT': 'L',
+        'CCA': 'P', 'CCC': 'P', 'CCG': 'P', 'CCT': 'P',
+        'CAC': 'H', 'CAT': 'H', 'CAA': 'Q', 'CAG': 'Q',
+        'CGA': 'R', 'CGC': 'R', 'CGG': 'R', 'CGT': 'R',
+        'GTA': 'V', 'GTC': 'V', 'GTG': 'V', 'GTT': 'V',
+        'GCA': 'A', 'GCC': 'A', 'GCG': 'A', 'GCT': 'A',
+        'GAC': 'D', 'GAT': 'D', 'GAA': 'E', 'GAG': 'E',
+        'GGA': 'G', 'GGC': 'G', 'GGG': 'G', 'GGT': 'G',
+        'TCA': 'S', 'TCC': 'S', 'TCG': 'S', 'TCT': 'S',
+        'TTC': 'F', 'TTT': 'F', 'TTA': 'L', 'TTG': 'L',
+        'TAC': 'Y', 'TAT': 'Y', 'TAA': '_', 'TAG': '_',
+        'TGC': 'C', 'TGT': 'C', 'TGA': '_', 'TGG': 'W'
     }
-
-    # divides string into list of codons
     codon_list = []
     codon = ''
+
+    #divides string into list of codons
     for x in dna:
         codon += x
         if len(codon) == 3:
             codon_list.append(codon)
-        for codon in codon_list:            # finds corresponding amino acid for codon in list
-            if codon in codon_table:
-                aa_seq += codon_table[codon]
-        return codon_list, aa_seq
+            codon = ''
+
+    #finds corresponding amino acid for codon in list
+    for codon in codon_list:
+        if codon in codon_table:
+            aa_seq += codon_table[codon]
+    return codon_list, aa_seq
 
 
 def enz_cut(acc, sequence, enzyme=None):
@@ -194,14 +197,16 @@ if __name__ == "__main__":
         file = f.read().splitlines()
     f.close()
 
+## dummy data
     exon_list = [('AB12345.1', 36, 807), ('AB232010.1', 2222, 2311)]
     acc = 'AB12345.1'
 
-## get genomic sequence (with line numbers)
+## get genomic sequence
     line_seq = getSequence(acc, file)
+## print without line numbers
     for k, v in line_seq.items():
         print(v, end='')
-
+## print divided into numbered rows of 60
     for i in range(1, len(line_seq), 60):
         print('\n')
         print(i, '    ', end='')
@@ -222,43 +227,68 @@ if __name__ == "__main__":
     for k, v in enz_seq.items():
         print(k,v)
 
+## get translation
+    aa_seq = translate(acc, code_seq)
 
-# ## if you want to print to file in xml format
-#     xml_seq_ann = """
-#     <gene>
-#     <sequence acc=%(acc)s>
-#     <ann_seq>%(sequence)s</ann_seq>
-#     </sequence>
-#     </gene>
-#     """
-#
-#
-#     seq_map = {'acc': acc, 'sequence': ann_seq}
-#
-#     xml_seq_coding = """
-#     <gene>
-#     <sequence acc=%(acc)s>
-#     <coding_seq>%(coding_seq)s</coding_seq>
-#     </sequence>
-#     </gene>
-#     """
-#     seq_map2 = {'acc':acc, 'coding_seq': code_seq}
-#
-#
-#
-#     ## printing dictionary in tidy rows with line numbers:
-#     with open('sequence_output.txt', 'w') as text_file:
-#         for i in range(1, len(line_seq), 60):
-#             print(i, '    ', end='', file=text_file)
-#             for j in range(i, i + 59):
-#                 if j in line_seq:
-#                     print(line_seq[j], end='', file=text_file)
-#                 else:
-#                     pass
-#             print('\n', file=text_file)
-#         print('<?xml version="1.0" encoding="UTF-8"?>', file=text_file)
-#         print(xml_seq_ann %seq_map, file=text_file)
-#         print(xml_seq_coding %seq_map2, file=text_file)
-#     text_file.close()
-#
-#
+## line up codons and amino acids
+    for x in aa_seq[0]:
+        print(x, end=' ')
+    print('')
+    for x in aa_seq[1]:
+        print(x, end='   ')
+    print('')
+## print amino acid sequence
+    print(aa_seq[1])
+
+
+## if you want to print to file in xml format to .xml file:
+
+    xml_seq_ann = """
+    <gene>
+    <sequence acc=%(acc)s>
+    <ann_seq>%(sequence)s</ann_seq>
+    </sequence>
+    </gene>
+    """
+
+
+    seq_map = {'acc': acc, 'sequence': ann_seq}
+
+    xml_seq_coding = """
+    <gene>
+    <sequence acc=%(acc)s>
+    <coding_seq>%(coding_seq)s</coding_seq>
+    </sequence>
+    </gene>
+    """
+    seq_map2 = {'acc':acc, 'coding_seq': code_seq}
+
+    xml_seq_translation = """
+    <gene>
+    <sequence acc=%(acc)s>
+    <aa_seq>%(aa_seq)s</aa_seq>
+    </sequence>
+    </gene>
+    """
+    seq_map3 = {'acc':acc, 'aa_seq':aa_seq[1]}
+
+    xml_seq_codons = """
+    <gene>
+    <sequence acc=%(acc)s>
+    <codon_seq>%(codon_seq)s</codon_seq>
+    </sequence>
+    </gene>
+    """
+    seq_map4 = {'acc':acc, 'codon_seq':aa_seq[0]}
+
+
+
+    with open('sequence_output.xml', 'w') as text_file:
+        print('<?xml version="1.0" encoding="UTF-8"?>', file=text_file)
+        print(xml_seq_ann %seq_map, file=text_file)
+        print(xml_seq_coding %seq_map2, file=text_file)
+        print(xml_seq_translation %seq_map3, file=text_file)
+        print(xml_seq_codons %seq_map4, file=text_file)
+    text_file.close()
+
+
