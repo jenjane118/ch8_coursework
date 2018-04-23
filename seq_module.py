@@ -197,60 +197,68 @@ if __name__ == "__main__":
     exon_list = [('AB12345.1', 36, 807), ('AB232010.1', 2222, 2311)]
     acc = 'AB12345.1'
 
-# call functions
+## get genomic sequence (with line numbers)
     line_seq = getSequence(acc, file)
-    #print(line_seq)
+    for k, v in line_seq.items():
+        print(v, end='')
 
+    for i in range(1, len(line_seq), 60):
+        print('\n')
+        print(i, '    ', end='')
+        for j in range(i, i + 59):
+            if j in line_seq:
+                print(line_seq[j], end='')
+
+## get annotated sequence with exon boundaries indicated
     ann_seq = annotateSeq(acc, file, exon_list)
-    #print(ann_seq)
+    print('\n', ann_seq)
 
+## get coding sequence
     code_seq = codingSeq(acc, file, exon_list)
-    #print(code_seq)
+    print(code_seq)
 
+## get genomic sequence with restriction enzyme sites (and exons) indicated
     enz_seq = enz_cut(acc, ann_seq)
-    #for k, v in enz_seq.items():
-    #    print(k,v)
+    for k, v in enz_seq.items():
+        print(k,v)
 
 
-# print to file in xml format
-    xml_seq_ann = """
-    <gene>
-    <sequence acc=%(acc)s>
-    <ann_seq>%(sequence)s</ann_seq>
-    </sequence>
-    </gene>
-    """
-
-
-    seq_map = {'acc': acc, 'sequence': ann_seq}
-
-    xml_seq_coding = """
-    <gene>
-    <sequence acc=%(acc)s>
-    <coding_seq>%(coding_seq)s</coding_seq>
-    </sequence>
-    </gene>
-    """
-    seq_map2 = {'acc':acc, 'coding_seq': code_seq}
-
-
-
-
-## # Print out the annotated gene sequence of a particular gene in xml format:
-    with open('sequence_output.txt', 'w') as text_file:
-    # I can't manage to get numbered sequence to show up in xml--it is in form of dictionary (line_seq).
-    # here is script for printing dictionary in tidy rows with line numbers:
-        for i in range(1, len(line_seq), 60):
-            print(i, '    ', end='', file=text_file)
-            for j in range(i, i + 59):
-                if j in line_seq:
-                    print(line_seq[j], end='', file=text_file)
-                else:
-                    pass
-            print('\n', file=text_file)
-        print('<?xml version="1.0" encoding="UTF-8"?>', file=text_file)
-        print(xml_seq_ann %seq_map, file=text_file)
-        print(xml_seq_coding %seq_map2, file=text_file)
-    text_file.close()
-
-
+# ## if you want to print to file in xml format
+#     xml_seq_ann = """
+#     <gene>
+#     <sequence acc=%(acc)s>
+#     <ann_seq>%(sequence)s</ann_seq>
+#     </sequence>
+#     </gene>
+#     """
+#
+#
+#     seq_map = {'acc': acc, 'sequence': ann_seq}
+#
+#     xml_seq_coding = """
+#     <gene>
+#     <sequence acc=%(acc)s>
+#     <coding_seq>%(coding_seq)s</coding_seq>
+#     </sequence>
+#     </gene>
+#     """
+#     seq_map2 = {'acc':acc, 'coding_seq': code_seq}
+#
+#
+#
+#     ## printing dictionary in tidy rows with line numbers:
+#     with open('sequence_output.txt', 'w') as text_file:
+#         for i in range(1, len(line_seq), 60):
+#             print(i, '    ', end='', file=text_file)
+#             for j in range(i, i + 59):
+#                 if j in line_seq:
+#                     print(line_seq[j], end='', file=text_file)
+#                 else:
+#                     pass
+#             print('\n', file=text_file)
+#         print('<?xml version="1.0" encoding="UTF-8"?>', file=text_file)
+#         print(xml_seq_ann %seq_map, file=text_file)
+#         print(xml_seq_coding %seq_map2, file=text_file)
+#     text_file.close()
+#
+#

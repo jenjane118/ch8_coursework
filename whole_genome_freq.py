@@ -62,43 +62,40 @@ with open('seq_file.txt', 'r') as f:
     for x in file:
         gene_list.append(x)
 
-# extract accession number and sequence from list of genes
+## extract accession number and sequence from list of genes
 
 codon_table = {}
 total_freq  = {}
 for x in gene_list:
     gene = str(x[:7])
-    seq  = str(x[8:])
+    freq_seq  = str(x[9:])
 
-    #for s in seq:
-    #    seq_format = s.replace(' ', '')
-
-    codon_table = Codon_Usage.codonFreq(acc=gene, dna=seq)
+##  call function to determine codon frequency for each gene
+    codon_table = Codon_Usage.codonFreq(gene, freq_seq)
     #print(codon_table)
 
-    #assert isinstance(codon_table, object)
+##  add each to total codon frequency dictionary
     for key in codon_table:
         if key in total_freq:
             total_freq[key] += codon_table[key]
         else:
             total_freq[key] = codon_table[key]
-#print(total_freq)
+print(total_freq)
 
-# calculate codon usage ratio for whole genome
+# calculate codon usage ratio/percent for whole genome
 gene = 'total'
 
 whole_genome_ratio = Codon_Usage.usageRatio(gene, total_freq)
-#for k,v in whole_genome_ratio.items():
-#    print(k, ':', v)
+for k,v in whole_genome_ratio.items():
+    print(k, ':', v)
 
 whole_genome_percent = Codon_Usage.codonPercent(gene, total_freq)
-#for k,v in whole_genome_percent.items():
-#    print(k, ':', v)
+for k,v in whole_genome_percent.items():
+    print(k, ':', v)
 
-#write to file (in pickled format)
+#write to file
 
-f = open('whole_genome_usage.dat', 'wb')
-
-pickle.dump(whole_genome_ratio, f)
-pickle.dump(whole_genome_percent, f)
+f = open('whole_genome_usage.txt', 'w')
+print('\n', whole_genome_ratio, file=f)
+print('\n', whole_genome_percent, file=f)
 f.close()

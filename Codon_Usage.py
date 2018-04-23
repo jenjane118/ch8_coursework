@@ -70,15 +70,15 @@ def codonFreq(acc, dna):
 
 
     # format sequence to unbroken uppercase string
-    seq = ''
-    for x in dna:
-        dna = x.replace(' ', '')
-        seq = x.upper()
-
+    #seq = ''
+    #for x in dna:
+     #   seq = x.replace(' ', '')
+     #   seq = x.upper()
+    dna = dna.upper()
     # divide sequence into a list of codons
     codon = ''
     codon_list = []
-    for s in seq:
+    for s in dna:
         codon += s
         if len(codon) == 3:
             codon_list.append(codon)
@@ -175,11 +175,11 @@ if __name__ == "__main__":
     gene = 'AB12345'
 
     #replace spaces in dna sequence
-    #seq = ''
-    #for s in file:
-    #    seq += s.replace(' ', '')
+    seq = ''
+    for s in file:
+        seq += s.replace(' ', '')
 
-    codon_freq = codonFreq(gene, file)
+    codon_freq = codonFreq(gene, seq)
     #freq_xml = dicttoxml.dicttoxml(codon_freq, attr_type=False, custom_root='freq')
     #print(freq_xml)
     for k,v in codon_freq.items():
