@@ -245,9 +245,9 @@ if __name__ == "__main__":
 
     xml_seq_ann = """
     <gene>
-    <sequence acc=%(acc)s>
-    <ann_seq>%(sequence)s</ann_seq>
-    </sequence>
+        <sequence acc=%(acc)s>
+            <ann_seq>%(sequence)s</ann_seq>
+        </sequence>
     </gene>
     """
 
@@ -256,27 +256,27 @@ if __name__ == "__main__":
 
     xml_seq_coding = """
     <gene>
-    <sequence acc=%(acc)s>
-    <coding_seq>%(coding_seq)s</coding_seq>
-    </sequence>
+        <sequence acc=%(acc)s>
+            <coding_seq>%(coding_seq)s</coding_seq>
+        </sequence>
     </gene>
     """
     seq_map2 = {'acc':acc, 'coding_seq': code_seq}
 
     xml_seq_translation = """
     <gene>
-    <sequence acc=%(acc)s>
-    <aa_seq>%(aa_seq)s</aa_seq>
-    </sequence>
+        <sequence acc=%(acc)s>
+            <aa_seq>%(aa_seq)s</aa_seq>
+        </sequence>
     </gene>
     """
     seq_map3 = {'acc':acc, 'aa_seq':aa_seq[1]}
 
     xml_seq_codons = """
     <gene>
-    <sequence acc=%(acc)s>
-    <codon_seq>%(codon_seq)s</codon_seq>
-    </sequence>
+        <sequence acc=%(acc)s>
+            <codon_seq>%(codon_seq)s</codon_seq>
+        </sequence>
     </gene>
     """
     seq_map4 = {'acc':acc, 'codon_seq':aa_seq[0]}

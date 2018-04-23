@@ -55,12 +55,12 @@ ann_seq = seq_module.annotateSeq(acc, file, exon_list)
 
 
 xml_seq_ann = """
-    <gene>
+<gene>
     <sequence acc=%(acc)s>
-    <ann_seq>%(sequence)s</ann_seq>
+        <ann_seq>%(sequence)s</ann_seq>
     </sequence>
-    </gene>
-    """
+</gene>
+"""
 
 seq_map = {'acc': acc, 'sequence': ann_seq}
 with open('getSequence_out.xml', 'w') as xml_file:

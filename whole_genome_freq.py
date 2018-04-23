@@ -21,7 +21,7 @@ ______________________________________________________________________________
 Description:
 ============
 This program will calculate codon usage frequency, percentage, and ratio of codon usage preference for entire chromosome.
-Saves data to a .dat file.
+
 
 
 Usage:
@@ -51,20 +51,18 @@ import pickle, shelve
 #codon_freq = codonFreq(gene, seq1)
 #print(codon_freq)
 
-
-
-
-## get data from sequence config file
-
-import seq_config
-genelist = seq_config.gene_list
+gene_list = []
+with open('seq_file.txt', 'r') as f:
+    file = f.read().splitlines()
+    for x in file:
+        gene_list.append(x)
 
 
 # for each gene in genelist:
     # run seq_module.codingSeq to get coding sequence
 
 ## extract accession number and sequence from list of genes
-for x in genelist:
+for x in gene_list:
     gene = str(x[:7])
     freq_seq  = str(x[9:])
 
@@ -98,7 +96,21 @@ for k,v in whole_genome_percent.items():
 
 #write to file
 
-f = open('whole_genome_usage.txt', 'w')
-print('\n', whole_genome_ratio, file=f)
-print('\n', whole_genome_percent, file=f)
+freq_xml = """
+<genome>
+    <codon_usage>
+        <codon_freq>%(total_freq)s</codon_freq>
+        <codon_ratio>%(whole_genome_ratio)s</codon_ratio>
+        <codon_percent>%(whole_genome_percent)s</codon_percent>
+    </codon_usage>
+</genome>
+"""
+whole_genome_map = {'total_freq':total_freq, 'whole_genome_ratio':whole_genome_ratio, 'whole_genome_percent':whole_genome_percent}
+
+f = open('whole_genome_usage.xml', 'w')
+print('<?xml version="1.0" encoding="UTF-8"?>', file=f)
+print(freq_xml % whole_genome_map, file=f)
+#print('\n', total_freq, file=f)
+#print('\n', whole_genome_ratio, file=f)
+#print('\n', whole_genome_percent, file=f)
 f.close()
