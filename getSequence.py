@@ -47,12 +47,13 @@ with open ('seq_file1.txt', 'r') as f:
 f.close()
 
 ## dummy data
-exon_list = [('AB12345.1', 36, 807), ('AB232010.1', 2222, 2311)]
+exon_list = [('AB12345.1', 36, 807), ('AB12345.1.1', 854, 950)]
 acc = 'AB12345.1'
 
 ## get annotated sequence with exon boundaries indicated
 ann_seq = seq_module.annotateSeq(acc, file, exon_list)
 
+print(ann_seq)
 
 xml_seq_ann = """
 <gene>

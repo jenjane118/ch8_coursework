@@ -42,13 +42,23 @@ import re
 #****************************************************************************
 
 
-def getSequence(acc, seq):
+def getSequence(acc, seq):         ## need to enter sequence until get usable data from database
     """ Returns genomic DNA sequence in numbered form.
     Input               acc                 Accession ID
                         seq                 Sequence
 
     Output              num_seq             Dictionary of numbered bp of sequence
     """
+    ## use accession number to retrieve sequence from database
+    ## request database to return sequence for specific accession number
+    # for x in sequence_file:
+    ## check to see accession number requested matches return
+    #      if x[0] = acc:
+    #          x[1] = seq
+    #      else:
+    #          print('Error: Accession numbers do not match')
+
+    ## format sequence in unbroken, upperclass form
     seq_upper = ''
     for s in seq:
         seq = s.replace(' ', '')
@@ -61,7 +71,7 @@ def getSequence(acc, seq):
         num_seq[count] = x
     return num_seq
 
-def annotateSeq(acc, seq, exon_list=None):
+def annotateSeq(acc, seq, exon_list=None):           ## need to enter sequence, exon_list until get usable data from db
     """Returns sequence with exon boundaries marked out with symbols
     Input               acc                 Accession ID
                         seq                 Sequence
@@ -69,17 +79,35 @@ def annotateSeq(acc, seq, exon_list=None):
 
     Output              exon_seq            Annotated sequence with inserted *exon/exon* boundaries
     """
+
+    ## use accession number to retrieve sequence from database
+    ## request database to return sequence for specific accession number
+    # for x in exon_file:
+    ## check to see accession number requested matches return
+    #      if x[0] = acc:
+    #
+    # x[1] = seq
+    #      else:
+    #          print('Error: Accession numbers do not match')
+
+    seq_dict = getSequence(acc, seq)
+
     exon_seq = ''
-    for s in seq:
-        seq = s.replace(' ','')
-        exon_seq += s.upper()
+    # for s in seq:
+    #    seq = s.replace(' ','')
+    #    exon_seq += s.upper()
+    ## in list of info, identify start and end sites for exon boundaries (might change with format from database?)
     if exon_list != None:
-        for x in exon_list:
-            acc     = x[0]
-            start   = x[1]
-            end     = x[2]
-            exon_seq     = exon_seq[:start] + '*exon' + exon_seq[start:end] +'exon*' + exon_seq[end:]
-        return exon_seq
+        for k in seq_dict:
+            for x in exon_list:
+                start = x[1]
+                end = x[2]
+                exon_seq += seq_dict[k]
+                if k == start:
+                    exon_seq += '*exon'
+                elif k == end:
+                    exon_seq += 'exon*'
+    return exon_seq
 
 
 def codingSeq(acc, seq, exon_list=None):
@@ -130,14 +158,14 @@ def translate(acc, dna):
     codon_list = []
     codon = ''
 
-    #divides string into list of codons
+    ## divides string into list of codons
     for x in dna:
         codon += x
         if len(codon) == 3:
             codon_list.append(codon)
             codon = ''
 
-    #finds corresponding amino acid for codon in list
+    ## finds corresponding amino acid for codon in list
     for codon in codon_list:
         if codon in codon_table:
             aa_seq += codon_table[codon]
@@ -168,23 +196,34 @@ def enz_cut(acc, sequence, enzyme=None):
         count = 0
         cut = enzyme
         new_seq = sequence.replace(' ', '')
+        ## find custom cleavage sites if present in sequence
         p = re.compile(r'(' + cut + ')')
         it = p.finditer(new_seq)
+        ## count number of cleavage sites
         for match in it:
             count += 1
+        ## put '@' symbols around the identified cleavage site
         cut_seq = re.sub(r'(' + cut + ')', r'@\1@', new_seq)
-        cut_dict[enzyme] = (count, cut_seq)
+        ## if cleavage site is present in sequence, add to cut dictionary
+        if count !=0:
+            cut_dict[enzyme] = (count, cut_seq)
+
 
     ## for each enzyme in dictionary, it will search and return only the enzymes which have cleavage sites in sequence
     for enzyme in enz_dict:
         count = 0
+        ## retrieve cleavage sequence from enzyme dictionary
         cut = enz_dict[enzyme]
         new_seq = sequence.replace(' ', '')
+        ## find cleavage sites if present in sequence
         p = re.compile(r'(' + cut + ')')
+        ## count number of cleavage sites
         it = p.finditer(new_seq)
         for match in it:
             count += 1
+        ## place '@' symbols around identified cleavage sites
         cut_seq = re.sub(r'(' + cut + ')', r'@\1@', new_seq)
+        ## if cleavage sites are found, add to dictionary of cut sequences
         if count != 0:
             cut_dict[enzyme] = (count, cut_seq)
     return cut_dict
@@ -198,7 +237,7 @@ if __name__ == "__main__":
     f.close()
 
 ## dummy data
-    exon_list = [('AB12345.1', 36, 807), ('AB232010.1', 2222, 2311)]
+    exon_list = [('AB12345.1', 36, 50), ('AB12345.1', 55, 70)]
     acc = 'AB12345.1'
 
 ## get genomic sequence
@@ -206,13 +245,14 @@ if __name__ == "__main__":
 ## print without line numbers
     for k, v in line_seq.items():
         print(v, end='')
+
 ## print divided into numbered rows of 60
-    for i in range(1, len(line_seq), 60):
-        print('\n')
-        print(i, '    ', end='')
-        for j in range(i, i + 59):
-            if j in line_seq:
-                print(line_seq[j], end='')
+    # for i in range(1, len(line_seq), 60):
+    #     print('\n')
+    #     print(i, '    ', end='')
+    #     for j in range(i, i + 59):
+    #         if j in line_seq:
+    #             print(line_seq[j], end='')
 
 ## get annotated sequence with exon boundaries indicated
     ann_seq = annotateSeq(acc, file, exon_list)
@@ -231,14 +271,14 @@ if __name__ == "__main__":
     aa_seq = translate(acc, code_seq)
 
 ## line up codons and amino acids
-    for x in aa_seq[0]:
-        print(x, end=' ')
-    print('')
-    for x in aa_seq[1]:
-        print(x, end='   ')
-    print('')
-## print amino acid sequence
-    print(aa_seq[1])
+#     for x in aa_seq[0]:
+#         print(x, end=' ')
+#     print('')
+#     for x in aa_seq[1]:
+#         print(x, end='   ')
+#     print('')
+# ## print amino acid sequence
+#     print(aa_seq[1])
 
 
 ## if you want to print to file in xml format to .xml file:
