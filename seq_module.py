@@ -101,8 +101,8 @@ def annotateSeq(acc, seq, exon_list=None):           ## need to enter sequence, 
             count += 1
             exon_seq += s
             for x in exon_list:
-                start = x[1]
-                end = x[2]
+                start = x[1]-1          ## subtract one for index start
+                end = x[2]-1
                 if count == start:
                     exon_seq += '*exon'
                 elif count == end:
@@ -130,8 +130,8 @@ def codingSeq(acc, seq, exon_list=None):
     if exon_list != None:
         coding_seq = ''
         for x in exon_list:
-            start       = x[1]
-            end         = x[2]
+            start       = x[1]-1        # subtract for index starting at 0
+            end         = x[2]-1
             #code_start = x[3]
             coding_seq += seq[start:end]
             #coding_seq = coding_seq[code_start:]
@@ -194,29 +194,29 @@ def enz_cut(acc, sequence, enzyme=None):
         'BsuMI': 'CTCGAG', 'HindIII': 'AAGCTT',
         'EcoRV': 'GATATC'}
 
-
+    seq_count = 0
     cut_dict = {}
     ## if a custom cleavage site is included, will indicate number and position of cleavage sites in sequence
     if enzyme != None:
+        cut_list = []
         count = 0
         cut = enzyme
         new_seq = sequence.replace(' ', '')
         ## find custom cleavage sites if present in sequence
         p = re.compile(r'(' + cut + ')')
         it = p.finditer(new_seq)
+
         ## count number of cleavage sites
         for match in it:
             count += 1
-        ## put '@' symbols around the identified cleavage site
-        cut_seq = re.sub(r'(' + cut + ')', r'@\1@', new_seq)
-        ## if cleavage site is present in sequence, add to cut dictionary
-        if count !=0:
-            cut_dict[enzyme] = (count, cut_seq)
-
-
+            ## if cleavage site is present in sequence, add to cut dictionary
+            if count != 0:
+                cut_list.append((match.start(), match.end()))
+                cut_dict[enzyme] = (count, cut_list)
 
     ## for each enzyme in dictionary, it will search and return only the enzymes which have cleavage sites in sequence
     for enzyme in enz_dict:
+        cut_list = []
         count = 0
         ## retrieve cleavage sequence from enzyme dictionary
         cut = enz_dict[enzyme]
@@ -227,18 +227,18 @@ def enz_cut(acc, sequence, enzyme=None):
         it = p.finditer(new_seq)
         for match in it:
             count += 1
-        ## place '@' symbols around identified cleavage sites
-        cut_seq = re.sub(r'(' + cut + ')', r'@\1@', new_seq)
-        ## if cleavage sites are found, add to dictionary of cut sequences
-        if count != 0:
-            cut_dict[enzyme] = (count, cut_seq)
+            ## if cleavage sites are found, add to dictionary of cut sequences
+            if count != 0:
+                cut_list.append((match.start(), match.end()))
+                cut_dict[enzyme] = (count, cut_list)
+
     return cut_dict
 
 # main
 if __name__ == "__main__":
 
 ## dummy data (sequence in file, acc and exon_list below)
-    with open ('seq_file1.txt', 'r') as f:
+    with open ('seq_file2.txt', 'r') as f:
         file = f.read().splitlines()
     f.close()
 
@@ -249,9 +249,9 @@ if __name__ == "__main__":
 ## get genomic sequence
     line_seq = getSequence(acc, file)
 ## print sequence
-    for k, v in sorted(line_seq.items()):
-        print(v, end='')
-    print('\n')
+    #for k, v in sorted(line_seq.items()):
+    #    print(v, end='')
+    #print('\n')
 
 ## print divided into numbered rows of 60
     # for i in range(1, len(line_seq), 60):
