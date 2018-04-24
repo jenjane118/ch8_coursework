@@ -31,8 +31,8 @@ Usage:
 
 Revision History:
 =================
-V1.0           21.04.18             Original            By:JJS
-
+V1.0           21.04.18             Original                            By:JJS
+V1.1           24.04.18             Revised                                JJS
 """
 #*****************************************************************************
 # Import libraries

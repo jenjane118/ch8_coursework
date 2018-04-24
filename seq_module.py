@@ -179,14 +179,14 @@ def translate(acc, dna):
 def enz_cut(acc, sequence, enzyme=None):
     """ Will indicate any cleavage sites from popular restriction enzymes in
         restriction enzyme dictionary. User can also search a custom cleavage site.
-        Sequence is returned with indicated cutting sites ('@' symbol) and exon boundaries ('<exon' and 'exon>').
+        Returns dictionary of enzyme name and cleavage positions.
 
     Input           acc                 accession number for gene
                     sequence            gene sequence (raw)
                     enzyme              optional custom cleavage site
 
-    Output          cut_tuple           tuple containing:
-                                        (enzyme/cleavage sequence, no. of cleavage sites, annotated seq)
+    Output          cut_dict            dictionary {enzyme:no. of cleavage sites, positions}
+
     """
 
     enz_dict = {
