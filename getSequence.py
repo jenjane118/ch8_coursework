@@ -47,7 +47,7 @@ with open ('seq_file1.txt', 'r') as f:
 f.close()
 
 ## dummy data
-exon_list = [('AB12345.1', 36, 807), ('AB12345.1.1', 854, 950)]
+exon_list = [('AB12345.1', 36, 80), ('AB12345.1.1', 84, 95)]
 acc = 'AB12345.1'
 
 ## get annotated sequence with exon boundaries indicated

@@ -31,6 +31,7 @@ Revision History:
 V1.0            22.03.18    Original                        By: JJS
 V1.1            06.04.18    Revised as module                   JJS
 V1.2            21.04.18    Combined translate function         JJS
+V1.2            24.04.18    Debugging of exon annotation        JJS
 """
 #*****************************************************************************
 # Import libraries
@@ -72,7 +73,7 @@ def getSequence(acc, seq):         ## need to enter sequence until get usable da
     return num_seq
 
 def annotateSeq(acc, seq, exon_list=None):           ## need to enter sequence, exon_list until get usable data from db
-    """Returns sequence with exon boundaries marked out with symbols
+    """Returns sequence with exon boundaries marked out with symbols (or simple sequence string if no exons indicated)
     Input               acc                 Accession ID
                         seq                 Sequence
                         exon_list           List of exon boundaries
@@ -85,30 +86,33 @@ def annotateSeq(acc, seq, exon_list=None):           ## need to enter sequence, 
     # for x in exon_file:
     ## check to see accession number requested matches return
     #      if x[0] = acc:
-    #
-    # x[1] = seq
+    #            x[1] = seq
     #      else:
     #          print('Error: Accession numbers do not match')
 
-    seq_dict = getSequence(acc, seq)
-
     exon_seq = ''
-    # for s in seq:
-    #    seq = s.replace(' ','')
-    #    exon_seq += s.upper()
-    ## in list of info, identify start and end sites for exon boundaries (might change with format from database?)
-    if exon_list != None:
-        for k in seq_dict:
+
+    for s in seq:
+        seq = s.replace(' ', '')
+        seq = s.upper()
+    count   = 0
+    if exon_list    != None:
+        for s in seq:
+            count += 1
+            exon_seq += s
             for x in exon_list:
                 start = x[1]
                 end = x[2]
-                exon_seq += seq_dict[k]
-                if k == start:
+                if count == start:
                     exon_seq += '*exon'
-                elif k == end:
+                elif count == end:
                     exon_seq += 'exon*'
-    return exon_seq
+    else:
+        exon_seq = seq
 
+
+
+    return exon_seq
 
 def codingSeq(acc, seq, exon_list=None):
     """Returns coding sequence (stuck together exons).
@@ -131,9 +135,9 @@ def codingSeq(acc, seq, exon_list=None):
             #code_start = x[3]
             coding_seq += seq[start:end]
             #coding_seq = coding_seq[code_start:]
-        return coding_seq
     else:
-        return coding_seq
+        coding_seq = seq
+    return coding_seq
 
 def translate(acc, dna):
     aa_seq = ''
@@ -190,6 +194,7 @@ def enz_cut(acc, sequence, enzyme=None):
         'BsuMI': 'CTCGAG', 'HindIII': 'AAGCTT',
         'EcoRV': 'GATATC'}
 
+
     cut_dict = {}
     ## if a custom cleavage site is included, will indicate number and position of cleavage sites in sequence
     if enzyme != None:
@@ -207,6 +212,7 @@ def enz_cut(acc, sequence, enzyme=None):
         ## if cleavage site is present in sequence, add to cut dictionary
         if count !=0:
             cut_dict[enzyme] = (count, cut_seq)
+
 
 
     ## for each enzyme in dictionary, it will search and return only the enzymes which have cleavage sites in sequence
@@ -242,9 +248,10 @@ if __name__ == "__main__":
 
 ## get genomic sequence
     line_seq = getSequence(acc, file)
-## print without line numbers
-    for k, v in line_seq.items():
+## print sequence
+    for k, v in sorted(line_seq.items()):
         print(v, end='')
+    print('\n')
 
 ## print divided into numbered rows of 60
     # for i in range(1, len(line_seq), 60):
@@ -253,19 +260,25 @@ if __name__ == "__main__":
     #     for j in range(i, i + 59):
     #         if j in line_seq:
     #             print(line_seq[j], end='')
+    # print('\n')
 
 ## get annotated sequence with exon boundaries indicated
     ann_seq = annotateSeq(acc, file, exon_list)
-    print('\n', ann_seq)
+    print(ann_seq)
 
 ## get coding sequence
     code_seq = codingSeq(acc, file, exon_list)
     print(code_seq)
 
-## get genomic sequence with restriction enzyme sites (and exons) indicated
-    enz_seq = enz_cut(acc, ann_seq)
-    for k, v in enz_seq.items():
-        print(k,v)
+## get genomic sequence with restriction enzyme sites indicated (if exons indicated, it can interfere with recognition)
+    seq_str = ''
+    for x in file:
+        seq_str += x
+    seq_str = seq_str.upper()
+    print(seq_str)
+    enz_seq = enz_cut(acc, seq_str)
+    #for k, v in enz_seq.items():
+     #   print(k,v)
 
 ## get translation
     aa_seq = translate(acc, code_seq)
