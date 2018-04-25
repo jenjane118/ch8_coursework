@@ -64,14 +64,26 @@ with open('seq_file.txt', 'r') as f:
 ## extract accession number and sequence from list of genes
 for x in gene_list:
     gene = str(x[:7])
-    freq_seq  = str(x[9:])
+    new_seq  = str(x[9:])
+    print(new_seq)
+
+## get exon list for each gene in list
+#    gene_exons = getExons(acc)
+
+##  dummy list:
+    gene_exons = [('AC34567', 25, 75), ('AC34567', 85, 95)]
 
 
-
+## use coding seq function to determine coding sequence for each gene
+    for s in new_seq:
+        new_seq += s.replace(' ', '')
+        new_seq += s.upper()
+    coding_dna = seq_module.codingSeq(gene, new_seq, gene_exons)
+    print(coding_dna)
 ##  call function to determine codon frequency for each gene
 
     codon_table = {}
-    codon_table = Codon_Usage.codonFreq(gene, freq_seq)
+    codon_table = Codon_Usage.codonFreq(gene, coding_dna)
 #print(codon_table)
 
 ##  add each to total codon frequency dictionary

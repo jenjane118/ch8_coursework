@@ -56,6 +56,10 @@ with open('seq_file2.txt', 'r') as f:
     file = f.read().splitlines()
 f.close()
 
+for s in file:
+    file = s.replace(' ', '')
+    file = s.upper()
+
 genomic     = seq_module.annotateSeq(acc, file, exons)
 print(genomic)
 code_seq    = seq_module.codingSeq(acc, file, exons)

@@ -47,6 +47,11 @@ acc = 'AB12345'
 with open('seq_file1.txt', 'r') as f:
     file = f.read().splitlines()
 
+#format sequence string
+for s in file:
+    file = s.replace(' ', '')
+    file = s.upper()
+
 ## use codingSeq function to get coding sequence
 code_seq = seq_module.codingSeq(acc, file, exon_list)
 

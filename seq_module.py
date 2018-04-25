@@ -8,9 +8,7 @@ File:           Seq_module.py
 
 Version:        1.0
 Date:           22.03.18
-Function:       Return genomic sequence information for specified gene.
-                Indicate positions of exons.
-
+Function:       Includes all sequence-related functions.
 Author:         Jennifer J Stiens
 
 Course:         MSc Bioinformatics, Birkbeck University of London
@@ -20,8 +18,12 @@ ______________________________________________________________________________
 
 Description:
 ============
-this program returns genomic sequence information for specified gene.
-
+This program retrieves the genomic sequence for a particular gene and returns sequence information,
+including:
+Annotated sequence with exons indicated
+Coding sequence
+Peptide translation
+Restriction enzyme analysis
 
 Usage:
 ======
@@ -59,15 +61,15 @@ def getSequence(acc, seq):         ## need to enter sequence until get usable da
     #      else:
     #          print('Error: Accession numbers do not match')
 
-    ## format sequence in unbroken, upperclass form
-    seq_upper = ''
-    for s in seq:
-        seq = s.replace(' ', '')
-        seq_upper += s.upper()
+    ## format sequence in unbroken, upperclass form (do this in individual programs
+    # seq_upper = ''
+    # for s in seq:
+    #     seq = s.replace(' ', '')
+    #     seq_upper += s.upper()
 
     num_seq = {}
     count = 0
-    for x in seq_upper:
+    for x in seq:
         count += 1
         num_seq[count] = x
     return num_seq
@@ -92,9 +94,9 @@ def annotateSeq(acc, seq, exon_list=None):           ## need to enter sequence, 
 
     exon_seq = ''
 
-    for s in seq:
-        seq = s.replace(' ', '')
-        seq = s.upper()
+    #for s in seq:
+     #   seq = s.replace(' ', '')
+      #  seq += s.upper()
     count   = 0
     if exon_list    != None:
         for s in seq:
@@ -115,7 +117,7 @@ def annotateSeq(acc, seq, exon_list=None):           ## need to enter sequence, 
     return exon_seq
 
 def codingSeq(acc, seq, exon_list=None):
-    """Returns coding sequence (stuck together exons).
+    """Returns coding sequence (stuck together exons). If no exon_list, will return genomic sequence string.
     Input           acc                 Accession ID
                     seq                 Sequence
                     exon_list           List of exon boundaries
@@ -123,10 +125,8 @@ def codingSeq(acc, seq, exon_list=None):
     Output          coding_seq          Coding sequence
     """
 
-    #change formatting of string
-    for s in seq:
-        seq = s.replace(' ', '')
-        seq = s.upper()
+
+
     if exon_list != None:
         coding_seq = ''
         for x in exon_list:
@@ -178,7 +178,7 @@ def translate(acc, dna):
 
 def enz_cut(acc, sequence, enzyme=None):
     """ Will indicate any cleavage sites from popular restriction enzymes in
-        restriction enzyme dictionary. User can also search a custom cleavage site.
+        restriction enzyme dictionary. User can also search a custom cleavage site (enzyme).
         Returns dictionary of enzyme name and cleavage positions.
 
     Input           acc                 accession number for gene
@@ -242,12 +242,17 @@ if __name__ == "__main__":
         file = f.read().splitlines()
     f.close()
 
+## if file is list of strings, must format sequence:
+    for s in file:
+        file = s.replace(' ', '')
+        file = s.upper()
 ## dummy data
     exon_list = [('AB12345.1', 36, 50), ('AB12345.1', 55, 70)]
     acc = 'AB12345.1'
 
 ## get genomic sequence
     line_seq = getSequence(acc, file)
+
 ## print sequence
     #for k, v in sorted(line_seq.items()):
     #    print(v, end='')
@@ -271,12 +276,8 @@ if __name__ == "__main__":
     print(code_seq)
 
 ## get genomic sequence with restriction enzyme sites indicated (if exons indicated, it can interfere with recognition)
-    seq_str = ''
-    for x in file:
-        seq_str += x
-    seq_str = seq_str.upper()
-    print(seq_str)
-    enz_seq = enz_cut(acc, seq_str)
+
+    enz_seq = enz_cut(acc, file)
     #for k, v in enz_seq.items():
      #   print(k,v)
 
@@ -284,14 +285,14 @@ if __name__ == "__main__":
     aa_seq = translate(acc, code_seq)
 
 ## line up codons and amino acids
-#     for x in aa_seq[0]:
-#         print(x, end=' ')
-#     print('')
-#     for x in aa_seq[1]:
-#         print(x, end='   ')
-#     print('')
-# ## print amino acid sequence
-#     print(aa_seq[1])
+    for x in aa_seq[0]:
+        print(x, end=' ')
+    print('')
+    for x in aa_seq[1]:
+        print(x, end='   ')
+    print('')
+## print amino acid sequence
+    print(aa_seq[1])
 
 
 ## if you want to print to file in xml format to .xml file:
