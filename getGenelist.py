@@ -42,7 +42,7 @@ V1.2        22.03.18    included dicttoxml, changed name        JJS
 import os
 import GeneModule
 import pickle, shelve
-import dicttoxml
+
 
 #*****************************************************************************
 
@@ -107,22 +107,6 @@ print(GeneModule.Gene.total())
 xml_file.close()
 
 
-# ## Uses initialisation function to create a gene object for each listing from database
-# for x in identity:
-#     gene_list.append(GeneModule.Gene(x[0], x[1], x[2], x[3]))
-#
-# ## Creates dictionary of gene identifiers
-# for x in gene_list:
-#     genes =  GeneList(x)
-#     for k in genes:
-#         all_genes[k] = genes[k]
-#
-# ## Writes to xml file
-# genes_xml = dicttoxml.dicttoxml(all_genes, attr_type=False, custom_root='gene_list')
-# xml_file = open('genelist_output.xml', 'w')
-# print(genes_xml, file=xml_file)
-# xml_file.close()
-#
 
 ##****************************************************************
 ## Other processes:
