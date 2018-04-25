@@ -169,7 +169,7 @@ if __name__ == "__main__":
     with open ('seq_file1.txt', 'r') as f:
         file = f.read().splitlines()
     f.close()
-    
+
     gene = 'AB12345'
     exon_list = [('AB12345.1', 36, 150), ('AB12345.1', 255, 700)]
 
