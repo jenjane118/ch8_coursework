@@ -50,7 +50,7 @@ for s in file:
     file = s.replace(' ', '')
     file = s.upper()
 
-## dummy data
+## dummy data: really need to call on routine to supply exon list for particular gene
 exon_list = [('AB12345.1', 36, 80), ('AB12345.1.1', 84, 95)]
 acc = 'AB12345.1'
 

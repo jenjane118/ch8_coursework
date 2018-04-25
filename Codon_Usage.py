@@ -41,7 +41,7 @@ V1.2           22.04.18         Added dicttoxml library                     JJS
 import sys
 #import dicttoxml
 
-
+import seq_module
 
 #****************************************************************************
 
@@ -160,7 +160,7 @@ def usageRatio (acc, freq_table):
     return aaDict
 
 if __name__ == "__main__":
-    print("Ran module directly (and did not 'import' it).")
+    #print("Ran module directly (and did not 'import' it).")
 
 
 # main
@@ -168,32 +168,52 @@ if __name__ == "__main__":
     #dummy data
     with open ('seq_file1.txt', 'r') as f:
         file = f.read().splitlines()
+    f.close()
+    
     gene = 'AB12345'
+    exon_list = [('AB12345.1', 36, 150), ('AB12345.1', 255, 700)]
 
-    #replace spaces in dna sequence
+    ##replace spaces in dna sequence and format into uppercase
     seq = ''
     for s in file:
-        seq += s.replace(' ', '')
+        seq = s.replace(' ', '')
+        seq = s.upper()
 
-    codon_freq = codonFreq(gene, seq)
-    #freq_xml = dicttoxml.dicttoxml(codon_freq, attr_type=False, custom_root='freq')
-    #print(freq_xml)
-    for k,v in codon_freq.items():
-        print(k, ':', v)
+    ## use codingSeq function to find coding sequence
+    code_seq = seq_module.codingSeq(gene, seq, exon_list)
 
-##print each amino acid and codon usage ratio
+    ## calculate raw frequencies of codon usage
+    codon_freq = codonFreq(gene, code_seq)
+
+    ## find each amino acid codon usage ratio
     ratio       = usageRatio(gene, codon_freq)
-    #ratio_xml   = dicttoxml.dicttoxml(ratio, attr_type=False, custom_root='ratio')
-    #print(ratio_xml)
-    for k,v in ratio.items():
-        print(k, ':', v)
 
-# # print each codon and percent usage (per 100 bp)
+    ## find percent usage (per 100 bp)
     percent     = codonPercent(gene, codon_freq)
-    #percent_xml = dicttoxml.dicttoxml(percent, attr_type=False, custom_root='percent')
-    #print(percent_xml)
-    for a in percent:
-        print(a, percent[a])
 
 
-    f.close()
+    # write to file
+
+    freq_xml = """
+    <gene>
+        <sequence acc=%(acc)s>
+            <codon_usage>
+                <codon_freq>%(codon_freq)s</codon_freq>
+                <codon_ratio>%(codon_ratio)s</codon_ratio>
+                <codon_percent>%(codon_percent)s</codon_percent>
+            </codon_usage>
+        </sequence>
+    </gene>
+    """
+    usage_map = {'acc': gene, 'codon_freq': codon_freq, 'codon_ratio': ratio, 'codon_percent': percent}
+
+    xml_file = open('codon_usage_out.xml', 'w')
+    print('<?xml version="1.0" encoding="UTF-8"?>', file=xml_file)
+    print(freq_xml % usage_map, file=xml_file)
+    xml_file.close()
+
+
+    ## for printing with dicttoxml library function
+    # freq_xml = dicttoxml.dicttoxml(codon_freq, attr_type=False, custom_root='freq')
+    # ratio_xml   = dicttoxml.dicttoxml(ratio, attr_type=False, custom_root='ratio')
+    # percent_xml = dicttoxml.dicttoxml(percent, attr_type=False, custom_root='percent')

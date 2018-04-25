@@ -68,7 +68,7 @@ for x in gene_list:
     print(new_seq)
 
 ## get exon list for each gene in list
-#    gene_exons = getExons(acc)
+    ## call on file with exon boundaries list for each gene
 
 ##  dummy list:
     gene_exons = [('AC34567', 25, 75), ('AC34567', 85, 95)]
