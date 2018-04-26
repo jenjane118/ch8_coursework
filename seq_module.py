@@ -40,32 +40,35 @@ V1.2            24.04.18    Debugging of exon annotation        JJS
 
 
 import re
-
+import sys
 
 #****************************************************************************
 
 
-def getSequence(acc, seq):         ## need to enter sequence until get usable data from database
+def getSequence(acc):         ## need to enter sequence until get usable data from database
     """ Returns genomic DNA sequence in numbered form.
     Input               acc                 Accession ID
-                        seq                 Sequence
 
-    Output              num_seq             Dictionary of numbered bp of sequence
+    Output              num_seq             Dictionary of numbered bp for requested sequence
     """
-    ## use accession number to retrieve sequence from database
+
     ## request database to return sequence for specific accession number
     # for x in sequence_file:
     ## check to see accession number requested matches return
     #      if x[0] = acc:
     #          x[1] = seq
     #      else:
-    #          print('Error: Accession numbers do not match')
+    #          print('Error: Sequence not found')
+                ## exit program?
+
+    ## dummy sequence until have data
+    seq = 'atggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacgagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaa'
 
     ## format sequence in unbroken, upperclass form (do this in individual programs
-    # seq_upper = ''
-    # for s in seq:
-    #     seq = s.replace(' ', '')
-    #     seq_upper += s.upper()
+
+
+    seq = seq.replace(' ', '')
+    seq = seq.upper()
 
     num_seq = {}
     count = 0
@@ -74,13 +77,11 @@ def getSequence(acc, seq):         ## need to enter sequence until get usable da
         num_seq[count] = x
     return num_seq
 
-def annotateSeq(acc, seq, exon_list=None):           ## need to enter sequence, exon_list until get usable data from db
+def annotateSeq(acc):           ## need to enter sequence, exon_list until get usable data from db
     """Returns sequence with exon boundaries marked out with symbols (or simple sequence string if no exons indicated)
     Input               acc                 Accession ID
-                        seq                 Sequence
-                        exon_list           List of exon boundaries
 
-    Output              exon_seq            Annotated sequence with inserted *exon/exon* boundaries
+    Output              exon_seq            Annotated sequence with inserted *exon/exon* boundaries (string)
     """
 
     ## use accession number to retrieve sequence from database
@@ -90,18 +91,30 @@ def annotateSeq(acc, seq, exon_list=None):           ## need to enter sequence, 
     #      if x[0] = acc:
     #            x[1] = seq
     #      else:
-    #          print('Error: Accession numbers do not match')
+    #          print('Error: Sequence not found.')
+                ## should program exit here?
+
+    ## use accession number to retrieve exon boundaries from database
+    ## check to see accession number requested matches database return
+    # for x in exon_file:
+    #    if x[0] = acc:
+    #        x[1] = exon
+    #        exon_list.append(exon)
+
+    ## dummy sequence until have data
+    seq = 'atggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacgagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaa'
+    exon_list = [('AB12345.1', 36, 50), ('AB12345.1', 55, 70)]
 
     exon_seq = ''
 
-    #for s in seq:
-     #   seq = s.replace(' ', '')
-      #  seq += s.upper()
+    seq = seq.replace(' ', '')
+    seq = seq.upper()
+
     count   = 0
     if exon_list    != None:
-        for s in seq:
+        for base in seq:
             count += 1
-            exon_seq += s
+            exon_seq += base
             for x in exon_list:
                 start = x[1]-1          ## subtract one for index start
                 end = x[2]-1
@@ -111,21 +124,38 @@ def annotateSeq(acc, seq, exon_list=None):           ## need to enter sequence, 
                     exon_seq += 'exon*'
     else:
         exon_seq = seq
-
-
-
     return exon_seq
 
-def codingSeq(acc, seq, exon_list=None):
+def codingSeq(acc):
     """Returns coding sequence (stuck together exons). If no exon_list, will return genomic sequence string.
     Input           acc                 Accession ID
-                    seq                 Sequence
-                    exon_list           List of exon boundaries
 
     Output          coding_seq          Coding sequence
     """
 
+    ## use accession number to retrieve sequence from database
+    ## request database to return sequence for specific accession number
+    # for x in exon_file:
+    ## check to see accession number requested matches return
+    #      if x[0] = acc:
+    #            x[1] = seq
+    #      else:
+    #          print('Error: Sequence not found.')
+    ## should program exit here?
 
+    ## use accession number to retrieve exon boundaries from database
+    ## check to see accession number requested matches database return
+    # for x in exon_file:
+    #    if x[0] = acc:
+    #        x[1] = exon
+    #        exon_list.append(exon)
+
+    ## dummy sequence until have data
+    seq = 'atggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacgagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaa'
+    exon_list = [('AB12345.1', 36, 50), ('AB12345.1', 55, 70)]
+
+    seq = seq.replace(' ', '')
+    seq = seq.upper()
 
     if exon_list != None:
         coding_seq = ''
@@ -139,7 +169,17 @@ def codingSeq(acc, seq, exon_list=None):
         coding_seq = seq
     return coding_seq
 
-def translate(acc, dna):
+def translate(acc):
+    """Returns protein translation for requested gene.
+    Input                       acc                     gene accession number
+
+    Output [0]                  codon_list              ordered list of codons
+    Output [1]                  aa_seq                  string of amino acid sequence
+    """
+
+    ## must run codingSeq function to obtain coding sequence for translation
+    seq = codingSeq(acc)
+
     aa_seq = ''
     codon_table = {
         'ATA': 'I', 'ATC': 'I', 'ATT': 'I', 'ATG': 'M',
@@ -163,7 +203,7 @@ def translate(acc, dna):
     codon = ''
 
     ## divides string into list of codons
-    for x in dna:
+    for x in seq:
         codon += x
         if len(codon) == 3:
             codon_list.append(codon)
@@ -176,7 +216,7 @@ def translate(acc, dna):
     return codon_list, aa_seq
 
 
-def enz_cut(acc, sequence, enzyme=None):
+def enz_cut(acc, seq=None, enzyme=None):
     """ Will indicate any cleavage sites from popular restriction enzymes in
         restriction enzyme dictionary. User can also search a custom cleavage site (enzyme).
         Returns dictionary of enzyme name and cleavage positions.
@@ -194,6 +234,21 @@ def enz_cut(acc, sequence, enzyme=None):
         'BsuMI': 'CTCGAG', 'HindIII': 'AAGCTT',
         'EcoRV': 'GATATC'}
 
+    ## use accession number to retrieve sequence from database
+    ## request database to return sequence for specific accession number
+    # for x in exon_file:
+    ## check to see accession number requested matches return
+    #      if x[0] = acc:
+    #            x[1] = seq
+    #      else:
+    #          print('Error: Sequence not found.')
+    ## should program exit here?
+
+    if seq == None:
+        seq = 'atggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacgagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaa'
+    seq = seq.replace(' ', '')
+    seq = seq.upper()
+
     seq_count = 0
     cut_dict = {}
     ## if a custom cleavage site is included, will indicate number and position of cleavage sites in sequence
@@ -201,10 +256,9 @@ def enz_cut(acc, sequence, enzyme=None):
         cut_list = []
         count = 0
         cut = enzyme
-        new_seq = sequence.replace(' ', '')
         ## find custom cleavage sites if present in sequence
         p = re.compile(r'(' + cut + ')')
-        it = p.finditer(new_seq)
+        it = p.finditer(seq)
 
         ## count number of cleavage sites
         for match in it:
@@ -220,11 +274,10 @@ def enz_cut(acc, sequence, enzyme=None):
         count = 0
         ## retrieve cleavage sequence from enzyme dictionary
         cut = enz_dict[enzyme]
-        new_seq = sequence.replace(' ', '')
         ## find cleavage sites if present in sequence
         p = re.compile(r'(' + cut + ')')
         ## count number of cleavage sites
-        it = p.finditer(new_seq)
+        it = p.finditer(seq)
         for match in it:
             count += 1
             ## if cleavage sites are found, add to dictionary of cut sequences
@@ -247,16 +300,16 @@ if __name__ == "__main__":
         file = s.replace(' ', '')
         file = s.upper()
 ## dummy data
-    exon_list = [('AB12345.1', 36, 50), ('AB12345.1', 55, 70)]
+    #exon_list = [('AB12345.1', 36, 50), ('AB12345.1', 55, 70)]
     acc = 'AB12345.1'
 
 ## get genomic sequence
-    line_seq = getSequence(acc, file)
+    line_seq = getSequence(acc)
 
 ## print sequence
-    #for k, v in sorted(line_seq.items()):
-    #    print(v, end='')
-    #print('\n')
+    for k, v in sorted(line_seq.items()):
+        print(v, end='')
+    print('\n')
 
 ## print divided into numbered rows of 60
     # for i in range(1, len(line_seq), 60):
@@ -268,81 +321,83 @@ if __name__ == "__main__":
     # print('\n')
 
 ## get annotated sequence with exon boundaries indicated
-    ann_seq = annotateSeq(acc, file, exon_list)
+    ann_seq = annotateSeq(acc)
     print(ann_seq)
 
 ## get coding sequence
-    code_seq = codingSeq(acc, file, exon_list)
+    code_seq = codingSeq(acc)
     print(code_seq)
 
 ## get genomic sequence with restriction enzyme sites indicated (if exons indicated, it can interfere with recognition)
 
-    enz_seq = enz_cut(acc, file)
-    #for k, v in enz_seq.items():
-     #   print(k,v)
+    enz_seq = enz_cut(acc, 'ACTT')
+    for k, v in enz_seq.items():
+        print(k,v)
 
 ## get translation
-    aa_seq = translate(acc, code_seq)
+    aa_seq = translate(acc)
+    print(aa_seq[0])
+    print(aa_seq[1])
 
 ## line up codons and amino acids
-    for x in aa_seq[0]:
-        print(x, end=' ')
-    print('')
-    for x in aa_seq[1]:
-        print(x, end='   ')
-    print('')
-## print amino acid sequence
-    print(aa_seq[1])
+#     for x in aa_seq[0]:
+#         print(x, end=' ')
+#     print('')
+#     for x in aa_seq[1]:
+#         print(x, end='   ')
+#     print('')
+# ## print amino acid sequence
+#     print(aa_seq[1])
 
 
 ## if you want to print to file in xml format to .xml file:
-
-    xml_seq_ann = """
-    <gene>
-        <sequence acc=%(acc)s>
-            <ann_seq>%(sequence)s</ann_seq>
-        </sequence>
-    </gene>
-    """
-
-
-    seq_map = {'acc': acc, 'sequence': ann_seq}
-
-    xml_seq_coding = """
-    <gene>
-        <sequence acc=%(acc)s>
-            <coding_seq>%(coding_seq)s</coding_seq>
-        </sequence>
-    </gene>
-    """
-    seq_map2 = {'acc':acc, 'coding_seq': code_seq}
-
-    xml_seq_translation = """
-    <gene>
-        <sequence acc=%(acc)s>
-            <aa_seq>%(aa_seq)s</aa_seq>
-        </sequence>
-    </gene>
-    """
-    seq_map3 = {'acc':acc, 'aa_seq':aa_seq[1]}
-
-    xml_seq_codons = """
-    <gene>
-        <sequence acc=%(acc)s>
-            <codon_seq>%(codon_seq)s</codon_seq>
-        </sequence>
-    </gene>
-    """
-    seq_map4 = {'acc':acc, 'codon_seq':aa_seq[0]}
-
-
-
-    with open('sequence_output.xml', 'w') as text_file:
-        print('<?xml version="1.0" encoding="UTF-8"?>', file=text_file)
-        print(xml_seq_ann %seq_map, file=text_file)
-        print(xml_seq_coding %seq_map2, file=text_file)
-        print(xml_seq_translation %seq_map3, file=text_file)
-        print(xml_seq_codons %seq_map4, file=text_file)
-    text_file.close()
+    #
+    # xml_seq_ann = """
+    # <gene>
+    #     <sequence acc=%(acc)s>
+    #         <ann_seq>%(sequence)s</ann_seq>
+    #     </sequence>
+    # </gene>
+    # """
+    #
+    #
+    # seq_map = {'acc': acc, 'sequence': ann_seq}
+    #
+    # xml_seq_coding = """
+    # <gene>
+    #     <sequence acc=%(acc)s>
+    #         <coding_seq>%(coding_seq)s</coding_seq>
+    #     </sequence>
+    # </gene>
+    # """
+    # seq_map2 = {'acc':acc, 'coding_seq': code_seq}
+    #
+    # xml_seq_translation = """
+    # <gene>
+    #     <sequence acc=%(acc)s>
+    #         <aa_seq>%(aa_seq)s</aa_seq>
+    #     </sequence>
+    # </gene>
+    # """
+    # seq_map3 = {'acc':acc, 'aa_seq':aa_seq[1]}
+    #
+    # xml_seq_codons = """
+    # <gene>
+    #     <sequence acc=%(acc)s>
+    #         <codon_seq>%(codon_seq)s</codon_seq>
+    #     </sequence>
+    # </gene>
+    # """
+    # seq_map4 = {'acc':acc, 'codon_seq':aa_seq[0]}
+    #
 
 
+    # with open('sequence_output.xml', 'w') as text_file:
+    #     print('<?xml version="1.0" encoding="UTF-8"?>', file=text_file)
+    #     print(xml_seq_ann %seq_map, file=text_file)
+    #     print(xml_seq_coding %seq_map2, file=text_file)
+    #     print(xml_seq_translation %seq_map3, file=text_file)
+    #     print(xml_seq_codons %seq_map4, file=text_file)
+    # text_file.close()
+    #
+    #

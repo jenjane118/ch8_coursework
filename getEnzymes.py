@@ -21,9 +21,9 @@ ______________________________________________________________________________
 Description:
 ============
 This program returns number and positin of restriction enzyme cleavage sites, and indicates whether or not they
-lie within the coding region ('usable' or 'bad' tags).
+lie within the coding region. Returns two lists: 'Usable' enzymes and 'Bad' enzymes
 Will test 5 commonly used restriction sites or user can input a custom cleavage site. 
-Output is text file in xml format.
+
 
 
 Usage:
@@ -43,96 +43,49 @@ from xml.dom import minidom
 
 #****************************************************************************
 
+## main ##
 
-# dummy data for testing
-acc  = 'AB12345'
-seq1 = 'agctctcttttttttcccccccgatcgctagctcgctttcgcgcgagaaaaagggctcgcgctagagctcgcgcgggatcggccgtagataattttctctcccccccgcggc'
-exons = [('AB12345', 15, 100), ('AB12345', 130, 200)]
-enz = 'AAGACCAGAAG'
+def getEnzyme(acc, enzyme=None):
+    """ Function for returning restriction enzyme cleavage sites and indicating 'Bad' or 'Good'.
+     Input                      acc                         Gene accession number
+                                enzyme                      Optional input for custom cleavage site
+     Output                     enzyme_list                 List of all enzymes cutting sequence, Bad/Good,
+                                                            and cleavage start/end coordinates
+     """
+
+    ## use seq_module to obtain sequence information
+    genomic     = seq_module.annotateSeq(acc)
+    code_seq    = seq_module.codingSeq(acc)
 
 
-
-with open('seq_file2.txt', 'r') as f:
-    file = f.read().splitlines()
-f.close()
-
-for s in file:
-    file = s.replace(' ', '')
-    file = s.upper()
-
-genomic     = seq_module.annotateSeq(acc, file, exons)
-print(genomic)
-code_seq    = seq_module.codingSeq(acc, file, exons)
-print(code_seq)
-
-## call function to show cleavage positions
-coding_cut      = seq_module.enz_cut(acc, code_seq, enz)
-seq_cut         = seq_module.enz_cut(acc, genomic, enz)
-## determine whether enzyme cuts in coding region
-good_enzymes    = {}
-for k,v in seq_cut.items():
-    if k in coding_cut:
-        bad_enzymes = {k:v}
-        print(k,v)
+    ## call function to show cleavage positions
+    if enzyme != None:
+        coding_cut      = seq_module.enz_cut(acc, code_seq, enz)
+        seq_cut         = seq_module.enz_cut(acc, genomic, enz)
     else:
-        usable = 'Y'
-        good_enzymes = {k:v}
-        print(k,v)
+        coding_cut      = seq_module.enz_cut(acc, code_seq)
+        seq_cut         = seq_module.enz_cut(acc, genomic)
 
+    ## determine whether enzyme cuts in coding region
+    enzymes    = []
 
-## write output in xml to file
-doc = minidom.Document()
-seq_data = doc.createElement('seq_data')
-doc.appendChild(seq_data)
+    for k,v in seq_cut.items():
+        if k in coding_cut:
+            enzyme = (k,'Bad', v)
+            enzymes.append(enzyme)
+        else:
+            enzyme = (k,'Good', v)
+            enzymes.append(enzyme)
 
-for k,v in good_enzymes.items():
-    enz = k
-    no = str(v[0])
-    position = str(v[1])
+    return enzymes
 
-    gene = doc.createElement('gene')
-    gene.setAttribute('acc', acc)
+##  main ##
+if __name__ == "__main__":
+# dummy data for testing
+    acc  = 'AB12345'
 
-    seq_data.appendChild(gene)
+    enz = 'GAGAGC'
 
-    usable = doc.createElement('usable')
-    gene.appendChild(usable)
-
-    enzyme = doc.createElement('enzyme')
-    enzyme.setAttribute('name', enz)
-    enzyme.setAttribute('cuts', no)
-
-    usable.appendChild(enzyme)
-
-    cut_site = doc.createElement('position')
-    text = doc.createTextNode(position)
-    cut_site.appendChild(text)
-    enzyme.appendChild(cut_site)
-
-for k,v in bad_enzymes.items():
-    gene = doc.createElement('gene')
-    gene.setAttribute('acc', acc)
-
-    seq_data.appendChild(gene)
-
-    bad = doc.createElement('bad')
-    gene.appendChild(bad)
-
-    enzyme = doc.createElement('enzyme')
-    enzyme.setAttribute('name', enz)
-    enzyme.setAttribute('cuts', no)
-
-    bad.appendChild(enzyme)
-
-    cut_site = doc.createElement('position')
-    text = doc.createTextNode(position)
-    cut_site.appendChild(text)
-    enzyme.appendChild(cut_site)
-
-doc.writexml(sys.stdout, addindent='    ', newl='\n')
-
-file_handle = open('getEnzymes_out.xml', 'w')
-doc.writexml(file_handle, addindent='   ',newl='\n')
-file_handle.close()
-
+    cut_sites = getEnzyme(acc, enz)
+    print(cut_sites)
 
