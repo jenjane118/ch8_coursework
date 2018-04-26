@@ -8,7 +8,7 @@ File:           Codon_Usage.py
 
 Version:        1.0
 Date:           22.03.18
-Function:       Returns codon frequency and codon usage ratio and percentage for a particular gene.
+Function:       Module for calculating codon frequency,codon usage ratio and percentage for a particular sequence.
 
 Author:         Jennifer J Stiens
 
@@ -19,7 +19,7 @@ ______________________________________________________________________________
 
 Description:
 ============
-This program will calculate codon usage frequency, percentage, and ratio of codon usage preference for a particular gene.
+This program will calculate codon usage frequency, percentage, and ratio of codon usage preference for a particular sequence.
 
 
 Usage:
@@ -37,10 +37,7 @@ V1.2           22.04.18         Added dicttoxml library                     JJS
 """
 #*****************************************************************************
 # Import libraries
-
 import sys
-#import dicttoxml
-
 import seq_module
 
 #****************************************************************************
@@ -159,6 +156,21 @@ def usageRatio (acc, freq_table):
         aaDict[aa] = codonDict
     return aaDict
 
+def getCodonusage(acc):
+    """Returns codon frequency, codon usage ratio and percentage for a particular gene."""
+    code_seq = seq_module.codingSeq(gene)
+
+    ## calculate raw frequencies of codon usage
+    codon_freq = codonFreq(gene, code_seq)
+
+    ## find each amino acid codon usage ratio
+    ratio = usageRatio(gene, codon_freq)
+
+    ## find percent usage (per 100 bp)
+    percent = codonPercent(gene, codon_freq)
+
+    return(codon_freq, ratio, percent)
+
 if __name__ == "__main__":
     #print("Ran module directly (and did not 'import' it).")
 
@@ -166,52 +178,38 @@ if __name__ == "__main__":
 # main
 
     #dummy data
-    with open ('seq_file1.txt', 'r') as f:
-        file = f.read().splitlines()
-    f.close()
+
 
     gene = 'AB12345'
-    exon_list = [('AB12345.1', 36, 150), ('AB12345.1', 255, 700)]
 
     ##replace spaces in dna sequence and format into uppercase
-    seq = ''
-    for s in file:
-        seq = s.replace(' ', '')
-        seq = s.upper()
 
-    ## use codingSeq function to find coding sequence
-    code_seq = seq_module.codingSeq(gene, seq, exon_list)
+    results = getCodonusage(gene)
 
-    ## calculate raw frequencies of codon usage
-    codon_freq = codonFreq(gene, code_seq)
+    print(results[0])
+    print(results[1])
+    print(results[2])
 
-    ## find each amino acid codon usage ratio
-    ratio       = usageRatio(gene, codon_freq)
-
-    ## find percent usage (per 100 bp)
-    percent     = codonPercent(gene, codon_freq)
-
-
-    # write to file
-
-    freq_xml = """
-    <gene>
-        <sequence acc=%(acc)s>
-            <codon_usage>
-                <codon_freq>%(codon_freq)s</codon_freq>
-                <codon_ratio>%(codon_ratio)s</codon_ratio>
-                <codon_percent>%(codon_percent)s</codon_percent>
-            </codon_usage>
-        </sequence>
-    </gene>
-    """
-    usage_map = {'acc': gene, 'codon_freq': codon_freq, 'codon_ratio': ratio, 'codon_percent': percent}
-
-    xml_file = open('codon_usage_out.xml', 'w')
-    print('<?xml version="1.0" encoding="UTF-8"?>', file=xml_file)
-    print(freq_xml % usage_map, file=xml_file)
-    xml_file.close()
-
+    # # write to file
+    #
+    # freq_xml = """
+    # <gene>
+    #     <sequence acc=%(acc)s>
+    #         <codon_usage>
+    #             <codon_freq>%(codon_freq)s</codon_freq>
+    #             <codon_ratio>%(codon_ratio)s</codon_ratio>
+    #             <codon_percent>%(codon_percent)s</codon_percent>
+    #         </codon_usage>
+    #     </sequence>
+    # </gene>
+    # """
+    # usage_map = {'acc': gene, 'codon_freq': codon_freq, 'codon_ratio': ratio, 'codon_percent': percent}
+    #
+    # xml_file = open('codon_usage_out.xml', 'w')
+    # print('<?xml version="1.0" encoding="UTF-8"?>', file=xml_file)
+    # print(freq_xml % usage_map, file=xml_file)
+    # xml_file.close()
+    #
 
     ## for printing with dicttoxml library function
     # freq_xml = dicttoxml.dicttoxml(codon_freq, attr_type=False, custom_root='freq')
