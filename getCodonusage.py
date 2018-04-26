@@ -39,7 +39,7 @@ V1.0           26.04.18         Original                                By: JJS
 
 import sys
 import seq_module
-import Codon_Usage
+import codon_usage
 
 # ****************************************************************************
 
@@ -51,13 +51,13 @@ gene = 'AB12345.5'
 code_seq = seq_module.codingSeq(gene)
 
 ## calculate raw frequencies of codon usage
-codon_freq = Codon_Usage.codonFreq(gene, code_seq)
+codon_freq = codon_usage.codonFreq(gene, code_seq)
 
 ## find each amino acid codon usage ratio
-ratio       = Codon_Usage.usageRatio(gene, codon_freq)
+ratio       = codon_usage.usageRatio(gene, codon_freq)
 
 ## find percent usage (per 100 bp)
-percent     = Codon_Usage.codonPercent(gene, codon_freq)
+percent     = codon_usage.codonPercent(gene, codon_freq)
 
 for k,v in codon_freq.items():
     print(k,v)

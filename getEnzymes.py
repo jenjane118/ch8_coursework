@@ -25,15 +25,20 @@ lie within the coding region. Returns list of Enzymes, whether they are a 'good'
 sites, coordinates of cleavage sites.
 Will test 5 commonly used restriction enzymes and user can input a custom cleavage site. 
 
-
+---------------------------------------------------------------------------------
 Usage:
 ======
+
+getEnzymes  ACC ENZYME(optional)
+---------------------------------------------------------------------------------
 
 Revision History:
 =================
 V1.0           21.04.18             Original                            By:JJS
 V1.1           24.04.18             Revised                                JJS
 V1.2           26.04.18             Rewritten as function                  JJS 
+
+---------------------------------------------------------------------------------
 """
 #*****************************************************************************
 # Import libraries
@@ -44,7 +49,22 @@ from xml.dom import minidom
 
 #****************************************************************************
 
-## main ##
+def helpEnzymes():
+    """Print a usage message and exit
+    26.04.18                    Original                       JJS
+    """
+    print("""
+    getEnzymes.py   V1.2        2018,   J.J. Stiens
+    
+    Usage: getEnzymes   acc    enzyme(optional) 
+    
+    Find and display restriction enzyme cleavage sites in/out of coding region for a gene
+    using accession number (eg: 'AC12345.5')
+
+    """)
+    exit(0)
+
+#****************************************************************************
 
 def getEnzyme(acc, enzyme=None):
     """ Function for returning restriction enzyme cleavage sites and indicating 'Bad' or 'Good'.

@@ -40,7 +40,7 @@ V1.0           18.04.18         Original        By: JJS
 
 import seq_module
 
-import Codon_Usage
+import codon_usage
 
 import pickle, shelve
 #****************************************************************************
@@ -83,7 +83,7 @@ for x in gene_list:
 ##  call function to determine codon frequency for each gene
 
     codon_table = {}
-    codon_table = Codon_Usage.codonFreq(gene, coding_dna)
+    codon_table = codon_usage.codonFreq(gene, coding_dna)
 #print(codon_table)
 
 ##  add each to total codon frequency dictionary
@@ -98,11 +98,11 @@ print(total_freq)
 # calculate codon usage ratio/percent for whole genome
 gene = 'total'
 
-whole_genome_ratio = Codon_Usage.usageRatio(gene, total_freq)
+whole_genome_ratio = codon_usage.usageRatio(gene, total_freq)
 for k,v in whole_genome_ratio.items():
     print(k, ':', v)
 
-whole_genome_percent = Codon_Usage.codonPercent(gene, total_freq)
+whole_genome_percent = codon_usage.codonPercent(gene, total_freq)
 for k,v in whole_genome_percent.items():
     print(k, ':', v)
 

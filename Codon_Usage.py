@@ -3,8 +3,8 @@
 """ Codon Usage Module """
 
 """
-Program:        Codon_Usage
-File:           Codon_Usage.py
+Program:        codon_usage
+File:           codon_usage.py
 
 Version:        1.0
 Date:           22.03.18
@@ -157,7 +157,14 @@ def usageRatio (acc, freq_table):
     return aaDict
 
 def getCodonusage(acc):
-    """Returns codon frequency, codon usage ratio and percentage for a particular gene."""
+    """Returns codon frequency, codon usage ratio and percentage for a particular gene.
+    Input                   acc                                     Gene accession number
+    Output                  (codon_freq, ratio, percent)            List containing: frequency table,
+                                                                    codon usage ratio, and codon usage per 100bp
+
+    26.04.18                Original                                By: JJS
+
+    """
     code_seq = seq_module.codingSeq(gene)
 
     ## calculate raw frequencies of codon usage
