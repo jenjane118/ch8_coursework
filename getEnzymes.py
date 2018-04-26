@@ -1,7 +1,7 @@
 #!/usr/bin python3
 
 
-""" Gene translation Program """
+""" Restriction Enzyme Cleavage Function """
 
 """
 Program:        getEnzymes
@@ -20,10 +20,10 @@ ______________________________________________________________________________
 
 Description:
 ============
-This program returns number and positin of restriction enzyme cleavage sites, and indicates whether or not they
-lie within the coding region. Returns two lists: 'Usable' enzymes and 'Bad' enzymes
-Will test 5 commonly used restriction sites or user can input a custom cleavage site. 
-
+This program returns number and position of restriction enzyme cleavage sites, and indicates whether or not they
+lie within the coding region. Returns list of Enzymes, whether they are a 'good' or 'bad' enzyme, number of cleavage
+sites, coordinates of cleavage sites.
+Will test 5 commonly used restriction enzymes and user can input a custom cleavage site. 
 
 
 Usage:
@@ -33,6 +33,7 @@ Revision History:
 =================
 V1.0           21.04.18             Original                            By:JJS
 V1.1           24.04.18             Revised                                JJS
+V1.2           26.04.18             Rewritten as function                  JJS 
 """
 #*****************************************************************************
 # Import libraries

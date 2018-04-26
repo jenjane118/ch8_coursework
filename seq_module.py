@@ -34,6 +34,7 @@ V1.0            22.03.18    Original                        By: JJS
 V1.1            06.04.18    Revised as module                   JJS
 V1.2            21.04.18    Combined translate function         JJS
 V1.2            24.04.18    Debugging of exon annotation        JJS
+V1.3            26.04.18    Simplified parameters               JJS
 """
 #*****************************************************************************
 # Import libraries
@@ -86,7 +87,7 @@ def annotateSeq(acc):           ## need to enter sequence, exon_list until get u
 
     ## use accession number to retrieve sequence from database
     ## request database to return sequence for specific accession number
-    # for x in exon_file:
+    # for x in sequence_file:
     ## check to see accession number requested matches return
     #      if x[0] = acc:
     #            x[1] = seq
@@ -135,7 +136,7 @@ def codingSeq(acc):
 
     ## use accession number to retrieve sequence from database
     ## request database to return sequence for specific accession number
-    # for x in exon_file:
+    # for x in sequence_file:
     ## check to see accession number requested matches return
     #      if x[0] = acc:
     #            x[1] = seq
@@ -222,8 +223,8 @@ def enz_cut(acc, seq=None, enzyme=None):
         Returns dictionary of enzyme name and cleavage positions.
 
     Input           acc                 accession number for gene
-                    sequence            gene sequence (raw)
-                    enzyme              optional custom cleavage site
+                    sequence            gene sequence string (optional)
+                    enzyme              custom cleavage site (optional)
 
     Output          cut_dict            dictionary {enzyme:no. of cleavage sites, positions}
 
@@ -234,17 +235,18 @@ def enz_cut(acc, seq=None, enzyme=None):
         'BsuMI': 'CTCGAG', 'HindIII': 'AAGCTT',
         'EcoRV': 'GATATC'}
 
-    ## use accession number to retrieve sequence from database
-    ## request database to return sequence for specific accession number
-    # for x in exon_file:
-    ## check to see accession number requested matches return
-    #      if x[0] = acc:
-    #            x[1] = seq
-    #      else:
-    #          print('Error: Sequence not found.')
-    ## should program exit here?
 
     if seq == None:
+        ## use accession number to retrieve sequence from database
+        ## request database to return sequence for specific accession number
+        # for x in sequence_file:
+        ## check to see accession number requested matches return
+        #      if x[0] = acc:
+        #            x[1] = seq
+        #      else:
+        #          print('Error: Sequence not found.')
+        ## should program exit here?
+        ## dummy sequence
         seq = 'atggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacgagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaa'
     seq = seq.replace(' ', '')
     seq = seq.upper()
