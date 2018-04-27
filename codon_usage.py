@@ -35,12 +35,12 @@ V1.2           22.04.18         Added dicttoxml library                     JJS
                                 Fixed bugs with uppercase and zero division JJS
                                 
 """
-#*****************************************************************************
+#**********************************************************************************
 # Import libraries
 import sys
 import seq_module
 
-#****************************************************************************
+#**********************************************************************************
 
 def codonFreq(acc, dna):
     """Returns frequency of each codon possibility in particular sequence.
@@ -83,6 +83,7 @@ def codonFreq(acc, dna):
              CodonsDict[x] += 1
     return CodonsDict
 
+#**********************************************************************************
 
 def codonPercent (acc, freq_table):
     """Returns percentage use of a particular codon in sequence (per 100 bp sequence)
@@ -101,7 +102,7 @@ def codonPercent (acc, freq_table):
         percentDict[codon] = round(percent, 1)
     return percentDict
 
-
+#**********************************************************************************
 
 def usageRatio (acc, freq_table):
     """Returns codon usage ratio.
@@ -156,6 +157,8 @@ def usageRatio (acc, freq_table):
         aaDict[aa] = codonDict
     return aaDict
 
+#**********************************************************************************
+
 def getCodonusage(acc):
     """Returns codon frequency, codon usage ratio and percentage for a particular gene.
     Input                   acc                                     Gene accession number
@@ -178,18 +181,14 @@ def getCodonusage(acc):
 
     return(codon_freq, ratio, percent)
 
+#**********************************************************************************
+
+### main #####
+
 if __name__ == "__main__":
-    #print("Ran module directly (and did not 'import' it).")
-
-
-# main
-
-    #dummy data
-
+    print("Ran module directly (and did not 'import' it).")
 
     gene = 'AB12345'
-
-    ##replace spaces in dna sequence and format into uppercase
 
     results = getCodonusage(gene)
 
@@ -218,7 +217,3 @@ if __name__ == "__main__":
     # xml_file.close()
     #
 
-    ## for printing with dicttoxml library function
-    # freq_xml = dicttoxml.dicttoxml(codon_freq, attr_type=False, custom_root='freq')
-    # ratio_xml   = dicttoxml.dicttoxml(ratio, attr_type=False, custom_root='ratio')
-    # percent_xml = dicttoxml.dicttoxml(percent, attr_type=False, custom_root='percent')

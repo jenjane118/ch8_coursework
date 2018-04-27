@@ -79,6 +79,8 @@ def getSequence(acc):         ## need to enter sequence until get usable data fr
         num_seq[count] = x
     return num_seq
 
+#**********************************************************************************
+
 def annotateSeq(acc):           ## need to enter sequence, exon_list until get usable data from db
     """Returns sequence with exon boundaries marked out with symbols (or simple sequence string if no exons indicated)
     Input               acc                 Accession ID
@@ -130,6 +132,8 @@ def annotateSeq(acc):           ## need to enter sequence, exon_list until get u
         exon_seq = seq
     return exon_seq
 
+#**********************************************************************************
+
 def codingSeq(acc):
     """Returns coding sequence (stuck together exons). If no exon_list, will return genomic sequence string.
     Input           acc                 Accession ID
@@ -174,6 +178,8 @@ def codingSeq(acc):
     else:
         coding_seq = seq
     return coding_seq
+
+#**********************************************************************************
 
 def translate(acc):
     """Returns protein translation for requested gene.
@@ -221,6 +227,7 @@ def translate(acc):
             aa_seq += codon_table[codon]
     return codon_list, aa_seq
 
+#**********************************************************************************
 
 def enz_cut(acc, seq=None, enzyme=None):
     """ Will indicate any cleavage sites from popular restriction enzymes in
@@ -240,7 +247,8 @@ def enz_cut(acc, seq=None, enzyme=None):
         'BsuMI': 'CTCGAG', 'HindIII': 'AAGCTT',
         'EcoRV': 'GATATC'}
 
-
+    ## no sequence parameter: check default, genomic sequence of gene for restriction enzyme sites
+    ## sequence parameter will be utilised when checking coding sequence in 'getEnzymes' program
     if seq == None:
         ## use pymysql script with accession number to access database for 'sequence'
         # import sequence
@@ -261,6 +269,7 @@ def enz_cut(acc, seq=None, enzyme=None):
 
     seq_count = 0
     cut_dict = {}
+
     ## if a custom cleavage site is included, will indicate number and position of cleavage sites in sequence
     if enzyme != None:
         cut_list = []
@@ -297,7 +306,10 @@ def enz_cut(acc, seq=None, enzyme=None):
 
     return cut_dict
 
-# main
+#**********************************************************************************
+
+###### main ####
+
 if __name__ == "__main__":
 
 ## dummy data (sequence in file, acc and exon_list below)

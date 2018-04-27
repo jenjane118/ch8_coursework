@@ -75,13 +75,15 @@ class Gene:
     # *************************************************************************************
 
     def __init__(self, acc=str(), genid=str(), product=str(), location=str()):
-        """ Identifies the gene object and its identifiers
+        """ Creates the gene object and assigns attributes (identifiers)
         """
         self.number = Gene.count
         self.acc = acc
         self.genid = genid
         self.product = product
         self.location = location
+        self._registry.append(self)
+
         Gene.count += 1
 
 

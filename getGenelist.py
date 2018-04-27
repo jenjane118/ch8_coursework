@@ -43,16 +43,6 @@ import gene_module
 import pickle, shelve
 
 
-#*****************************************************************************
-
-def geneList(self):
-    """Creates a dictionary of gene identifiers.
-    """
-
-    gene_dict = {self.acc: (self.genid, self.product, self.location)}
-    return gene_dict
-
-#***********************************************************************************
 # Main Program
 
 
@@ -81,13 +71,20 @@ identity =[('AB061209', 'MRPS28', 'mitochondrial ribosomal protein s28', '8q21.1
             ('AC034567', 'genid3', 'product3', 'location3'),
             ('AR456789', 'genid4', 'product4', 'location4')]
 gene_list = []
+object_dict = {}
+## Uses initialisation functi0n to create a gene object for each listing from database
 for x in identity:
-    gene_list.append(gene_module.Gene(x[0], x[1], x[2], x[3]))
+    gene_object = gene_module.Gene(x[0], x[1], x[2], x[3])
+## Adds to list of gene objects
+    gene_list.append(gene_object)
+for object in gene_module.Gene._registry:
+    object_dict[object.acc] = (object.genid, object.product, object.location)
+
+for k,v in object_dict.items():
+    print(k,v)
 
 
 
-#all_genes = {}
-#genes = {}
 
 xmlTemplate = """
 <gene>

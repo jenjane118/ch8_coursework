@@ -100,6 +100,8 @@ def getEnzyme(acc, enzyme=None):
 
     return enzymes
 
+#**********************************************************************************
+
 ##  main ##
 if __name__ == "__main__":
 # dummy data for testing
