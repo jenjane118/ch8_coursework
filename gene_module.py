@@ -3,8 +3,8 @@
 """ Gene Identifiers List"""
 
 """
-Program:    GeneModule
-File:       GeneModule.py
+Program:    gene_module
+File:       gene_module.py
 
 Version:    1.0
 Date:       15.03.18
@@ -64,6 +64,7 @@ class Gene:
     """ A class for handling associated gene identifiers and sequence data."""
     count = 0
     names = []
+    _registry = []
 
     @staticmethod
     def total():
@@ -83,6 +84,7 @@ class Gene:
         self.location = location
         Gene.count += 1
 
+
     # **************************************************************************************
 
     def __str__(self):
@@ -95,7 +97,7 @@ class Gene:
 
     # ***************************************************************************************
 
-    def Gene_dict(self):
+    def geneDict(self):
         """Creates a dictionary for mapping to xml template.
         """
 
@@ -104,9 +106,13 @@ class Gene:
 
     # **************************************************************************************
 
-    def GeneList(self):
+    def geneList(self):
         """Creates a dictionary of gene identifiers.
         """
 
         gene_dict = {self.acc: (self.genid, self.product, self.location)}
         return gene_dict
+
+    # **************************************************************************************
+
+#if __name__== "__main__":

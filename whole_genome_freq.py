@@ -59,7 +59,8 @@ with open('seq_file.txt', 'r') as f:
 
 
 # for each gene in genelist:
-    # run seq_module.codingSeq to get coding sequence
+    # extract acc
+    # run seq_module.codingSeq(acc) to get coding sequence
 
 ## extract accession number and sequence from list of genes
 for x in gene_list:
