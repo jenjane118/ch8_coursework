@@ -77,9 +77,10 @@ for x in identity:
     gene_object = gene_module.Gene(x[0], x[1], x[2], x[3])
 ## Adds to list of gene objects
     gene_list.append(gene_object)
+
+## Create a dictionary of gene objects
 for object in gene_module.Gene._registry:
     object_dict[object.acc] = (object.genid, object.product, object.location)
-
 for k,v in object_dict.items():
     print(k,v)
 

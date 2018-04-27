@@ -63,7 +63,6 @@ identity = [('AB061209', 'MRPS28', 'mitochondrial ribosomal protein s28', '8q21.
 class Gene:
     """ A class for handling associated gene identifiers and sequence data."""
     count = 0
-    names = []
     _registry = []
 
     @staticmethod
