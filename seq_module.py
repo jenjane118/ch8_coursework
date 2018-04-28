@@ -27,6 +27,7 @@ Restriction enzyme analysis
 
 Usage:
 ======
+seq_module      
 
 Revision History:
 =================
@@ -45,9 +46,31 @@ import sys
 
 #****************************************************************************
 
+def help():
+    """Print usage message and exit"""
+    print("""
+    seq_module.py           V1.0        2018,            JJStiens
+    
+    Description:
+    ============
+    This program retrieves the genomic sequence for a particular gene and returns sequence information,
+    including:
+    Annotated sequence with exons indicated
+    Coding sequence
+    Peptide translation
+    Restriction enzyme analysis
 
-def getSequence(acc):         ## need to enter sequence until get usable data from database
-    """ Returns genomic DNA sequence in numbered form.
+    Usage:
+    ======
+    seq_module      
+
+    """)
+
+    exit(0)
+#****************************************************************************
+
+def getSequence(acc):
+    """ Return genomic DNA sequence in numbered form.
     Input               acc                 Accession ID
 
     Output              num_seq             Dictionary of numbered bp for requested sequence
@@ -82,7 +105,7 @@ def getSequence(acc):         ## need to enter sequence until get usable data fr
 #**********************************************************************************
 
 def annotateSeq(acc):           ## need to enter sequence, exon_list until get usable data from db
-    """Returns sequence with exon boundaries marked out with symbols (or simple sequence string if no exons indicated)
+    """Return sequence with exon boundaries marked out with symbols (or simple sequence string if no exons indicated).
     Input               acc                 Accession ID
 
     Output              exon_seq            Annotated sequence with inserted *exon/exon* boundaries (string)
@@ -135,7 +158,7 @@ def annotateSeq(acc):           ## need to enter sequence, exon_list until get u
 #**********************************************************************************
 
 def codingSeq(acc):
-    """Returns coding sequence (stuck together exons). If no exon_list, will return genomic sequence string.
+    """Return coding sequence (stuck together exons). If no exon_list, will return genomic sequence string.
     Input           acc                 Accession ID
 
     Output          coding_seq          Coding sequence
@@ -182,7 +205,7 @@ def codingSeq(acc):
 #**********************************************************************************
 
 def translate(acc):
-    """Returns protein translation for requested gene.
+    """Return protein translation for requested gene.
     Input                       acc                     gene accession number
 
     Output [0]                  codon_list              ordered list of codons
@@ -230,9 +253,9 @@ def translate(acc):
 #**********************************************************************************
 
 def enz_cut(acc, seq=None, enzyme=None):
-    """ Will indicate any cleavage sites from popular restriction enzymes in
-        restriction enzyme dictionary. User can also search a custom cleavage site (enzyme).
-        Returns dictionary of enzyme name and cleavage positions.
+    """ Indicate any cleavage sites from restriction enzymes in
+        restriction enzyme dictionary. Optionally, search a custom cleavage site (enzyme).
+        Return dictionary of enzyme name and cleavage positions.
 
     Input           acc                 accession number for gene
                     sequence            gene sequence string (optional)
@@ -360,6 +383,9 @@ if __name__ == "__main__":
     aa_seq = translate(gene)
     print(aa_seq[0])
     print(aa_seq[1])
+
+
+    help()
 
 ## line up codons and amino acids
 #     for x in aa_seq[0]:

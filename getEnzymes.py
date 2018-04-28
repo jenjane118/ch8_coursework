@@ -49,10 +49,8 @@ from xml.dom import minidom
 
 #****************************************************************************
 
-def helpEnzymes():
-    """Print a usage message and exit
-    26.04.18                    Original                       JJS
-    """
+def help():
+    """Print a usage message and exit."""
     print("""
     getEnzymes.py   V1.2        2018,   J.J. Stiens
     
@@ -112,3 +110,4 @@ if __name__ == "__main__":
     cut_sites = getEnzyme(acc, enz)
     print(cut_sites)
 
+    help()

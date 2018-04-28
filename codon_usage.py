@@ -43,7 +43,7 @@ import seq_module
 #**********************************************************************************
 
 def codonFreq(acc, dna):
-    """Returns frequency of each codon possibility in particular sequence.
+    """Return frequency of each codon possibility in particular sequence.
     Input       acc                     accession number
                 dna                     coding sequence (dna)
 
@@ -86,7 +86,7 @@ def codonFreq(acc, dna):
 #**********************************************************************************
 
 def codonPercent (acc, freq_table):
-    """Returns percentage use of a particular codon in sequence (per 100 bp sequence)
+    """Return percentage use of a particular codon in sequence (per 100 bp sequence)
     Input           acc                 Accession number
                     freq_table          Codon frequency dictionary
 
@@ -105,7 +105,7 @@ def codonPercent (acc, freq_table):
 #**********************************************************************************
 
 def usageRatio (acc, freq_table):
-    """Returns codon usage ratio.
+    """Returs codon usage ratio.
     Input       acc             Accession number
                 freq_table      Codon frequency dict returned from codonFreq function
 
@@ -160,7 +160,7 @@ def usageRatio (acc, freq_table):
 #**********************************************************************************
 
 def getCodonusage(acc):
-    """Returns codon frequency, codon usage ratio and percentage for a particular gene.
+    """Return codon frequency, codon usage ratio and percentage for a particular gene.
     Input                   acc                                     Gene accession number
     Output                  (codon_freq, ratio, percent)            List containing: frequency table,
                                                                     codon usage ratio, and codon usage per 100bp
@@ -183,6 +183,20 @@ def getCodonusage(acc):
 
 #**********************************************************************************
 
+def help():
+    """Print a usage message and exit."""
+    print("""
+    codon_usage.py   V1.2        2018,   J.J. Stiens
+
+    Usage: codon_usage   
+
+    Description:
+    ============
+    Calculate codon usage frequency, percentage, and ratio of codon usage preference for a particular sequence
+    """)
+    exit(0)
+
+
 ### main #####
 
 if __name__ == "__main__":
@@ -195,6 +209,8 @@ if __name__ == "__main__":
     print(results[0])
     print(results[1])
     print(results[2])
+
+
 
     # # write to file
     #

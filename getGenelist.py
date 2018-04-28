@@ -8,8 +8,7 @@ File:       getGenelist.py
 
 Version:    1.0
 Date:       15.03.18
-Function:   Retrieve all gene identifier info for every gene on
-            chromosome 8 and returns as a list
+Function:   Retrieve all gene identifier info for every gene from database and returns as a list
 
 Author:     Jennifer J. Stiens
 
@@ -55,14 +54,9 @@ import pickle, shelve
 #    product     = gene['product']
 #    location    = gene['location']
 #
-## create gene object for each one
+## Uses initialisation functi0n to create a gene object for each listing from database
 #    gene_object = gene_module.Gene(acc, genid, product, location)
-## add to gene_dict using geneList function
-#     all_genes = geneList(gene_object)
 #
- ## Uses initialisation functi0n to create a gene object for each listing from database
-
-
 ## dummy data here
 
 identity =[('AB061209', 'MRPS28', 'mitochondrial ribosomal protein s28', '8q21.1-q21.2'),
