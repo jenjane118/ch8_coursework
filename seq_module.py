@@ -331,6 +331,43 @@ def enz_cut(acc, seq=None, enzyme=None):
 
 #**********************************************************************************
 
+def getEnzyme(acc, enzyme=None):
+    """ Function for returning restriction enzyme cleavage sites and indicating 'Bad' or 'Good'.
+     Input                      acc                         Gene accession number
+                                enzyme                      Optional input for custom cleavage site
+     Output                     enzyme_list                 List of all enzymes cutting sequence, Bad/Good,
+                                                            and cleavage start/end coordinates
+     """
+
+    ## use seq_module to obtain sequence information
+    genomic     = seq_module.annotateSeq(acc)
+    code_seq    = seq_module.codingSeq(acc)
+
+
+    ## call function to show cleavage positions
+    if enzyme != None:
+        coding_cut      = seq_module.enz_cut(acc, code_seq, enz)
+        seq_cut         = seq_module.enz_cut(acc, genomic, enz)
+    else:
+        coding_cut      = seq_module.enz_cut(acc, code_seq)
+        seq_cut         = seq_module.enz_cut(acc, genomic)
+
+    ## determine whether enzyme cuts in coding region
+    enzymes    = []
+
+    for k,v in seq_cut.items():
+        if k in coding_cut:
+            enzyme = (k,'Bad', v)
+            enzymes.append(enzyme)
+        else:
+            enzyme = (k,'Good', v)
+            enzymes.append(enzyme)
+
+    return enzymes
+
+#**********************************************************************************
+
+
 ###### main ####
 
 if __name__ == "__main__":
