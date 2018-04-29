@@ -38,8 +38,8 @@ V1.0           18.04.18         Original        By: JJS
 #*****************************************************************************
 # Import libraries
 
+import gene_module
 import seq_module
-
 import codon_usage
 
 from xml.dom import minidom
@@ -48,10 +48,10 @@ from xml.dom import minidom
 
 gene = 'AB12345'
 
-for object in gene_module.Gene._registry:
 
-
-
+total_freq = {}
+## once we have data from database:
+#for object in gene_module.Gene._registry:
 ## use coding seq function to determine coding sequence for each gene
 coding_dna = seq_module.codingSeq(gene)
 
@@ -61,26 +61,19 @@ codon_table = codon_usage.codonFreq(gene, coding_dna)
 print(codon_table)
 
 ##  add each to total codon frequency dictionary
-total_freq = {}
 for key in codon_table:
     if key in total_freq:
         total_freq[key] += codon_table[key]
     else:
         total_freq[key] = codon_table[key]
 
-
-# calculate codon usage ratio/percent for whole genome (returns dictionary)
+# calculate codon usage ratio for whole genome (returns dictionary, 'whole_genome_ratio')
 gene = 'total'
-ratio = ''
-ratio_list = []
-percent = ''
+
 whole_genome_ratio = codon_usage.usageRatio(gene, total_freq)
 print(whole_genome_ratio)
 
-
-for k,v in whole_genome_ratio.items():
-    ratio = k, ':', v
-    ratio_list.append(ratio)
+## calculate codon usage percent (usage per 100bp) for whole genome (returns dictionary, 'whole_genome_percent')
 
 whole_genome_percent = codon_usage.codonPercent(gene, total_freq)
 print(whole_genome_percent)
@@ -99,10 +92,10 @@ print(whole_genome_percent)
 # """
 # whole_genome_map = {'total_freq':total_freq, 'whole_genome_ratio':whole_genome_ratio, 'whole_genome_percent':whole_genome_percent}
 
-#f = open('whole_genome_usage.xml', 'w')
+f = open('whole_genome_usage.txt', 'w')
 #print('<?xml version="1.0" encoding="UTF-8"?>', file=f)
 #print(freq_xml % whole_genome_map, file=f)
-#print('\n', total_freq, file=f)
-#print('\n', whole_genome_ratio, file=f)
-#print('\n', whole_genome_percent, file=f)
-#f.close()
+print('\n', total_freq, file=f)
+print('\n', whole_genome_ratio, file=f)
+print('\n', whole_genome_percent, file=f)
+f.close()
