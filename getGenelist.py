@@ -32,7 +32,7 @@ Revision History:
 V1.0        15.03.18    Original (as Gene_list_class.py)    By: JJS
 V1.1        18.03.18    Revised to incorporate methods          JJS
 V1.2        22.03.18    included dicttoxml, changed name        JJS
-
+V1.3        29.04.18    changed xml format                      JJS
 """
 
 #******************************************************************************
