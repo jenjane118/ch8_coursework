@@ -39,8 +39,8 @@ V1.2        22.03.18    included dicttoxml, changed name        JJS
 # Import libraries
 
 import gene_module
-import pickle, shelve
-
+import sys
+from xml.dom import minidom
 
 # Main Program
 
@@ -69,8 +69,6 @@ object_dict = {}
 ## Uses initialisation functi0n to create a gene object for each listing from database
 for x in identity:
     gene_object = gene_module.Gene(x[0], x[1], x[2], x[3])
-## Adds to list of gene objects
-    gene_list.append(gene_object)
 
 ## Create a dictionary of gene objects
 for object in gene_module.Gene._registry:
@@ -80,30 +78,40 @@ for k,v in object_dict.items():
 
 
 
+## write output in xml to file
 
-xmlTemplate = """
-<gene>
-<geneidentifiers>
-    <accession>%(acc)s</accession>
-    <genid>%(genid)s</genid>
-    <product>%(product)s</product>
-    <location>%(location)s</location>
-</geneidentifiers>
-</gene>"""
+doc = minidom.Document()
+
+gene = doc.createElement('gene')
+doc.appendChild(gene)
 
 
+for k,v in object_dict.items():
+    gene_identifiers = doc.createElement('gene_identifiers')
+    gene.appendChild(gene_identifiers)
 
-with open('genelist_output.xml', 'w') as xml_file:
-    print('<?xml version="1.0" encoding="UTF-8"?>\n', file=xml_file)
-    gene_map = {}
-    ## Uses gene dictionary function to create a mapping of attributes for printing in xml
-    for y in gene_list:
-        gene_map = y.geneDict()
-        print(xmlTemplate % gene_map, file=xml_file)
+    acc = doc.createElement('acc')
+    acc.setAttribute('acc', k)
+    gene_identifiers.appendChild(acc)
 
-## Prints total number of gene objects using static function
-print(gene_module.Gene.total())
-xml_file.close()
+    genid = doc.createElement('genid')
+    genid.setAttribute('genid', v[0])
+    gene_identifiers.appendChild(genid)
+
+    product = doc.createElement('product')
+    product.setAttribute('product', v[1])
+    gene_identifiers.appendChild(product)
+
+    location = doc.createElement('location')
+    location.setAttribute('location', v[2])
+    gene_identifiers.appendChild(location)
+
+doc.writexml(sys.stdout, addindent='    ', newl='\n')
+
+file_handle = open('genelist_out.xml', 'w')
+doc.writexml(file_handle, addindent='   ',newl='\n')
+file_handle.close()
+
 
 
 

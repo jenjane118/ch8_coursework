@@ -122,7 +122,7 @@ def annotateSeq(acc):           ## need to enter sequence, exon_list until get u
     #   print('Error: Sequence not found')
     ## exit program?
 
-    ## use pymysqul script with accession number to retrieve 'exon'
+    ## use pymysql script with accession number to retrieve 'exon'
     ## check to see accession number requested matches database return
     ## make list of exons
     # for x in exon_file:
@@ -147,6 +147,7 @@ def annotateSeq(acc):           ## need to enter sequence, exon_list until get u
             for x in exon_list:
                 start = x[1]-1          ## subtract one for index start
                 end = x[2]-1
+                ## insert 'exon' markers at start/end of exons
                 if count == start:
                     exon_seq += '*exon'
                 elif count == end:
@@ -422,7 +423,6 @@ if __name__ == "__main__":
     print(aa_seq[1])
 
 
-    help()
 
 ## line up codons and amino acids
 #     for x in aa_seq[0]:

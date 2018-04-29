@@ -42,7 +42,7 @@ import seq_module
 
 import codon_usage
 
-import pickle, shelve
+
 #****************************************************************************
 
 # test sequence
@@ -127,3 +127,39 @@ print(freq_xml % whole_genome_map, file=f)
 #print('\n', whole_genome_ratio, file=f)
 #print('\n', whole_genome_percent, file=f)
 f.close()
+
+doc = minidom.Document()
+
+seq_data = doc.createElement('seq_data')
+doc.appendChild(seq_data)
+
+for k,v in exon_cut.items():
+    enz = k
+    no = str(v[0])
+    new_seq = v[1]
+
+    gene = doc.createElement('gene')
+    gene.setAttribute('acc', acc)
+
+    seq_data.appendChild(gene)
+
+    sequence = doc.createElement('sequence')
+    gene.appendChild(sequence)
+
+    enzyme = doc.createElement('enzyme')
+    enzyme.setAttribute('name', enz)
+    enzyme.setAttribute('number', no)
+
+    sequence.appendChild(enzyme)
+
+    cut_site = doc.createElement('cut_seq')
+    text = doc.createTextNode(new_seq)
+    cut_site.appendChild(text)
+    enzyme.appendChild(cut_site)
+
+    #doc.writexml(sys.stdout, addindent='    ', newl='\n')
+
+file_handle = open('enz_dummy_out.xml', 'w')
+doc.writexml(file_handle, addindent='   ',newl='\n')
+file_handle.close()
+
