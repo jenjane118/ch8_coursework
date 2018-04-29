@@ -81,28 +81,37 @@ doc = minidom.Document()
 gene = doc.createElement('gene')
 doc.appendChild(gene)
 
+acc = ''
+genid = ''
+product = ''
+location = ''
 
 for k,v in object_dict.items():
+
     gene_identifiers = doc.createElement('gene_identifiers')
     gene.appendChild(gene_identifiers)
 
-    acc = doc.createElement('acc')
-    acc.setAttribute('acc', k)
-    gene_identifiers.appendChild(acc)
+    accession = doc.createElement('accession')
+    text = doc.createTextNode(k)
+    accession.appendChild(text)
+    gene_identifiers.appendChild(accession)
 
-    genid = doc.createElement('genid')
-    genid.setAttribute('genid', v[0])
-    gene_identifiers.appendChild(genid)
+    gene_id = doc.createElement('gene_id')
+    text = doc.createTextNode(v[0])
+    gene_id.appendChild(text)
+    gene_identifiers.appendChild(gene_id)
 
     product = doc.createElement('product')
-    product.setAttribute('product', v[1])
+    text = doc.createTextNode(v[1])
+    product.appendChild(text)
     gene_identifiers.appendChild(product)
 
     location = doc.createElement('location')
-    location.setAttribute('location', v[2])
+    text = doc.createTextNode(v[2])
+    location.appendChild(text)
     gene_identifiers.appendChild(location)
 
-#doc.writexml(sys.stdout, addindent='    ', newl='\n')
+doc.writexml(sys.stdout, addindent='    ', newl='\n')
 
 file_handle = open('genelist_out.xml', 'w')
 doc.writexml(file_handle, addindent='   ',newl='\n')
