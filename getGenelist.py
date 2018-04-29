@@ -73,10 +73,6 @@ for x in identity:
 ## Create a dictionary of gene objects
 for object in gene_module.Gene._registry:
     object_dict[object.acc] = (object.genid, object.product, object.location)
-for k,v in object_dict.items():
-    print(k,v)
-
-
 
 ## write output in xml to file
 
@@ -106,7 +102,7 @@ for k,v in object_dict.items():
     location.setAttribute('location', v[2])
     gene_identifiers.appendChild(location)
 
-doc.writexml(sys.stdout, addindent='    ', newl='\n')
+#doc.writexml(sys.stdout, addindent='    ', newl='\n')
 
 file_handle = open('genelist_out.xml', 'w')
 doc.writexml(file_handle, addindent='   ',newl='\n')
