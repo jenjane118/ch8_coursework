@@ -111,7 +111,7 @@ for k,v in object_dict.items():
     location.appendChild(text)
     gene_identifiers.appendChild(location)
 
-doc.writexml(sys.stdout, addindent='    ', newl='\n')
+#doc.writexml(sys.stdout, addindent='    ', newl='\n')
 
 file_handle = open('genelist_out.xml', 'w')
 doc.writexml(file_handle, addindent='   ',newl='\n')
