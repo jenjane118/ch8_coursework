@@ -95,7 +95,7 @@ print(whole_genome_percent)
 f = open('whole_genome_usage.txt', 'w')
 #print('<?xml version="1.0" encoding="UTF-8"?>', file=f)
 #print(freq_xml % whole_genome_map, file=f)
-print('\n', total_freq, file=f)
+
 print('\n', whole_genome_ratio, file=f)
 print('\n', whole_genome_percent, file=f)
 f.close()

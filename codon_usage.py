@@ -162,7 +162,7 @@ def usageRatio (acc, freq_table):
 def getCodonusage(acc):
     """Return codon frequency, codon usage ratio and percentage for a particular gene.
     Input                   acc                                     Gene accession number
-    Output                  (codon_freq, ratio, percent)            List containing: frequency table,
+    Output                  (ratio, percent)                        Two dictionaries:
                                                                     codon usage ratio, and codon usage per 100bp
 
     26.04.18                Original                                By: JJS
@@ -179,7 +179,7 @@ def getCodonusage(acc):
     ## find percent usage (per 100 bp)
     percent = codonPercent(gene, codon_freq)
 
-    return(codon_freq, ratio, percent)
+    return(ratio, percent)
 
 #**********************************************************************************
 
@@ -208,7 +208,7 @@ if __name__ == "__main__":
 
     print(results[0])
     print(results[1])
-    print(results[2])
+
 
 
 
