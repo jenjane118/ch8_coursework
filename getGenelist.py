@@ -81,11 +81,6 @@ doc = minidom.Document()
 gene = doc.createElement('gene')
 doc.appendChild(gene)
 
-acc = ''
-genid = ''
-product = ''
-location = ''
-
 for k,v in object_dict.items():
 
     gene_identifiers = doc.createElement('gene_identifiers')

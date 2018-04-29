@@ -42,124 +42,67 @@ import seq_module
 
 import codon_usage
 
+from xml.dom import minidom
 
 #****************************************************************************
 
-# test sequence
-#seq1 = 'CTAAGAATGGCGGCGCTGTGTCGGACCCGTGCTGTGGCTGCCGAGAGCCATTTTCTGCGAGTGTTTCTCTTCTTCAGGCCCTTTCGGGGTGTAGGCACTGAGAGTGGATCCGAAAGTGGTAGTTCCAATGCCAAGGAGCCGCGCGCAGGCGGTTTCGCGAGCGCGTTGGAGCGGCACTCGGAGCTTCTACAGAAGGTGGAGCCCCTACAGAAGGGTTCTCCAAAAAATGTGGAATCCTTTGCATCTATGCTGAGACATTCTCCTCTTACACAGATGGGACCTGCAAAGGATAAACTGGTCATTGGACGGATCTTTCATATTGTGGAGAATGATCTGTACATAGATTTTGGTGGAAAGTTTCATTGTGTATGTAGAAGACCAGAAGTGGATGGAGAGAAATACCAGAAAGGAACCAGGGTCCGGTTGCGGCTATTAGATCTTGAACTTACGTCTAGGTTCCTGGGAGCAACAACAGATACAACTGTACTAGAGGCTAATGCAGTTCTCTTGGGAATCCAGGAGAGTAAAGACTCAAGATCGAAAGAAGAACATCATGAAAAATTT'
-#gene = 'AB12345'
-#codon_freq = codonFreq(gene, seq1)
-#print(codon_freq)
+gene = 'AB12345'
 
-gene_list = []
-with open('seq_file.txt', 'r') as f:
-    file = f.read().splitlines()
-    for x in file:
-        gene_list.append(x)
+for object in gene_module.Gene._registry:
 
-
-# for each gene in genelist:
-    # extract acc
-    # run seq_module.codingSeq(acc) to get coding sequence
-
-## extract accession number and sequence from list of genes
-for x in gene_list:
-    gene = str(x[:7])
-    new_seq  = str(x[9:])
-    print(new_seq)
-
-## get exon list for each gene in list
-    ## call on file with exon boundaries list for each gene
-
-##  dummy list:
-    gene_exons = [('AC34567', 25, 75), ('AC34567', 85, 95)]
 
 
 ## use coding seq function to determine coding sequence for each gene
-    for s in new_seq:
-        new_seq += s.replace(' ', '')
-        new_seq += s.upper()
-    coding_dna = seq_module.codingSeq(gene, new_seq, gene_exons)
-    print(coding_dna)
-##  call function to determine codon frequency for each gene
+coding_dna = seq_module.codingSeq(gene)
 
-    codon_table = {}
-    codon_table = codon_usage.codonFreq(gene, coding_dna)
-#print(codon_table)
+##  call function to determine codon frequency for each gene
+codon_table = {}
+codon_table = codon_usage.codonFreq(gene, coding_dna)
+print(codon_table)
 
 ##  add each to total codon frequency dictionary
-    total_freq = {}
-    for key in codon_table:
-        if key in total_freq:
-            total_freq[key] += codon_table[key]
-        else:
-            total_freq[key] = codon_table[key]
-print(total_freq)
+total_freq = {}
+for key in codon_table:
+    if key in total_freq:
+        total_freq[key] += codon_table[key]
+    else:
+        total_freq[key] = codon_table[key]
 
-# calculate codon usage ratio/percent for whole genome
+
+# calculate codon usage ratio/percent for whole genome (returns dictionary)
 gene = 'total'
-
+ratio = ''
+ratio_list = []
+percent = ''
 whole_genome_ratio = codon_usage.usageRatio(gene, total_freq)
+print(whole_genome_ratio)
+
+
 for k,v in whole_genome_ratio.items():
-    print(k, ':', v)
+    ratio = k, ':', v
+    ratio_list.append(ratio)
 
 whole_genome_percent = codon_usage.codonPercent(gene, total_freq)
-for k,v in whole_genome_percent.items():
-    print(k, ':', v)
+print(whole_genome_percent)
+
 
 #write to file
 
-freq_xml = """
-<genome>
-    <codon_usage>
-        <codon_freq>%(total_freq)s</codon_freq>
-        <codon_ratio>%(whole_genome_ratio)s</codon_ratio>
-        <codon_percent>%(whole_genome_percent)s</codon_percent>
-    </codon_usage>
-</genome>
-"""
-whole_genome_map = {'total_freq':total_freq, 'whole_genome_ratio':whole_genome_ratio, 'whole_genome_percent':whole_genome_percent}
+# freq_xml = """
+# <genome>
+#     <codon_usage>
+#         <codon_freq>%(total_freq)s</codon_freq>
+#         <codon_ratio>%(whole_genome_ratio)s</codon_ratio>
+#         <codon_percent>%(whole_genome_percent)s</codon_percent>
+#     </codon_usage>
+# </genome>
+# """
+# whole_genome_map = {'total_freq':total_freq, 'whole_genome_ratio':whole_genome_ratio, 'whole_genome_percent':whole_genome_percent}
 
-f = open('whole_genome_usage.xml', 'w')
-print('<?xml version="1.0" encoding="UTF-8"?>', file=f)
-print(freq_xml % whole_genome_map, file=f)
+#f = open('whole_genome_usage.xml', 'w')
+#print('<?xml version="1.0" encoding="UTF-8"?>', file=f)
+#print(freq_xml % whole_genome_map, file=f)
 #print('\n', total_freq, file=f)
 #print('\n', whole_genome_ratio, file=f)
 #print('\n', whole_genome_percent, file=f)
-f.close()
-
-doc = minidom.Document()
-
-seq_data = doc.createElement('seq_data')
-doc.appendChild(seq_data)
-
-for k,v in exon_cut.items():
-    enz = k
-    no = str(v[0])
-    new_seq = v[1]
-
-    gene = doc.createElement('gene')
-    gene.setAttribute('acc', acc)
-
-    seq_data.appendChild(gene)
-
-    sequence = doc.createElement('sequence')
-    gene.appendChild(sequence)
-
-    enzyme = doc.createElement('enzyme')
-    enzyme.setAttribute('name', enz)
-    enzyme.setAttribute('number', no)
-
-    sequence.appendChild(enzyme)
-
-    cut_site = doc.createElement('cut_seq')
-    text = doc.createTextNode(new_seq)
-    cut_site.appendChild(text)
-    enzyme.appendChild(cut_site)
-
-    #doc.writexml(sys.stdout, addindent='    ', newl='\n')
-
-file_handle = open('enz_dummy_out.xml', 'w')
-doc.writexml(file_handle, addindent='   ',newl='\n')
-file_handle.close()
-
+#f.close()
