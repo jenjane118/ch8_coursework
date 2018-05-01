@@ -217,24 +217,5 @@ if __name__ == "__main__":
 
 
 
-    # # write to file
-    #
-    # freq_xml = """
-    # <gene>
-    #     <sequence acc=%(acc)s>
-    #         <codon_usage>
-    #             <codon_freq>%(codon_freq)s</codon_freq>
-    #             <codon_ratio>%(codon_ratio)s</codon_ratio>
-    #             <codon_percent>%(codon_percent)s</codon_percent>
-    #         </codon_usage>
-    #     </sequence>
-    # </gene>
-    # """
-    # usage_map = {'acc': gene, 'codon_freq': codon_freq, 'codon_ratio': ratio, 'codon_percent': percent}
-    #
-    # xml_file = open('codon_usage_out.xml', 'w')
-    # print('<?xml version="1.0" encoding="UTF-8"?>', file=xml_file)
-    # print(freq_xml % usage_map, file=xml_file)
-    # xml_file.close()
-    #
+   
 
