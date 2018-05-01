@@ -148,6 +148,7 @@ def annotateSeq(acc):           ## need to enter sequence, exon_list until get u
 
     exon_list = [('AB371373.1', 2125, 2215), ('AB371373.1', 3642, 3728), ('AB371373.1', 6222, 6300),
                  ('AB371373.1', 9012, 9086), ('AB371373.1', 10313, 10358), ('AB371373.1', 11120, 11264)]
+    #exon_list = [('U16860.1', 1, 219)]
 
     exon_seq = ''
 
@@ -217,7 +218,8 @@ def codingSeq(acc):
         seq += x
 
     exon_list = [('AB371373.1', 2125, 2215), ('AB371373.1', 3642, 3728), ('AB371373.1', 6222, 6300), ('AB371373.1', 9012, 9086), ('AB371373.1', 10313, 10358), ('AB371373.1', 11120, 11264)]
-
+    #exon_list = [('U16860.1', 1, 219)]
+    codon_start = 2
 
     seq = seq.replace(' ', '')
     seq = seq.upper()
@@ -225,9 +227,14 @@ def codingSeq(acc):
     if exon_list != None:
         coding_seq = ''
         first_exon = True
+        # have to subtract two from codon_start to align
+        codon_start = codon_start - 2
+        if codon_start < 0:
+            codon_start = 0
         for x in exon_list:
             if first_exon == True:
-                start       = x[1]
+                start = x[1]
+                start     = start + codon_start
                 end         = x[2]
                 first_exon = False
             ## correction needed to make exon boundaries work after first exon
@@ -431,7 +438,7 @@ if __name__ == "__main__":
     #     file = s.upper()
 ## dummy data
 
-    gene = 'AB371373.1'
+    gene = 'U16860.1'
 
 ## get genomic sequence
     line_seq = getSequence(gene)
@@ -455,7 +462,7 @@ if __name__ == "__main__":
     text_file.close()
 ## get coding sequence
     code_seq = codingSeq(gene)
-    #print(code_seq)
+    print(code_seq)
 
 ## get genomic sequence with restriction enzyme sites indicated
     custom = 'ACTTTT'

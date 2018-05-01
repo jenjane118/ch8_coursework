@@ -166,12 +166,35 @@ def usageRatio (acc, freq_table):
 def getCodonusage(acc):
     """Return codon frequency, codon usage ratio and percentage for a particular gene.
     Input                   acc                                     Gene accession number
-    Output                  (ratio, percent)                        Two dictionaries:
-                                                                    codon usage ratio, and codon usage per 100bp
+    Output                  (usage_dict, aa_dict)                   amino acid:codon dict
+                                                                    codon usage(ratio, percent)
 
     26.04.18                Original                                By: JJS
 
     """
+    SynCodons = {
+        'C': ['TGT', 'TGC'],
+        'D': ['GAT', 'GAC'],
+        'S': ['TCT', 'TCG', 'TCA', 'TCC', 'AGC', 'AGT'],
+        'Q': ['CAA', 'CAG'],
+        'M': ['ATG'],
+        'N': ['AAC', 'AAT'],
+        'P': ['CCT', 'CCG', 'CCA', 'CCC'],
+        'K': ['AAG', 'AAA'],
+        'T': ['ACC', 'ACA', 'ACG', 'ACT'],
+        'F': ['TTT', 'TTC'],
+        'A': ['GCA', 'GCC', 'GCG', 'GCT'],
+        'G': ['GGT', 'GGG', 'GGA', 'GGC'],
+        'I': ['ATC', 'ATA', 'ATT'],
+        'L': ['TTA', 'TTG', 'CTC', 'CTT', 'CTG', 'CTA'],
+        'H': ['CAT', 'CAC'],
+        'R': ['CGA', 'CGC', 'CGG', 'CGT', 'AGG', 'AGA'],
+        'W': ['TGG'],
+        'V': ['GTA', 'GTC', 'GTG', 'GTT'],
+        'E': ['GAG', 'GAA'],
+        'Y': ['TAT', 'TAC'],
+        '_': ['TAG', 'TGA', 'TAA']}
+
     code_seq = seq_module.codingSeq(gene)
 
     ## calculate raw frequencies of codon usage
@@ -183,7 +206,25 @@ def getCodonusage(acc):
     ## find percent usage (per 100 bp)
     percent = codonPercent(gene, codon_freq)
 
-    return(ratio, percent)
+    ratio_list = []
+    ratio_dict = {}
+    usage_dict = {}
+    ## divide dictionary into list of codons and ratio
+    for k, v in ratio.items():
+        ratio_list.append(v)
+
+    ## new dictionary with individual codons/ratio
+    for item in ratio_list:
+        for k, v in item.items():
+            ratio_dict[k] = v
+
+    ## dictionary listing codon: ratio, percent
+    for codon, ratio in ratio_dict.items():
+        for codon, freq in percent.items():
+            usage_dict[codon] = ratio_dict[codon], freq
+
+
+    return(SynCodons, usage_dict)
 
 #**********************************************************************************
 
@@ -192,15 +233,19 @@ def help():
     print("""
     codon_usage.py   V1.2        2018,   J.J. Stiens
 
-    Usage: codon_usage   
+    Usage: 
+    ============
+    codon_usage     GENE
 
     Description:
     ============
-    Calculate codon usage frequency, percentage, and ratio of codon usage preference for a particular sequence
+    Calculate codon usage percentage, and ratio of codon usage preference for a particular sequence
+    First dictionary is amino acid: list of synonymous codons
+    Second dictionary is codons: ratio, percent
     """)
     exit(0)
 
-
+#**********************************************************************************
 ### main #####
 
 if __name__ == "__main__":
@@ -211,10 +256,11 @@ if __name__ == "__main__":
     results = getCodonusage(gene)
 
     print(results[0])
+
     print(results[1])
 
 
-
+    help()
 
    
 
