@@ -73,17 +73,17 @@ def getEnzyme(acc, enzyme=None):
      """
 
     ## use seq_module to obtain sequence information
-    genomic     = seq_module.annotateSeq(acc)
+
     code_seq    = seq_module.codingSeq(acc)
 
 
     ## call function to show cleavage positions
     if enzyme != None:
         coding_cut      = seq_module.enz_cut(acc, code_seq, enz)
-        seq_cut         = seq_module.enz_cut(acc, genomic, enz)
+        seq_cut         = seq_module.enz_cut(acc, None, enz)
     else:
         coding_cut      = seq_module.enz_cut(acc, code_seq)
-        seq_cut         = seq_module.enz_cut(acc, genomic)
+        seq_cut         = seq_module.enz_cut(acc)
 
     ## determine whether enzyme cuts in coding region
     enzymes    = []
@@ -95,6 +95,7 @@ def getEnzyme(acc, enzyme=None):
         else:
             enzyme = (k,'Good', v)
             enzymes.append(enzyme)
+        enzymes.sort()
 
     return enzymes
 
@@ -103,11 +104,13 @@ def getEnzyme(acc, enzyme=None):
 ##  main ##
 if __name__ == "__main__":
 # dummy data for testing
-    acc  = 'AB12345'
+    acc  = 'AB371373.1'
 
-    enz = 'GAGAGC'
+    enz = 'GAGGTGC'
 
     cut_sites = getEnzyme(acc, enz)
-    print(cut_sites)
 
-    help()
+    for x in cut_sites:
+        print(x)
+
+
