@@ -98,8 +98,13 @@ def codonPercent (acc, freq_table):
     for codon in freq_table:
         total_codons += freq_table[codon]
     for codon in freq_table:
-        percent = (freq_table[codon] / total_codons)*100
-        percentDict[codon] = round(percent, 1)
+        try:
+            percent = (freq_table[codon] / total_codons)*100
+            percentDict[codon] = round(percent, 1)
+        ## if there is no sequence returned:
+        except ZeroDivisionError:
+            print('Sequence not found')
+            break
     return percentDict
 
 #**********************************************************************************
@@ -149,10 +154,10 @@ def usageRatio (acc, freq_table):
             for x in codon_list:
                 sum += freq_table[x]
             for x in codon_list:
-                try:
+                if sum == 0:
+                    ratio = 0.0
+                else:
                     ratio = (freq_table[x]) / sum
-                except ZeroDivisionError:
-                    ratio = 0
                 codonDict[x] = round(ratio, 2)
         aaDict[aa] = codonDict
     return aaDict

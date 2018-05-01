@@ -58,7 +58,7 @@ coding_dna = seq_module.codingSeq(gene)
 ##  call function to determine codon frequency for each gene
 codon_table = {}
 codon_table = codon_usage.codonFreq(gene, coding_dna)
-print(codon_table)
+#print(codon_table)
 
 ##  add each to total codon frequency dictionary
 for key in codon_table:
@@ -71,12 +71,29 @@ for key in codon_table:
 gene = 'total'
 
 whole_genome_ratio = codon_usage.usageRatio(gene, total_freq)
-print(whole_genome_ratio)
+#print(whole_genome_ratio)
 
 ## calculate codon usage percent (usage per 100bp) for whole genome (returns dictionary, 'whole_genome_percent')
 
 whole_genome_percent = codon_usage.codonPercent(gene, total_freq)
-print(whole_genome_percent)
+#print(whole_genome_percent)
+
+## if you want results as one dictionary with both ratio and percent for each codon:
+ratio_list = []
+ratio_dict = {}
+usage_dict = {}
+for k, v in whole_genome_ratio.items():
+    ratio_list.append(v)
+
+for item in ratio_list:
+    for k,v in item.items():
+        ratio_dict[k] = v
+
+for codon, ratio in ratio_dict.items():
+    for codon, percent in whole_genome_percent.items():
+        usage_dict[codon] = ratio_dict[codon], percent
+print(usage_dict)                 #dictionary listing codon: ratio, percent
+
 
 
 #write to file
@@ -96,6 +113,7 @@ f = open('whole_genome_usage.txt', 'w')
 #print('<?xml version="1.0" encoding="UTF-8"?>', file=f)
 #print(freq_xml % whole_genome_map, file=f)
 
-print('\n', whole_genome_ratio, file=f)
-print('\n', whole_genome_percent, file=f)
+#print('\n', whole_genome_ratio, file=f)
+#print('\n', whole_genome_percent, file=f)
+print(usage_dict, file=f)
 f.close()
