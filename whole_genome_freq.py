@@ -71,49 +71,36 @@ for key in codon_table:
 gene = 'total'
 
 whole_genome_ratio = codon_usage.usageRatio(gene, total_freq)
-#print(whole_genome_ratio)
+print(whole_genome_ratio)
 
 ## calculate codon usage percent (usage per 100bp) for whole genome (returns dictionary, 'whole_genome_percent')
 
 whole_genome_percent = codon_usage.codonPercent(gene, total_freq)
-#print(whole_genome_percent)
+print(whole_genome_percent)
 
 ## if you want results as one dictionary with both ratio and percent for each codon:
-ratio_list = []
-ratio_dict = {}
-usage_dict = {}
-for k, v in whole_genome_ratio.items():
-    ratio_list.append(v)
-
-for item in ratio_list:
-    for k,v in item.items():
-        ratio_dict[k] = v
-
-for codon, ratio in ratio_dict.items():
-    for codon, percent in whole_genome_percent.items():
-        usage_dict[codon] = ratio_dict[codon], percent
-print(usage_dict)                 #dictionary listing codon: ratio, percent
-
+# ratio_list = []
+# ratio_dict = {}
+# usage_dict = {}
+# for k, v in whole_genome_ratio.items():
+#     ratio_list.append(v)
+#
+# for item in ratio_list:
+#     for k,v in item.items():
+#         ratio_dict[k] = v
+#
+# for codon, ratio in ratio_dict.items():
+#     for codon, percent in whole_genome_percent.items():
+#         usage_dict[codon] = ratio_dict[codon], percent
+# print(usage_dict)                 #dictionary listing codon: ratio, percent
+#
 
 
 #write to file
 
-# freq_xml = """
-# <genome>
-#     <codon_usage>
-#         <codon_freq>%(total_freq)s</codon_freq>
-#         <codon_ratio>%(whole_genome_ratio)s</codon_ratio>
-#         <codon_percent>%(whole_genome_percent)s</codon_percent>
-#     </codon_usage>
-# </genome>
-# """
-# whole_genome_map = {'total_freq':total_freq, 'whole_genome_ratio':whole_genome_ratio, 'whole_genome_percent':whole_genome_percent}
 
 f = open('whole_genome_usage.txt', 'w')
-#print('<?xml version="1.0" encoding="UTF-8"?>', file=f)
-#print(freq_xml % whole_genome_map, file=f)
-
-#print('\n', whole_genome_ratio, file=f)
-#print('\n', whole_genome_percent, file=f)
-print(usage_dict, file=f)
+print('\n', whole_genome_ratio, file=f)
+print('\n', whole_genome_percent, file=f)
+#print(usage_dict, file=f)
 f.close()
