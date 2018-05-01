@@ -31,8 +31,7 @@ Revision History:
 
 V1.0           22.03.18         Original                                By: JJS
 V1.1           18.04.18         Renamed (from 'Codon_Usage_module')         JJS
-V1.2           22.04.18         Added dicttoxml library                     JJS
-                                Fixed bugs with uppercase and zero division JJS
+V1.2           22.04.18         Fixed bugs with uppercase and zero division JJS
                                 
 """
 #**********************************************************************************
