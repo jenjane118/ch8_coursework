@@ -430,7 +430,7 @@ if __name__ == "__main__":
     #     file = s.replace(' ', '')
     #     file = s.upper()
 ## dummy data
-    #exon_list = [('AB12345.1', 36, 50), ('AB12345.1', 55, 70)]
+
     gene = 'AB371373.1'
 
 ## get genomic sequence

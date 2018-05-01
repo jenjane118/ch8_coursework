@@ -207,7 +207,7 @@ def help():
 if __name__ == "__main__":
     print("Ran module directly (and did not 'import' it).")
 
-    gene = 'AB12345'
+    gene = 'AB371373.1'
 
     results = getCodonusage(gene)
 
