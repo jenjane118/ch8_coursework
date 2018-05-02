@@ -1,0 +1,1 @@
+(('AB061209', 'MRPS28', 'mitochondrial ribosomal protein s28', '8q21.1-q21.2'),('AB098765', 'genid1', 'product1', 'location1'),('AC012345', 'genid2', 'product2', 'location2'),('AC034567', 'genid3', 'product3', 'location3'),('AR456789', 'genid4', 'product4', 'location4'))

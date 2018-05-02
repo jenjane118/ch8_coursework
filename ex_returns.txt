@@ -1,0 +1,29 @@
+EXAMPLES OF PyMySQL Data returns
+
+
+
+
+# GENBANK
+
+(('AB000381.1', 'Homo sapiens DNA for GPI-anchor', 'Unknown', 'GPI-anchor, GML', 'Homo sapiens (Human)'), ('AB002137.1', 'Homo sapiens GPAA1 gene', 'GPAA1', 'None', 'Homo sapiens (Human)'), ('AB007156.1', 'Homo sapiens gene for ribosomal protein s20', 'Unknown', 'ribosomal protein s20', 'Homo sapiens (Human)'))
+
+
+
+
+# SEQUENCE 
+
+(('AB000381.1', 'gcggccggaattaaccctcactaaagggatccctcgatcatacactatgtggcctctgtgtctggcttctgtccctgagcaccaagttctcaaggctcactgccttgttgcctatgtcagtgcttgattctcggaatgtactccatgtggatagagcacatttgtctatcggttcatcagttgaaggacatttgggttgggaagaccatgtggggccagaaaagaagaaaatcctaaaaaaaagacccaaaatgatgcggactgtgaaggaatagatcagacagctgaaaacccttccaatggccagagctggaacaatttgagcagcaaaataaataacagtattggattatactcctgtgcataaaataaatgtttacaagtccataatgatatcataaatgatt'), ('AB002137.1', 'tcgcgagcgtctctgggaccggaagtgcgggcgagcgcgggtccccgggtctgacaggagagcctgtgggcaccgcggcggtagttggaggcgggagagggtccgtagccgcgccgccctgccccgccatgggcctcctgtcggacccggttcgccggcgcgcgctcgcccgcctagtgctgcgcctcaacgcgccgttgtggtgaggacagggcccggggaggcggggacccgagggccctgggctcgcgccggcggccccatgcgcgtccccatcgagggccggggccgctccagc'), ('AB007156.1', 'tcgcgagcgtctctgggaccggaagtgcgggcgagcgcgggtccccgggtctgacaggagagcctgtgggcaccgcggcggtagttggaggcgggagagggtccgtagccgcgccgccctgccccgccatgggcctcctgtcggacccggttcgccggcgcgcgctcgcccgcctagtgctgcgcctcaacgcgccgttgtggtgaggacagggcccggggaggcggggacccgagggccctgggctcgcgccggcggccccatgcgcgtccccatcgagggccggggccgctccagc'))
+
+
+
+
+# EXON
+
+(('AB000381.1', 5, 48), ('AB000381.1', 135, 222), ('AB000381.1', 487, 501), ('AB002137.1', 1, 18), ('AB002137.1', 123, 189), ('AB007156.1', 12, 58), ('AB007156.1', 178, 220))
+
+
+
+
+# CODING SEQUENCE 
+
+(('AB000381.1', '5..48,135..222,487..501', 'MLLFALLLAMELPLVAASATMRAQWTYSLRCHDCAVINDFNCPNIRVCPYHIRRCMTISIRINSRELLVYKNCTNNCTFVYAAEQPPEAPGKIFKTNSFYWV'), ('AB002137.1', '1..18,123..189', 'MGLLSDPVRRRALARLVLRLNAPLCVLSYVAGIAWFLALVFPPL'), ('AB007156.1', '12..58,178..220', 'IRGQRKGAGSVFRAHVKHRKGAARLRAVDFAERHGYIKGIVKDI'))
