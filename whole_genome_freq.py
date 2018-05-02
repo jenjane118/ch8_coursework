@@ -65,16 +65,31 @@ def help():
 
 #****************************************************************************
 
-total_freq = {}
-## once we have data from database:
-#for object in gene_module.Gene._registry:
-## use coding seq function to determine coding sequence for each gene
-## dummy data
-gene = 'AB371373.1'
+def whole_genome_freq():
 
-coding_dna = seq_module.codingSeq(gene)
+    ## once we have data from database:
+    #for object in gene_module.Gene._registry:
+    #    gene = object.acc
+    ## use coding seq function to determine coding sequence for each gene
+    gene = 'AB371373.1'     # dummy gene
+    coding_dna = seq_module.codingSeq(gene)
+    
+        ##  call function to determine codon frequency for each gene
+    codon_table = codon_usage.codonFreq(gene, coding_dna)
+        ##  add each to total codon frequency dictionary
+    total_freq = {}
+    for key in codon_table:
+        if key in total_freq:
+            total_freq[key] += codon_table[key]
+        else:
+            total_freq[key] = codon_table[key]
 
-SynCodons = {
+    ## calculate codon usage ratio for whole genome (returns dictionary, 'whole_genome_ratio')
+    gene = 'total'
+
+    whole_genome_ratio = codon_usage.usageRatio(gene, total_freq)
+
+    SynCodons = {
         'C': ['TGT', 'TGC'],
         'D': ['GAT', 'GAC'],
         'S': ['TCT', 'TCG', 'TCA', 'TCC', 'AGC', 'AGT'],
@@ -97,46 +112,39 @@ SynCodons = {
         'Y': ['TAT', 'TAC'],
         '_': ['TAG', 'TGA', 'TAA']}
 
-##  call function to determine codon frequency for each gene
-codon_table = codon_usage.codonFreq(gene, coding_dna)
+    ## calculate codon usage percent (usage per 100bp) for whole genome (returns dictionary, 'whole_genome_percent')
+    whole_genome_percent = codon_usage.codonPercent(gene, total_freq)
 
-##  add each to total codon frequency dictionary
-for key in codon_table:
-    if key in total_freq:
-        total_freq[key] += codon_table[key]
-    else:
-        total_freq[key] = codon_table[key]
+    ## make a list of codons and ratios (separate from aa key)
+    ratio_list = []
+    ratio_dict = {}
+    usage_dict = {}
+    for k, v in whole_genome_ratio.items():
+        ratio_list.append(v)
+    ## make new dictionary with codon:ratio
+    for item in ratio_list:
+        for k,v in item.items():
+            ratio_dict[k] = v
+    ## create dictionary listing codon: ratio, percent
+    for codon, ratio in ratio_dict.items():
+        for codon, percent in whole_genome_percent.items():
+            usage_dict[codon] = ratio_dict[codon], percent
 
-# calculate codon usage ratio for whole genome (returns dictionary, 'whole_genome_ratio')
-gene = 'total'
+    return SynCodons, usage_dict
 
-whole_genome_ratio = codon_usage.usageRatio(gene, total_freq)
-
-## calculate codon usage percent (usage per 100bp) for whole genome (returns dictionary, 'whole_genome_percent')
-whole_genome_percent = codon_usage.codonPercent(gene, total_freq)
-
-## results as one dictionary with both ratio and percent for each codon:
-ratio_list = []
-ratio_dict = {}
-usage_dict = {}
-for k, v in whole_genome_ratio.items():
-    ratio_list.append(v)
-
-for item in ratio_list:
-    for k,v in item.items():
-        ratio_dict[k] = v
-
-for codon, ratio in ratio_dict.items():
-    for codon, percent in whole_genome_percent.items():
-        usage_dict[codon] = ratio_dict[codon], percent
-print(SynCodons)
-print(usage_dict)                 #dictionary listing codon: ratio, percent
-
-help()
+#****************************************************************************
+## main ##
 
 
-#write to file
-f = open('whole_genome_usage.txt', 'w')
-print(SynCodons, file=f)
-print(usage_dict, file=f)
-f.close()
+if __name__ =="__main__":
+
+    codons_dictionary = whole_genome_freq()
+
+    print(codons_dictionary[0])
+    print(codons_dictionary[1])
+
+    #write to file
+    f = open('whole_genome_usage.txt', 'w')
+    print(codons_dictionary[0], file=f)
+    print(codons_dictionary[1], file=f)
+    f.close()
