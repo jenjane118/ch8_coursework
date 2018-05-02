@@ -317,7 +317,7 @@ def enz_cut(acc, seq=None, enzyme=None):
     enz_dict = {
         'EcoRI': 'GAATTC', 'BamHI': 'GGATCC',
         'BsuMI': 'CTCGAG', 'HindIII': 'AAGCTT',
-        'EcoRV': 'GATATC'}
+        'EcoRV': 'GATATC', 'Sma1': 'CCCGGG'}
 
     ## no sequence parameter: check default, genomic sequence of gene for restriction enzyme sites
     ## sequence parameter will be utilised when checking coding sequence in 'getEnzymes' program
@@ -336,7 +336,7 @@ def enz_cut(acc, seq=None, enzyme=None):
         ## dummy sequence
         #seq = 'atggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacgagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaa'
 
-        with open('sequence_test_out.txt', 'r') as f:
+        with open('AB007516.1_out.txt', 'r') as f:
             file = f.read().splitlines()
         f.close()
         seq = ''
@@ -402,11 +402,17 @@ def getEnzyme(acc, enzyme=None):
 
     code_seq    = codingSeq(acc)
 
-
+    base_list = ['A', 'C', 'T', 'G']
     ## call function to show cleavage positions
     if enzyme != None:
-        coding_cut      = enz_cut(acc, code_seq, enzyme)
-        seq_cut         = enz_cut(acc, None, enzyme)
+        enzyme = enzyme.upper()
+        for x in enzyme:
+            if x in base_list:
+                coding_cut      = enz_cut(acc, code_seq, enzyme)
+                seq_cut         = enz_cut(acc, None, enzyme)
+            else:
+                print('Cleavage site must include A, C, T or G only.')
+                break
     else:
         coding_cut      = enz_cut(acc, code_seq)
         seq_cut         = enz_cut(acc)
@@ -466,7 +472,7 @@ if __name__ == "__main__":
     print(code_seq)
 
 ## get genomic sequence with restriction enzyme sites indicated
-    custom = 'ACTTTT'
+    custom = 'acnmg'
     enzymes = getEnzyme(gene, custom)
     for x in enzymes:
         print(x)
