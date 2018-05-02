@@ -34,7 +34,7 @@ Revision History:
 
 V1.0           18.04.18         Original            By: JJS
 V1.1           1.05.18          changed output          JJS
-
+V1.2           2.05.18          reworked as function    JJS
 """
 #*****************************************************************************
 # Import libraries
@@ -66,6 +66,13 @@ def help():
 #****************************************************************************
 
 def whole_genome_freq():
+    """Return genome usage information for entire database of genes.
+    Input               self
+    Output              (SynCodons, usage_dict)         Dictionary of synonymous codons for each amino acid
+                                                        Dictionary of codon: ratio, percent usage statistics
+
+    :return:
+    """
 
     ## once we have data from database:
     #for object in gene_module.Gene._registry:
@@ -73,7 +80,7 @@ def whole_genome_freq():
     ## use coding seq function to determine coding sequence for each gene
     gene = 'AB371373.1'     # dummy gene
     coding_dna = seq_module.codingSeq(gene)
-    
+
         ##  call function to determine codon frequency for each gene
     codon_table = codon_usage.codonFreq(gene, coding_dna)
         ##  add each to total codon frequency dictionary
