@@ -215,7 +215,7 @@ def codingSeq(acc):
     #exon_list = [('AB371373.1', 2125, 2215), ('AB371373.1', 3642, 3728), ('AB371373.1', 6222, 6300), ('AB371373.1', 9012, 9086), ('AB371373.1', 10313, 10358), ('AB371373.1', 11120, 11264)]
     #exon_list = [('U16860.1', 1, 219)]
     exon_list = [('AB007516.1', 1, 29), ('AB007516.1', 453, 607)]
-    codon_start = 3
+    codon_start = 3         # will be 1,2 or 3
 
     seq = seq.replace(' ', '')
     seq = seq.upper()
@@ -225,7 +225,7 @@ def codingSeq(acc):
         first_exon = True
         # have to subtract one from codon_start as index correction
         codon_start = codon_start - 1
-        if codon_start < 0:
+        if codon_start == None:
             codon_start = 0
         for x in exon_list:
             if first_exon == True:
