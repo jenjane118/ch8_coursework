@@ -75,9 +75,16 @@ def whole_genome_freq():
     """
 
     ## once we have data from database:
+    ## Create a dictionary of gene objects
+    #object_dict = {}
+
     #for object in gene_module.Gene._registry:
-    #    gene = object.acc
+    #    object_dict = gene_module.Gene.geneList(object)
+    #    for k in object_dict:
+    #        gene = object_dict[k]
     ## use coding seq function to determine coding sequence for each gene
+    #        see below--all should be nested
+
     gene = 'AB371373.1'     # dummy gene
     coding_dna = seq_module.codingSeq(gene)
 

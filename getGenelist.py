@@ -64,24 +64,27 @@ identity =[('AB061209', 'MRPS28', 'mitochondrial ribosomal protein s28', '8q21.1
             ('AC012345', 'genid2', 'product2', 'location2'),
             ('AC034567', 'genid3', 'product3', 'location3'),
             ('AR456789', 'genid4', 'product4', 'location4')]
-gene_list = []
-object_dict = {}
-## Uses initialisation functi0n to create a gene object for each listing from database
+
+object_dict = {}        #individual object dictionary of identifiers
+chrom_dict = {}         #chromosome dictionary of all gene objects
+
+## Uses initialisation function to create a gene object for each listing from database
 for x in identity:
     gene_object = gene_module.Gene(x[0], x[1], x[2], x[3])
 
 ## Create a dictionary of gene objects
 for object in gene_module.Gene._registry:
-    object_dict[object.acc] = (object.genid, object.product, object.location)
+    object_dict = gene_module.Gene.geneList(object)
+    for k,v in object_dict.items():
+        chrom_dict[k] = v
 
 ## write output in xml to file
-
 doc = minidom.Document()
 
 gene = doc.createElement('gene')
 doc.appendChild(gene)
 
-for k,v in object_dict.items():
+for k,v in chrom_dict.items():
 
     gene_identifiers = doc.createElement('gene_identifiers')
     gene.appendChild(gene_identifiers)
