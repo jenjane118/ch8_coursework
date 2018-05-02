@@ -9,7 +9,7 @@ File:           whole_genome_freq.py
 
 Version:        1.0
 Date:           18.04.18
-Function:       Returns codon frequency and codon usage ratio and percentage for entire chromosome.
+Function:       Returns codon usage ratio and percentage for entire chromosome.
 
 Author:         Jennifer J Stiens
 

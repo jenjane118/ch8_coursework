@@ -307,7 +307,7 @@ def enz_cut(acc, seq=None, enzyme=None):
         Return dictionary of enzyme name and cleavage positions.
 
     Input           acc                 accession number for gene
-                    sequence            gene sequence string (optional)
+                    sequence            gene sequence string (optional, set as 'None' if not using)
                     enzyme              custom cleavage site (optional)
 
     Output          cut_dict            dictionary {enzyme:no. of cleavage sites, positions}
