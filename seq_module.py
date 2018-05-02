@@ -68,26 +68,51 @@ def help():
     """)
 
     exit(0)
+
+#**********************************************************************************
+
+def getSeq(acc):
+    """Return genomic sequence, exon list and coding start.
+    Input           acc                 Accession ID
+    Output          gen_seq             Genomic dna sequence
+                    exon_list           List of exon boundaries
+                    code_start          Codon start point
+    """
+    ## use pymysql script with accession number to access database for 'sequence'
+    # gene = sequence[0]
+    ## check to see accession number requested matches return
+    ## extract sequence
+    # if gene == acc:
+    #    seq = sequence[1]
+    # else:
+    #   print('Error: Sequence not found')
+    #   break
+
+    ## use pymysql script with accession number to retrieve 'exon'
+    ## check to see accession number requested matches database return
+    ## make list of exons
+    # for x in exon_file:
+    #    if x[0] = acc:
+    #        x[1] = exon
+    #        exon_list.append(exon)
+    #        x[2] = code_start
+    #    else:
+    #        print('Error: Exon boundaries not found')
+    #        break
+
+    return gen_seq, exon_list, code_start
+
 #****************************************************************************
 
-def getSequence(acc):
+def numSequence(acc):
     """ Return genomic DNA sequence in numbered form.
     Input               acc                 Accession ID
 
     Output              num_seq             Dictionary of numbered bp for requested sequence
     """
-
-
-    ## use pymysql script with accession number to access database for 'sequence'
-    # import sequence
-
-    # gene = sequence[0]
-    ## check to see accession number requested matches return
-    #if gene == acc:
-    #    seq = sequence[1]
-    #else:
-    #   print('Error: Sequence not found')
-     ## exit program?
+    # use function, getSeq(acc) to get sequence info from pymysql script
+    # seq_info = getSeq(acc)
+    # seq = seq_info[0]
 
     ## dummy sequence until have data
     with open ('AB007516.1_out.txt', 'r') as f:
@@ -111,31 +136,16 @@ def getSequence(acc):
 
 #**********************************************************************************
 
-def annotateSeq(acc):           ## need to enter sequence, exon_list until get usable data from db
+def annotateSeq(acc):
     """Return sequence with exon boundaries marked out with symbols (or simple sequence string if no exons indicated).
     Input               acc                 Accession ID
 
     Output              exon_seq            Annotated sequence with inserted *exon/exon* boundaries (string)
     """
-
-    ## use pymysql script with accession number to access database for 'sequence'
-    # import sequence
-    # gene = sequence[0]
-    ## check to see accession number requested matches return
-    ## extract sequence
-    # if gene == acc:
-    #    seq = sequence[1]
-    # else:
-    #   print('Error: Sequence not found')
-    ## exit program?
-
-    ## use pymysql script with accession number to retrieve 'exon'
-    ## check to see accession number requested matches database return
-    ## make list of exons
-    # for x in exon_file:
-    #    if x[0] = acc:
-    #        x[1] = exon
-    #        exon_list.append(exon)
+    # use function, getSeq(acc) to get sequence info from pymysql script
+    # seq_info = getSeq(acc)
+    # seq = seq_info[1]
+    # exon_list = seq_info[2]
 
     ## dummy sequence until have data
     with open ('AB007516.1_out.txt', 'r') as f:
@@ -189,40 +199,29 @@ def codingSeq(acc):
     Output          coding_seq          Coding sequence
     """
 
-    ## use pymysql script with accession number to access database for 'sequence' (make a function?)
-    # import sequence
-    # gene = sequence[0]
-    ## check to see accession number requested matches return
-    ## extract sequence
-    # if gene == acc:
-    #    seq = sequence[1]
-    # else:
-    #   print('Error: Sequence not found')
-    ## exit program?
-
-    ## use pymysqul script with accession number to retrieve 'exon'
-    ## make this a function?
-    ## check to see accession number requested matches database return
-    ## make list of exons
-    #for x in exon_file:
-    #    if x[0] = acc:
-    #        x[1] = exon
-    #        exon_list.append(exon)
-
+    # use function, getSeq(acc) to get sequence info from pymysql script
+    #seq_info = getSeq(acc)
+    #seq = seq_info[0]
+    #exon_list = seq_info[1]
+    #codon start = seqinfo[2]
     ## dummy sequences until have data
     #seq = 'atggcggcgctgtgtcggacccgtgctgggggtaggcgcgcgcgcgcgcggtaggcactgagagtggtacatatttttagggatatcgctcgagagagagagacacacacacacaccacaccacaatatattatattatattagggagaggaatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacgagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaa'
-    with open ('AB007516.1_out.txt', 'r') as f:
-        file = f.read().splitlines()
-    f.close()
-    seq = ''
-    for x in file:
-        seq += x
-
+    if acc == 'test':
+        seq = 'tgaaaggaccagttcgaatgcctaccaaggtaaagtaaatcggaggggcaggaagtaggagttgcttccggatgttgcataaattcaggttctttaaggagttcggctgcccaaaattgttaacactgatgctgtctacaaacgcacatagaaatcggtggtagattgcggttcctagtaagtagctaatgtttagatatgattgttgaattattgttgctgtgttcttggtgtgcttnggtgcttaacaggcgcaagctctaagggtggtgtcctagcacagtgaaaacagacctggcattttcaacccatggtacctgaaaatctattagtgtaaattggaatcataccaaagggaaactaatgaaatgattagaagtaatgattttccagatgttctagggataagtataaaacgataaacacttggtttcctttgtcttttgttacagactttgagaatcactacaagaaaaactccttgtggtgaaggttctaagacgtgggatcgtttccagatgagaattcacaagcgactcattgacttgcacagtccttctgagattgttaagcagattacttccatcagtattgagccaggagttga'
+        exon_list = [('AB007516.1', 1, 29), ('AB007516.1', 453, 607)]
+        codon_start = 3
+    else:
+        with open('AB007516.1_out.txt', 'r') as f:
+            file = f.read().splitlines()
+        f.close()
+        seq = ''
+        for x in file:
+            seq += x
     ## dummy data
     #exon_list = [('AB371373.1', 2125, 2215), ('AB371373.1', 3642, 3728), ('AB371373.1', 6222, 6300), ('AB371373.1', 9012, 9086), ('AB371373.1', 10313, 10358), ('AB371373.1', 11120, 11264)]
     #exon_list = [('U16860.1', 1, 219)]
-    exon_list = [('AB007516.1', 1, 29), ('AB007516.1', 453, 607)]
-    codon_start = 3
+        exon_list = [('AB007516.1', 1, 29), ('AB007516.1', 453, 607)]
+        codon_start = 3
 
     seq = seq.replace(' ', '')
     seq = seq.upper()
@@ -303,6 +302,17 @@ def translate(acc):
 
 #**********************************************************************************
 
+def test_coding():
+    """ test to check codingSeq function (not working yet)"""
+    code_dna = 'AAAGGACCAGTTCGAATGCCTACCAAGACTTTGAGAATCACTACAAGAAAAACTCCTTGTGGTGAAGGTTCTAAGACGTGGGATCGTTTCCAGATGAGAATTCACAAGCGACTCATTGACTTGCACAGTCCTTCTGAGATTGTTAAGCAGATTACTTCCATCAGTATTGAGCCAGGAGTTGA'
+
+    if codingSeq('test') == code_dna:
+        print('codingSeq pass')
+    #peptide = 'KGPVRMPTKTLRITTRKTPCGEGSKTWDRFQMRIHKRLIDLHSPSEIVKQITSISIEPGV'
+    else:
+        return test_dna
+#**********************************************************************************
+
 def enz_cut(acc, seq=None, enzyme=None):
     """ Indicate any cleavage sites from restriction enzymes in
         restriction enzyme dictionary. Optionally, search a custom cleavage site (enzyme).
@@ -324,16 +334,9 @@ def enz_cut(acc, seq=None, enzyme=None):
     ## no sequence parameter: check default, genomic sequence of gene for restriction enzyme sites
     ## sequence parameter will be utilised when checking coding sequence in 'getEnzymes' program
     if seq == None:
-        ## use pymysql script with accession number to access database for 'sequence'
-        # import sequence
-        # gene = sequence[0]
-        ## check to see accession number requested matches return
-        ## extract sequence
-        # if gene == acc:
-        #    seq = sequence[1]
-        # else:
-        #   print('Error: Sequence not found')
-        ## exit program?
+        # use function, getSeq(acc) to get sequence info from pymysql script
+        # seq_info = getSeq(acc)
+        # seq = seq_info[1]
 
         ## dummy sequence
         #seq = 'atggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacgagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaa'
@@ -440,7 +443,8 @@ def getEnzyme(acc, enzyme=None):
 
 if __name__ == "__main__":
 
-
+    test = codingSeq('test')
+    print(test)
 ## if file is list of strings, must format sequence:
     # for s in file:
     #     file = s.replace(' ', '')
@@ -448,9 +452,9 @@ if __name__ == "__main__":
 ## dummy data
 
     gene = 'AB007516.1'
-
+    #gene = 'test'
 ## get genomic sequence
-    line_seq = getSequence(gene)
+    line_seq = numSequence(gene)
 
 ## print divided into numbered rows of 60
     # for i in range(1, len(line_seq), 60):
@@ -482,7 +486,7 @@ if __name__ == "__main__":
 ## get translation
     aa_seq = translate(gene)
     #print(aa_seq[0])
-    #print(aa_seq[1])
+    print(aa_seq[1])
 
 
 
