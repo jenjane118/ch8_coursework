@@ -173,14 +173,8 @@ def annotateSeq(acc):
             exon_seq += base
             first_exon = True
             for x in exon_list:
-                if first_exon == True:
-                    start   = x[1]
-                    end     = x[2]
-                    first_exon = False
-                ## correction for exon start after first exon
-                else:
-                    start   = (x[1]) -1
-                    end     = x[2]
+                start   = (x[1]) -1         #correction for indexing
+                end     = x[2]
                 ## insert 'exon' markers at start/end of exons
                 if base_count == start:
                     exon_seq += '*exon'
@@ -461,13 +455,13 @@ if __name__ == "__main__":
 
 ## get annotated sequence with exon boundaries indicated
     ann_seq = annotateSeq(gene)
-
+    print(ann_seq)
 ## get coding sequence
     code_seq = codingSeq(gene)
     print(code_seq)
 
 ## get genomic sequence with restriction enzyme sites indicated
-    custom = 'acnmg'
+    custom = 'gggg'
     enzymes = getEnzyme(gene, custom)
     for x in enzymes:
         print(x)
