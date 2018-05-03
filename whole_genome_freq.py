@@ -71,7 +71,6 @@ def whole_genome_freq():
     Output              (SynCodons, usage_dict)         Dictionary of synonymous codons for each amino acid
                                                         Dictionary of codon: ratio, percent usage statistics
 
-    :return:
     """
 
     ## once we have data from database:
