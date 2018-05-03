@@ -65,7 +65,7 @@ def help():
 
 #****************************************************************************
 
-def whole_genome_freq():
+def total_usage():
     """Return genome usage information for entire database of genes.
     Input               self
     Output              (SynCodons, usage_dict)         Dictionary of synonymous codons for each amino acid
