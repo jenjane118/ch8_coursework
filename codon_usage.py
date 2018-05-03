@@ -195,7 +195,7 @@ def getCodonusage(acc):
         'Y': ['TAT', 'TAC'],
         '_': ['TAG', 'TGA', 'TAA']}
 
-    code_seq = seq_module.codingSeq(gene)
+    code_seq = seq_module.codingSeq(acc)
 
     ## calculate raw frequencies of codon usage
     codon_freq = codonFreq(gene, code_seq)
