@@ -153,12 +153,14 @@ def usageRatio (freq_table):
             for x in codon_list:
                 sum += freq_table[x]
             for x in codon_list:
+                ## to avoid zero division error
                 if sum == 0:
                     ratio = 0.0
                 else:
                     ratio = (freq_table[x]) / sum
                 codonDict[x] = round(ratio, 2)
         aaDict[aa] = codonDict
+
     return aaDict
 
 #**********************************************************************************
@@ -209,6 +211,7 @@ def getCodonusage(acc):
     ratio_list = []
     ratio_dict = {}
     usage_dict = {}
+    
     ## divide dictionary into list of codons and ratio
     for k, v in ratio.items():
         ratio_list.append(v)
@@ -222,7 +225,6 @@ def getCodonusage(acc):
     for codon, ratio in ratio_dict.items():
         for codon, freq in percent.items():
             usage_dict[codon] = ratio_dict[codon], freq
-
 
     return(SynCodons, usage_dict)
 
