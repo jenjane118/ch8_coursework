@@ -41,7 +41,7 @@ import seq_module
 
 #**********************************************************************************
 
-def codonFreq(acc, dna):
+def codonFreq(dna):
     """Return frequency of each codon possibility in particular sequence.
     Input       acc                     accession number
                 dna                     coding sequence (dna)
@@ -84,7 +84,7 @@ def codonFreq(acc, dna):
 
 #**********************************************************************************
 
-def codonPercent (acc, freq_table):
+def codonPercent (freq_table):
     """Return percentage use of a particular codon in sequence (per 100 bp sequence)
     Input           acc                 Accession number
                     freq_table          Codon frequency dictionary
@@ -108,7 +108,7 @@ def codonPercent (acc, freq_table):
 
 #**********************************************************************************
 
-def usageRatio (acc, freq_table):
+def usageRatio (freq_table):
     """Returs codon usage ratio.
     Input       acc             Accession number
                 freq_table      Codon frequency dict returned from codonFreq function
@@ -198,13 +198,13 @@ def getCodonusage(acc):
     code_seq = seq_module.codingSeq(acc)
 
     ## calculate raw frequencies of codon usage
-    codon_freq = codonFreq(gene, code_seq)
+    codon_freq = codonFreq(code_seq)
 
     ## find each amino acid codon usage ratio
-    ratio = usageRatio(gene, codon_freq)
+    ratio = usageRatio(codon_freq)
 
     ## find percent usage (per 100 bp)
-    percent = codonPercent(gene, codon_freq)
+    percent = codonPercent(codon_freq)
 
     ratio_list = []
     ratio_dict = {}

@@ -88,7 +88,7 @@ def whole_genome_freq():
     coding_dna = seq_module.codingSeq(gene)
 
         ##  call function to determine codon frequency for each gene
-    codon_table = codon_usage.codonFreq(gene, coding_dna)
+    codon_table = codon_usage.codonFreq(coding_dna)
         ##  add each to total codon frequency dictionary
     total_freq = {}
     for key in codon_table:
@@ -100,7 +100,7 @@ def whole_genome_freq():
     ## calculate codon usage ratio for whole genome (returns dictionary, 'whole_genome_ratio')
     gene = 'total'
 
-    whole_genome_ratio = codon_usage.usageRatio(gene, total_freq)
+    whole_genome_ratio = codon_usage.usageRatio(total_freq)
 
     SynCodons = {
         'C': ['TGT', 'TGC'],
@@ -126,7 +126,7 @@ def whole_genome_freq():
         '_': ['TAG', 'TGA', 'TAA']}
 
     ## calculate codon usage percent (usage per 100bp) for whole genome (returns dictionary, 'whole_genome_percent')
-    whole_genome_percent = codon_usage.codonPercent(gene, total_freq)
+    whole_genome_percent = codon_usage.codonPercent(total_freq)
 
     ## make a list of codons and ratios (separate from aa key)
     ratio_list = []
