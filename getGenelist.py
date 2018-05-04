@@ -42,11 +42,11 @@ import gene_module
 import sys
 from xml.dom import minidom
 
-# Main Program
+#******************************************************************************
+## Main Program ##
 
-
-##  once we have database parser up and running will import python object (list or dictionary)
-# from pymysql program import genbank (dictionaries returned: accession:lalala, genid:lalal, etc?)
+##  once we have database parser up and running will import python object (list or dictionary?)
+# from pymysql program import genbank (dictionaries returned: accession:lalala, genid:blablabla, etc?)
 #all_genes = {}
 #for gene in genbank:
 #    acc         = gene['accession']
@@ -65,8 +65,8 @@ identity =[('AB061209', 'MRPS28', 'mitochondrial ribosomal protein s28', '8q21.1
             ('AC034567', 'genid3', 'product3', 'location3'),
             ('AR456789', 'genid4', 'product4', 'location4')]
 
-object_dict = {}        #individual object dictionary of identifiers
-chrom_dict = {}         #chromosome dictionary of all gene objects
+object_dict = {}         #individual object dictionary of identifiers
+chrom_dict  = {}         #chromosome dictionary of all gene objects
 
 ## Uses initialisation function to create a gene object for each listing from database
 for x in identity:
@@ -109,7 +109,7 @@ for k,v in chrom_dict.items():
     location.appendChild(text)
     gene_identifiers.appendChild(location)
 
-#doc.writexml(sys.stdout, addindent='    ', newl='\n')
+doc.writexml(sys.stdout, addindent='    ', newl='\n')
 
 file_handle = open('genelist_out.xml', 'w')
 doc.writexml(file_handle, addindent='   ',newl='\n')

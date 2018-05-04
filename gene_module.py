@@ -1,6 +1,6 @@
 #!/usr/bin python3
 
-""" Gene Identifiers List"""
+""" Gene Module """
 
 """
 Program:    gene_module
@@ -39,14 +39,13 @@ Revision History:
 # *****************************************************************************
 
 class Gene:
-    """ A class for handling associated gene identifiers"""
+    """ A simple class for handling associated gene identifiers"""
     count = 0
     _registry = []
 
     @staticmethod
     def total():
-        """ Static method to return current number of gene objects in file.
-        """
+        """ Static method to return current number of gene objects in file"""
         return Gene.count
 
     # *************************************************************************************
@@ -73,14 +72,6 @@ class Gene:
         rep += 'acc: ' + self.acc + '\n' + 'genid: ' + self.genid + '\n' + 'product: ' \
                + self.product + '\n' + 'location: ' + self.location
         return rep
-
-    # ***************************************************************************************
-
-    def geneDict(self):
-        """Create dictionary for mapping to xml template"""
-
-        gene_dict = {'acc': self.acc, 'genid': self.genid, 'product': self.product, 'location': self.location}
-        return gene_dict
 
     # **************************************************************************************
 
