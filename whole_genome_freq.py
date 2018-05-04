@@ -22,8 +22,6 @@ Description:
 ============
 This program will calculate codon usage frequency, percentage, and ratio of codon usage preference for entire chromosome.
 
-
-
 Usage:
 ======
 whole_genome_freq
@@ -35,6 +33,7 @@ Revision History:
 V1.0           18.04.18         Original            By: JJS
 V1.1           1.05.18          changed output          JJS
 V1.2           2.05.18          reworked as function    JJS
+V1.3           4.05.18          added bias function     JJS
 """
 #*****************************************************************************
 # Import libraries
@@ -49,7 +48,7 @@ from xml.dom import minidom
 def help():
     """Print a usage message and exit."""
     print("""
-    codon_usage.py   V1.1        2018,   J.J. Stiens
+    codon_usage.py   V1.3        2018,   J.J. Stiens
 
     Usage: 
     ============
