@@ -147,8 +147,36 @@ def total_usage():
     return SynCodons, usage_dict
 
 #****************************************************************************
-## main ##
 
+def codon_compare(acc):
+    """ Return rough comparison of codon usage ratios between gene and whole chromosome
+    Input                       acc                 Accession number of gene of interest
+
+    Output                      bias_list           List of codons in specified gene that have ratios that differ by
+                                                    more than 50% from codon usage ratio chromosome-wide
+    """
+
+    # for gene of interest
+    gene = 'AB371373.1'
+    results = codon_usage.getCodonusage(gene)
+    gene_stats = results[1]
+
+    codons_dictionary = total_usage()
+    wgf_stats = codons_dictionary[1]
+
+    bias_list = []
+    for k in gene_stats:
+        if k in wgf_stats:
+            ratio_gene = gene_stats[k][0]
+            ratio_wgf = wgf_stats[k][0]
+            if ratio_gene - ratio_wgf >= abs(.5):
+                bias_list.append(k)
+
+    return bias_list
+
+#****************************************************************************
+
+## main ##
 
 if __name__ =="__main__":
 
@@ -156,6 +184,12 @@ if __name__ =="__main__":
 
     print(codons_dictionary[0])
     print(codons_dictionary[1])
+
+    gene = 'test'
+    results = codon_compare(gene)
+
+    for x in results:
+        print(x, 'Possible codon bias')
 
     #write to file
     f = open('whole_genome_usage.txt', 'w')
