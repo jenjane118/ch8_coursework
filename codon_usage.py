@@ -211,7 +211,7 @@ def getCodonusage(acc):
     ratio_list = []
     ratio_dict = {}
     usage_dict = {}
-    
+
     ## divide dictionary into list of codons and ratio
     for k, v in ratio.items():
         ratio_list.append(v)
@@ -257,12 +257,15 @@ if __name__ == "__main__":
 
     results = getCodonusage(gene)
 
-    print(results[0])
+    aa_codons = (results[0])
+    ratio_percent = (results[1])
 
-    print(results[1])
-
-
-
+    print('amino acid   codon   ratio   percent')
+    # to print amino acid/codon/ratio/percent
+    for key in ratio_percent:
+        for aa in aa_codons:
+            if key in aa_codons[aa]:
+                print(aa, '       :  ', key, '  : ', ratio_percent[key][0], '    ', ratio_percent[key][1])
 
    
 
