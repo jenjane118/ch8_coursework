@@ -97,17 +97,6 @@ def getSeq(acc):
     #         print('Sequence not valid')
     #         exit(0)
 
-    ## use pymysql script with accession number to retrieve 'exon'
-    ## check to see accession number requested matches database return
-    ## make list of exons
-    # for x in exon_file:
-    #    if x[0] = acc:
-    #        x[1] = exon
-    #        exon_list.append(exon)
-    #        x[2] = code_start
-    #    else:
-    #        print('Error: Exon boundaries not found')
-    #        break
 
     return gen_seq, exon_list, code_start
 
@@ -220,16 +209,18 @@ def codingSeq(acc):
     Output          coding_seq          Coding sequence
     """
 
-    # use function, getSeq(acc) to get sequence info from pymysql script
+    # use function, getSeq(acc) to get sequence info from pymysql script (not sure of final output)
     #seq_info       = getSeq(acc)
     #seq            = seq_info[0]
     #exon_list      = seq_info[1]
-    #codon start    = seqinfo[2]
+    #codon_start    = seqinfo[2]
 
+
+    dummy_tuples = [('AB007516.1', 3, 1,29),('AB007516.1', 3, 453, 607)]
     ## dummy sequences and exon boundaries until have data
     #seq = 'atggcggcgctgtgtcggacccgtgctgggggtaggcgcgcgcgcgcgcggtaggcactgagagtggtacatatttttagggatatcgctcgagagagagagacacacacacacaccacaccacaatatattatattatattagggagaggaatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacgagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaa'
     seq = 'tgaaaggaccagttcgaatgcctaccaaggtaaagtaaatcggaggggcaggaagtaggagttgcttccggatgttgcataaattcaggttctttaaggagttcggctgcccaaaattgttaacactgatgctgtctacaaacgcacatagaaatcggtggtagattgcggttcctagtaagtagctaatgtttagatatgattgttgaattattgttgctgtgttcttggtgtgcttnggtgcttaacaggcgcaagctctaagggtggtgtcctagcacagtgaaaacagacctggcattttcaacccatggtacctgaaaatctattagtgtaaattggaatcataccaaagggaaactaatgaaatgattagaagtaatgattttccagatgttctagggataagtataaaacgataaacacttggtttcctttgtcttttgttacagactttgagaatcactacaagaaaaactccttgtggtgaaggttctaagacgtgggatcgtttccagatgagaattcacaagcgactcattgacttgcacagtccttctgagattgttaagcagattacttccatcagtattgagccaggagttga'
-    exon_list = [('AB007516.1', 1, 29), ('AB007516.1', 453, 607)]
+    #exon_list = [('AB007516.1', 1, 29), ('AB007516.1', 453, 607)]
     #with open('AB007516.1_out.txt', 'r') as f:
     #    file = f.read().splitlines()
     #f.close()
@@ -239,7 +230,19 @@ def codingSeq(acc):
     #exon_list = [('AB371373.1', 2125, 2215), ('AB371373.1', 3642, 3728), ('AB371373.1', 6222, 6300), ('AB371373.1', 9012, 9086), ('AB371373.1', 10313, 10358), ('AB371373.1', 11120, 11264)]
     #exon_list = [('U16860.1', 1, 219)]
     #exon_list = [('AB007516.1', 1, 29), ('AB007516.1', 453, 607)]
-    codon_start = 3        # will be 1,2 or 3
+    #codon_start = 3        # will be 1,2 or 3
+    info_list = []
+    codon_start = 0
+    exon = ()
+    exon_list = []
+    for x in dummy_tuples:
+        info_list.append(x)
+    print(info_list)
+    for x in info_list:
+        acc = x[0]
+        codon_start = x[1]
+        exon = (x[2:])
+        exon_list.append(exon)
 
     ## reformat sequence into unbroken uppercase string
     seq = seq.replace(' ', '')
@@ -254,13 +257,13 @@ def codingSeq(acc):
         ## first exon needs to use codon start to initiate translation
         for x in exon_list:
             if first_exon   == True:
-                start       = (x[1]) - 1          # must subtract 1 for index correction
+                start       = (x[0]) - 1          # must subtract 1 for index correction
                 start       = start + codon_start
-                end         = x[2]
+                end         = x[1]
                 first_exon  = False
             else:
-                start   = (x[1]) - 1
-                end     = x[2]
+                start   = (x[0]) - 1
+                end     = x[1]
             coding_seq += seq[start:end]
     else:
         coding_seq = seq
@@ -318,17 +321,6 @@ def translate(acc):
             aa_seq += 'x'
     return codon_list, aa_seq
 
-#**********************************************************************************
-
-def test_coding():
-    """ test to check codingSeq function (not working yet)"""
-    code_dna = 'AAAGGACCAGTTCGAATGCCTACCAAGACTTTGAGAATCACTACAAGAAAAACTCCTTGTGGTGAAGGTTCTAAGACGTGGGATCGTTTCCAGATGAGAATTCACAAGCGACTCATTGACTTGCACAGTCCTTCTGAGATTGTTAAGCAGATTACTTCCATCAGTATTGAGCCAGGAGTTGA'
-
-    if codingSeq('test') == code_dna:
-        print('codingSeq pass')
-    #peptide = 'KGPVRMPTKTLRITTRKTPCGEGSKTWDRFQMRIHKRLIDLHSPSEIVKQITSISIEPGV'
-    else:
-        return test_dna
 #**********************************************************************************
 
 def enz_cut(acc, seq=None, enzyme=None):
@@ -464,11 +456,11 @@ def getEnzyme(acc, enzyme=None):
 if __name__ == "__main__":
 
 ## dummy data
-    gene = 'AB371373.1'
+    gene = 'AB007516.1'
 
 ## get genomic sequence
     line_seq = numSequence(gene)
-    print(line_seq)
+    #print(line_seq)
 
 ## print divided into numbered rows of 60
     # for i in range(1, len(line_seq), 60):
@@ -489,12 +481,13 @@ if __name__ == "__main__":
 ## get genomic sequence with restriction enzyme sites indicated
     custom = 'gggg'
     enzymes = getEnzyme(gene, enzyme = 'gggg')
-    print(enzymes)
+    for k,v in enzymes.items():
+        print(k, ':',v)
 
 ## get translation
     aa_seq = translate(gene)
     #print(aa_seq[0])
-    print(aa_seq[1])
+    #print(aa_seq[1])
 
 
 
