@@ -33,6 +33,7 @@ V1.0        15.03.18    Original (as Gene_list_class.py)    By: JJS
 V1.1        18.03.18    Revised to incorporate methods          JJS
 V1.2        22.03.18    included dicttoxml, changed name        JJS
 V1.3        29.04.18    changed xml format                      JJS
+V1.4        07.05.18    import data access file                 JJS
 """
 
 #******************************************************************************
@@ -41,36 +42,34 @@ V1.3        29.04.18    changed xml format                      JJS
 import gene_module
 import sys
 from xml.dom import minidom
+from data_access import list_query
+#from data_access import config_db
 
 #******************************************************************************
 ## Main Program ##
 
-##  once we have database parser up and running will import python object (list or dictionary?)
-# from pymysql program import genbank (dictionaries returned: accession:lalala, genid:blablabla, etc?)
-#all_genes = {}
-#for gene in genbank:
-#    acc         = gene['accession']
-#    genid       = gene['genid']
-#    product     = gene['product']
-#    location    = gene['location']
-#
-## Uses initialisation functi0n to create a gene object for each listing from database
-#    gene_object = gene_module.Gene(acc, genid, product, location)
-#
-## dummy data here
+##  once we have database parser up and running will import python object (tuple)
 
-identity =[('AB061209', 'MRPS28', 'mitochondrial ribosomal protein s28', '8q21.1-q21.2'),
-            ('AB098765', 'genid1', 'product1', 'location1'),
-            ('AC012345', 'genid2', 'product2', 'location2'),
-            ('AC034567', 'genid3', 'product3', 'location3'),
-            ('AR456789', 'genid4', 'product4', 'location4')]
+genbank = list_query.genbank_query()
+
+for gene in genbank:
+    acc         = gene[0]
+    genid       = gene[1]
+    product     = gene[2]
+    location    = gene[3]
+
+## Uses initialisation function to create a gene object for each listing from database
+    gene_object = gene_module.Gene(acc, genid, product, location)
+
+## dummy data:
+# genbank =[('AB061209', 'MRPS28', 'mitochondrial ribosomal protein s28', '8q21.1-q21.2'),
+#             ('AB098765', 'genid1', 'product1', 'location1'),
+#             ('AC012345', 'genid2', 'product2', 'location2'),
+#             ('AC034567', 'genid3', 'product3', 'location3'),
+#             ('AR456789', 'genid4', 'product4', 'location4')]
 
 object_dict = {}         #individual object dictionary of identifiers
 chrom_dict  = {}         #chromosome dictionary of all gene objects
-
-## Uses initialisation function to create a gene object for each listing from database
-for x in identity:
-    gene_object = gene_module.Gene(x[0], x[1], x[2], x[3])
 
 ## Create a dictionary of gene objects
 for object in gene_module.Gene._registry:
