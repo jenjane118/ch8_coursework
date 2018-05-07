@@ -4,1554 +4,1884 @@
       <accession>AB000381.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>GPI-anchored molecule-like protein</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB002137.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>glycosylphosphatidylinositol anchor attachment 1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB007156.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>ribosomal protein S20</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q21</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB007168.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>ribosomal protein S20</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB013139.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>ribosomal protein S20</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p11.2</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB017267.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>ribosomal protein L8</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB022785.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>ribosomal protein L8</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q22.3-q24.1</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB026546.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>ribosomal protein L8</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q11.2-q13</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB032013.2</accession>
       <gene_id>GPAA1</gene_id>
       <product>ribosomal protein L8</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q11</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB036532.2</accession>
       <gene_id>GPAA1</gene_id>
       <product>NBS1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q21.1-q21.2</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB051619.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>glycosylphosphatidylinositol anchor attachment 1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB052953.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>RECQL4 helicase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q11.2-q13</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB061209.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>potassium channel Kv8.1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q22.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB061821.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>potassium channel Kv8.1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q22</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB061842.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>potassium channel Kv8.1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p11</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB065482.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>ribonucleotide reductase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q23-q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB065483.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>ribonucleotide reductase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p21.3-p23.1</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB065484.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>ribonucleotide reductase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q22</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB065485.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>ribonucleotide reductase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q22</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB065486.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>ribonucleotide reductase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q13-q22.1</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB065488.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>ribonucleotide reductase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q13-q22.1</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB065489.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>ribonucleotide reductase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB065702.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>ribonucleotide reductase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q22.2</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB065703.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>ribonucleotide reductase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB065704.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>ribonucleotide reductase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8pter-q11</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB070559.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>mitochondrial ribosomal protein L15</product>
-      <location> Homo sapiens (human) </location>
+      <location>8pter-q11</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB074982.1</accession>
       <gene_id>GPAA1</gene_id>
       <product>DNA-dependent protein kinase catalytic subunit</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB079251.2</accession>
       <gene_id>GPAA1</gene_id>
       <product>mitochondrial ribosomal protein S28</product>
-      <location> Homo sapiens (human) </location>
+      <location>8pter-q11</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB105051.1</accession>
       <gene_id>ASH2L</gene_id>
       <product>ribosomal protein L8</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q22-q23</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371370.1</accession>
       <gene_id>U72</gene_id>
       <product>retinitis pigmentosa RP1 protein</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371371.1</accession>
       <gene_id>U72</gene_id>
       <product>gamma-glutamyl hydrolase</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371372.1</accession>
       <gene_id>RPL30</gene_id>
       <product>gamma-glutamyl hydrolase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371373.1</accession>
       <gene_id>RPL30</gene_id>
       <product>A-myb</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371374.1</accession>
       <gene_id>MTG8</gene_id>
       <product>retinitis pigmentosa 1 protein</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371375.1</accession>
       <gene_id>MTG8</gene_id>
       <product>retinitis pigmentosa 1 protein</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371376.1</accession>
       <gene_id>MTG8</gene_id>
       <product>oxysterol 7alpha-hydroxylase</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371377.1</accession>
       <gene_id>CHRNA6</gene_id>
       <product>oxysterol 7alpha-hydroxylase</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371378.1</accession>
       <gene_id>CHRNA6</gene_id>
       <product>lithium-sensitive myo-inositol monophosphatase A1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371379.1</accession>
       <gene_id>CHRNA6</gene_id>
       <product>lithium-sensitive myo-inositol monophosphatase A1</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371380.1</accession>
       <gene_id>CHRNA6</gene_id>
       <product>WRN</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371381.1</accession>
       <gene_id>CHRNA6</gene_id>
       <product>WRN</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371382.1</accession>
       <gene_id>CHRNA6</gene_id>
       <product>MTG8</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371383.1</accession>
       <gene_id>CHRNA6</gene_id>
       <product>MTG8</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371384.1</accession>
       <gene_id>CHRNA6</gene_id>
       <product>pseudogene similar to 60S ribosomal protein L23A</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371385.1</accession>
       <gene_id>KCNV1</gene_id>
       <product>defensin, alpha 6, Paneth cell-specific</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371386.1</accession>
       <gene_id>KCNV1</gene_id>
       <product>defensin, alpha 6, Paneth cell-specific</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371387.1</accession>
       <gene_id>KCNV1</gene_id>
       <product>novel transcript</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371388.1</accession>
       <gene_id>KCNV1</gene_id>
       <product>defensin, alpha 4, corticostatin</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371389.1</accession>
       <gene_id>NAT1</gene_id>
       <product>defensin, alpha 4, corticostatin</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371390.1</accession>
       <gene_id>NAT1</gene_id>
       <product>pseudogene similar to DEFT1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371391.1</accession>
       <gene_id>NAT1</gene_id>
       <product>defensin-like pseudogene</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371392.1</accession>
       <gene_id>NAT1</gene_id>
       <product>pseudogene similar to DEFT1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371393.1</accession>
       <gene_id>MTG8</gene_id>
       <product>defensin, alpha 1, myeloid-related sequence</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371394.1</accession>
       <gene_id>MTG8</gene_id>
       <product>defensin, alpha 1, myeloid-related sequence</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371395.1</accession>
       <gene_id>MTG8</gene_id>
       <product>pseudogene similar to DEFT1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371396.1</accession>
       <gene_id>MTG8</gene_id>
       <product>novel protein, similar to DEFA1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371397.1</accession>
       <gene_id>MTG8</gene_id>
       <product>novel protein, similar to DEFA1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371398.1</accession>
       <gene_id>MTG8</gene_id>
       <product>pseudogene similar to DEFT1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371399.1</accession>
       <gene_id>MTG8</gene_id>
       <product>novel protein, similar to DEFA1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371400.1</accession>
       <gene_id>MTG8</gene_id>
       <product>novel protein, similar to DEFA1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371401.1</accession>
       <gene_id>MTG8</gene_id>
       <product>defensin, theta 1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371402.1</accession>
       <gene_id>MTG8</gene_id>
       <product>novel protein, similar to DEFA1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371403.1</accession>
       <gene_id>MTG8</gene_id>
       <product>novel protein, similar to DEFA1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371404.1</accession>
       <gene_id>MTG8</gene_id>
       <product>pseudogene similar to DEFT1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371405.1</accession>
       <gene_id>MTG8</gene_id>
       <product>defensin, alpha 3, neutrophil-specific</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB371406.1</accession>
       <gene_id>MTG8</gene_id>
       <product>defensin, alpha 3, neutrophil-specific</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB684329.1</accession>
       <gene_id>MTG8</gene_id>
       <product>pituitary tumor transforming gene protein 3</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB684331.1</accession>
       <gene_id>GOR</gene_id>
       <product>pituitary tumor transforming gene protein 3</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AB684332.1</accession>
       <gene_id>GOR</gene_id>
       <product>voltage-dependent anion channel VDAC3</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AC004003.1</accession>
       <gene_id>DEFB2</gene_id>
       <product>voltage-dependent anion channel VDAC3</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AC004612.1</accession>
       <gene_id>DEFB2</gene_id>
       <product>acid ceramidase</product>
-      <location> </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF008204.1</accession>
       <gene_id>ASH2L</gene_id>
       <product>ribosomal protein S20</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q21</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF018280.1</accession>
       <gene_id>ASH2L</gene_id>
       <product>U54 small nucleolar RNA</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q21</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF018282.1</accession>
       <gene_id>ASH2L</gene_id>
       <product>seven transmembrane helix receptor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q21</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF023669.1</accession>
       <gene_id>ASH2L</gene_id>
       <product>seven transmembrane helix receptor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p23.1</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF023670.1</accession>
       <gene_id>ASH2L</gene_id>
       <product>seven transmembrane helix receptor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q23-q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF040153.1</accession>
       <gene_id>ASH2L</gene_id>
       <product>seven transmembrane helix receptor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8pter-q11</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF042001.1</accession>
       <gene_id>ASH2L</gene_id>
       <product>seven transmembrane helix receptor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF050110.1</accession>
       <gene_id>ASH2L</gene_id>
       <product>seven transmembrane helix receptor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q11.21-q11.23</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF050163.1</accession>
       <gene_id>ASH2L</gene_id>
       <product>seven transmembrane helix receptor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF055874.1</accession>
       <gene_id>ASH2L</gene_id>
       <product>seven transmembrane helix receptor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF055875.1</accession>
       <gene_id>ASH2L</gene_id>
       <product>seven transmembrane helix receptor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q21; between D8S526 and D8S275</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF064800.1</accession>
       <gene_id>ASH2L</gene_id>
       <product>seven transmembrane helix receptor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q12.23-q13.1</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF067408.1</accession>
       <gene_id>ASH2L</gene_id>
       <product>ribosomal protein L30</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q22-q23</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF067637.1</accession>
       <gene_id>ASH2L</gene_id>
       <product>U72 snoRNA</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q11-q13</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF068862.1</accession>
       <gene_id>ASH2L</gene_id>
       <product>MTG8b</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF069291.1</accession>
       <gene_id>RECQL4</gene_id>
       <product>Nicotinic acetylcholine receptor alpha 6 subunit</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q21.2</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF070717.1</accession>
       <gene_id>RECQL4</gene_id>
       <product>Nicotinic acetylcholine receptor alpha 6</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q22.1</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF071216.1</accession>
       <gene_id>p53R2</gene_id>
       <product>Nicotinic acetylcholine receptor alpha 6 subunit</product>
-      <location> Homo sapiens (human) </location>
+      <location>p22-p21</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF071491.1</accession>
       <gene_id>p53R2</gene_id>
       <product>Nicotinic acetylcholine receptor alpha 6 subunit</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q13.1</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF071552.1</accession>
       <gene_id>p53R2</gene_id>
       <product>Nicotinic acetylcholine receptor alpha 6 subunit</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p11.2; between D8S268 and WI-6318</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF072469.1</accession>
       <gene_id>p53R2</gene_id>
       <product>Nicotinic acetylcholine receptor alpha 6 subunit</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-21.2</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF073303.1</accession>
       <gene_id>p53R2</gene_id>
       <product>Nicotinic acetylcholine receptor alpha 6 subunit</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p21</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF073304.1</accession>
       <gene_id>p53R2</gene_id>
       <product>potassium channel subfamily V member 1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p11.2</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF082903.1</accession>
       <gene_id>p53R2</gene_id>
       <product>potassium channel subfamily V member 1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p11.2</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF082904.1</accession>
       <gene_id>p53R2</gene_id>
       <product>potassium channel subfamily V member 1</product>
-      <location> Homo sapiens (human) </location>
+      <location>p23.1</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF084243.1</accession>
       <gene_id>p53R2</gene_id>
       <product>mutant arylamine N-acetyltransferase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p21-p11.2</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF092576.1</accession>
       <gene_id>p53R2</gene_id>
       <product>mutant arylamine N-acetyltransferase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p12</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF123653.1</accession>
       <gene_id>p53R2</gene_id>
       <product>putative transcription factor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF133504.1</accession>
       <gene_id>p53R2</gene_id>
       <product>putative transcription factor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p23.1-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF143226.1</accession>
       <gene_id>p53R2</gene_id>
       <product>putative transcription factor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF147083.1</accession>
       <gene_id>p53R2</gene_id>
       <product>putative transcription factor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p23.1-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF149089.1</accession>
       <gene_id>p53R2</gene_id>
       <product>putative transcription factor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF152242.1</accession>
       <gene_id>p53R2</gene_id>
       <product>putative transcription factor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q22</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF176805.1</accession>
       <gene_id>p53R2</gene_id>
       <product>putative transcription factor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q22.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF178754.3</accession>
       <gene_id>p53R2</gene_id>
       <product>putative transcription factor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q22.3-q23.1</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF181897.1</accession>
       <gene_id>p53R2</gene_id>
       <product>GOR antigen</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF198490.1</accession>
       <gene_id>p53R2</gene_id>
       <product>GOR antigen</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p12</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF200455.5</accession>
       <gene_id>p53R2</gene_id>
       <product>beta-defensin 2</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q13</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF200720.1</accession>
       <gene_id>p53R2</gene_id>
       <product>zinc finger protein slug</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF213702.1</accession>
       <gene_id>p53R2</gene_id>
       <product>zinc finger protein slug</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q13</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF220175.1</accession>
       <gene_id>p53R2</gene_id>
       <product>TGFb inducible early protein</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q21</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF228703.1</accession>
       <gene_id>p53R2</gene_id>
       <product>TGFb inducible early protein</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p11.2</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF229190.1</accession>
       <gene_id>p53R2</gene_id>
       <product>early growth response protein alpha</product>
-      <location> Homo sapiens (human) </location>
+      <location>q22</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF229192.1</accession>
       <gene_id>p53R2</gene_id>
       <product>early growth response protein alpha</product>
-      <location> Homo sapiens (human) </location>
+      <location>8.p21.1-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF238378.5</accession>
       <gene_id>MRPL15</gene_id>
       <product>lipoprotein lipase precursor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q22</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF242179.1</accession>
       <gene_id>MRPL15</gene_id>
       <product>lipoprotein lipase precursor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF292062.1</accession>
       <gene_id>Prkdc</gene_id>
       <product>N-acetyltransferase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p23</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF308866.1</accession>
       <gene_id>Prkdc</gene_id>
       <product>N-acetyltransferase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF320309.1</accession>
       <gene_id>Prkdc</gene_id>
       <product>N-acetyltransferase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF348074.1</accession>
       <gene_id>MRPS28</gene_id>
       <product>N-acetyltransferase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q12</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF348075.1</accession>
       <gene_id>MRPS28</gene_id>
       <product>patched related protein TRC8</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q21</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF349031.1</accession>
       <gene_id>MRPS28</gene_id>
       <product>patched related protein TRC8</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q13</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF363578.1</accession>
       <gene_id>MRPS28</gene_id>
       <product>N-acetyltransferase-1</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF408781.1</accession>
       <gene_id>RPL8</gene_id>
       <product>N-acetyltransferase-1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF491780.1</accession>
       <gene_id>RPL8</gene_id>
       <product>cytochrome c oxidase subunit VIc</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF504925.1</accession>
       <gene_id>RPL8</gene_id>
       <product>cytochrome c oxidase subunit VIc</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AF524869.1</accession>
       <gene_id>RPL8</gene_id>
       <product>27kDa calbindin</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AH003684.2</accession>
       <gene_id>RPL8</gene_id>
       <product>27kDa calbindin</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AH004648.2</accession>
       <gene_id>RPL8</gene_id>
       <product>hT41</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AH005594.2</accession>
       <gene_id>RPL8</gene_id>
       <product>hT41</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AH008073.3</accession>
       <gene_id>RPL8</gene_id>
       <product>nibrin</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ006473.1</accession>
       <gene_id>RPL8</gene_id>
       <product>nibrin</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ246165.1</accession>
       <gene_id>RPL8</gene_id>
       <product>2,4-dienoyl-CoA reductase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ249601.1</accession>
       <gene_id>RPL8</gene_id>
       <product>2,4-dienoyl-CoA reductase</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ252078.1</accession>
       <gene_id>RPL8</gene_id>
       <product>vitamin D-dependent calcium binding protein calbindin</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ278017.1</accession>
       <gene_id>RPL8</gene_id>
       <product>beta defensin 2</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ297824.1</accession>
       <gene_id>RPL8</gene_id>
       <product>beta defensin 2</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ307007.1</accession>
       <gene_id>RPL8</gene_id>
       <product>potassium channel</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ314835.1</accession>
       <gene_id>RPS20</gene_id>
       <product>potassium channel</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ315949.1</accession>
       <gene_id>RPS20</gene_id>
       <product>N-acetyltransferase-1</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ431380.1</accession>
       <gene_id>RPS20</gene_id>
       <product>N-acetyltransferase-1</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ457788.1</accession>
       <gene_id>RPS20</gene_id>
       <product>unknown</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ586971.1</accession>
       <gene_id>RPS20</gene_id>
       <product>steroid 5-alpha-reductase type I</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ586972.1</accession>
       <gene_id>RPS20</gene_id>
       <product>steroid 5-alpha-reductase type I</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ586973.1</accession>
       <gene_id>RPS20</gene_id>
       <product>steroid 5-alpha-reductase type I</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ586974.1</accession>
       <gene_id>RPS20</gene_id>
       <product>steroid 5-alpha-reductase type I</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ586975.1</accession>
       <gene_id>RPS20</gene_id>
       <product>N-acetyltransferase-1</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ586976.1</accession>
       <gene_id>RPS20</gene_id>
       <product>N-acetyltransferase-1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ586977.1</accession>
       <gene_id>RPS20</gene_id>
       <product>N-acetyltransferase-1</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ586978.1</accession>
       <gene_id>RPL30</gene_id>
       <product>N-acetyltransferase-1</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ601396.1</accession>
       <gene_id>RPL30</gene_id>
       <product>zinc finger protein SLUG</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ601397.1</accession>
       <gene_id>RPL30</gene_id>
       <product>zinc finger protein SLUG</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ601398.1</accession>
       <gene_id>RPL30</gene_id>
       <product>translation initiation factor eIF3 p40 subunit</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ601399.1</accession>
       <gene_id>RPL30</gene_id>
       <product>translation initiation factor eIF3 p40 subunit</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ601400.1</accession>
       <gene_id>RPL30</gene_id>
       <product>FEZ1</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ601401.1</accession>
       <gene_id>RPL30</gene_id>
       <product>FEZ1</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ601402.1</accession>
       <gene_id>RPL30</gene_id>
       <product>hepatocyte nuclear factor 4 gamma</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ601403.1</accession>
       <gene_id>RPL30</gene_id>
       <product>hepatocyte nuclear factor 4 gamma</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ601404.1</accession>
       <gene_id>RPL30</gene_id>
       <product>hepatocyte nuclear factor 4 gamma</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AJ601405.1</accession>
       <gene_id>RPL30</gene_id>
       <product>retinitis pigmentosa RP1 protein</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287138.1</accession>
       <gene_id>DEFB2</gene_id>
       <product>acid ceramidase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287139.1</accession>
       <gene_id>DEFB2</gene_id>
       <product>mitochondrial glutathione reductase</product>
-      <location> </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287140.1</accession>
       <gene_id>SLUG</gene_id>
       <product>mitochondrial glutathione reductase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287141.1</accession>
       <gene_id>SLUG</gene_id>
       <product>cytosolic glutathione reductase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287142.1</accession>
       <gene_id>SLUG</gene_id>
       <product>cytosolic glutathione reductase</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287143.1</accession>
       <gene_id>NAT2</gene_id>
       <product>frizzled-related protein</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287144.1</accession>
       <gene_id>NAT2</gene_id>
       <product>frizzled-related protein</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287145.1</accession>
       <gene_id>NAT2</gene_id>
       <product>defensin, alpha 1, myeloid-related sequence</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287146.1</accession>
       <gene_id>NAT2</gene_id>
       <product>defensin, alpha 1, myeloid-related sequence</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287147.1</accession>
       <gene_id>NAT2</gene_id>
       <product>defensin, theta 1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287148.1</accession>
       <gene_id>NAT2</gene_id>
       <product>defensin, alpha 1, myeloid-related sequence</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p22-p21.3</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287149.1</accession>
       <gene_id>TRC8</gene_id>
       <product>defensin, alpha 1, myeloid-related sequence</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p23</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287150.1</accession>
       <gene_id>TRC8</gene_id>
       <product>pseudogene similar to DEFT1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p23</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287151.1</accession>
       <gene_id>TRC8</gene_id>
       <product>defensin, alpha 3, neutrophil-specific</product>
-      <location> Homo sapiens (human) </location>
+      <location>8p23</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287152.1</accession>
       <gene_id>TRC8</gene_id>
       <product>defensin, alpha 3, neutrophil-specific</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q21</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287153.1</accession>
       <gene_id>NAT1</gene_id>
       <product>defensin-like pseudogene</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q21</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287154.1</accession>
       <gene_id>NAT1</gene_id>
       <product>novel protein, similar to defensin, alpha 4, corticostatin (DEFA4)</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287155.1</accession>
       <gene_id>NAT1</gene_id>
       <product>novel protein, similar to defensin, alpha 4, corticostatin (DEFA4)</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287156.1</accession>
       <gene_id>COX6C</gene_id>
       <product>defensin, alpha 5, Paneth cell-specific</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287157.1</accession>
       <gene_id>COX6C</gene_id>
       <product>defensin, alpha 5, Paneth cell-specific</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287158.1</accession>
       <gene_id>COX6C</gene_id>
       <product>novel transcript</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287159.1</accession>
       <gene_id>COX6C</gene_id>
       <product>stanniocalcin 1</product>
-      <location> Homo sapiens (human) </location>
+      <location>14</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287160.1</accession>
       <gene_id>DECR</gene_id>
       <product>stanniocalcin 1</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287161.1</accession>
       <gene_id>DECR</gene_id>
       <product>general transcription factor</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287162.1</accession>
       <gene_id>DECR</gene_id>
       <product>general transcription factor</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287163.1</accession>
       <gene_id>DECR</gene_id>
       <product>arylamine N-acetyltransferase 1</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287164.1</accession>
       <gene_id>DECR</gene_id>
       <product>arylamine N-acetyltransferase 1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287165.1</accession>
       <gene_id>DECR</gene_id>
       <product>N-acetyltransferase</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287166.1</accession>
       <gene_id>DECR</gene_id>
       <product>N-acetyltransferase</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287167.1</accession>
       <gene_id>DECR</gene_id>
       <product>N-acetyltransferase 2</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287168.1</accession>
       <gene_id>DECR</gene_id>
       <product>N-acetyltransferase 2</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287169.1</accession>
       <gene_id>DECR</gene_id>
       <product>N-acetyltransferase 2</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287170.1</accession>
       <gene_id>CALB1</gene_id>
       <product>N-acetyltransferase 2</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287171.1</accession>
       <gene_id>CALB1</gene_id>
       <product>topoisomerase I</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287172.1</accession>
       <gene_id>CALB1</gene_id>
       <product>topoisomerase I</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287173.1</accession>
       <gene_id>CALB1</gene_id>
       <product>ATPase H+ transporting lysosomal protein</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287174.1</accession>
       <gene_id>CALB1</gene_id>
       <product>ATPase H+ transporting lysosomal protein</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287175.1</accession>
       <gene_id>CALB1</gene_id>
       <product>BAALC 1-2-3-6-8</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287176.1</accession>
       <gene_id>CALB1</gene_id>
       <product>BAALC 1-2-5-6-8</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287177.1</accession>
       <gene_id>CALB1</gene_id>
       <product>BAALC 1-2-6-8</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287178.1</accession>
       <gene_id>CALB1</gene_id>
       <product>BAALC 1-4-5-6-8</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287179.1</accession>
       <gene_id>CALB1</gene_id>
       <product>BAALC 1-5-6-7-8</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287180.1</accession>
       <gene_id>CALB1</gene_id>
       <product>BAALC 1-5-6-8</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287181.1</accession>
       <gene_id>CALB1</gene_id>
       <product>BAALC 1-6-8</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287182.1</accession>
       <gene_id>CALB1</gene_id>
       <product>BAALC 1-8</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287183.1</accession>
       <gene_id>CALB1</gene_id>
       <product>BAALC 1-5-6-8</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287184.1</accession>
       <gene_id>hT41</gene_id>
       <product>BAALC 1-6-8</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287185.1</accession>
       <gene_id>hT41</gene_id>
       <product>BAALC 1-8</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287186.1</accession>
       <gene_id>hT41</gene_id>
       <product>BAALC 1-5-6-7-8</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AM287187.1</accession>
       <gene_id>hT41</gene_id>
       <product>BAALC 1-4-5-6-8</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AY026764.1</accession>
       <gene_id>hT41</gene_id>
       <product>BAALC 1-2</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AY028471.1</accession>
       <gene_id>hT41</gene_id>
       <product>frizzled-like protein 6</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AY030284.1</accession>
       <gene_id>hT41</gene_id>
       <product>frizzled-like protein 6</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AY082067.1</accession>
       <gene_id>hT41</gene_id>
       <product>deleted in liver cancer 1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AY082426.1</accession>
       <gene_id>hT41</gene_id>
       <product>deleted in liver cancer 1</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AY082427.1</accession>
       <gene_id>NBS1</gene_id>
       <product>neuregulin 1 isoform GGF2</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AY092405.1</accession>
       <gene_id>NBS1</gene_id>
       <product>neuregulin 1 isoform GGF2</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AY198226.1</accession>
       <gene_id>NBS1</gene_id>
       <product>neuregulin 1 isoform GGF</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AY219176.1</accession>
       <gene_id>NBS1</gene_id>
       <product>neuregulin 1 isoform HRG-alpha</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AY219177.1</accession>
       <gene_id>NBS1</gene_id>
       <product>neuregulin 1 isoform HRG-beta1</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AY230251.1</accession>
       <gene_id>NBS1</gene_id>
       <product>neuregulin 1 isoform HRG-beta2</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AY230252.1</accession>
       <gene_id>NBS1</gene_id>
       <product>neuregulin 1 isoform HRG-beta3</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AY376850.1</accession>
       <gene_id>NBS1</gene_id>
       <product>neuregulin 1 isoform HRG-gamma</product>
-      <location> Homo sapiens (human) </location>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AY563557.1</accession>
       <gene_id>NBS1</gene_id>
       <product>neuregulin 1 isoform ndf43</product>
-      <location> Homo sapiens (human) </location>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>AY672590.1</accession>
       <gene_id>NBS1</gene_id>
       <product>neuregulin 1 isoform GGF</product>
-      <location> Homo sapiens (human) </location>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>D10493.1</accession>
+      <gene_id>NBS1</gene_id>
+      <product>neuregulin 1 isoform HRG-alpha</product>
+      <location>8q24</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>D16181.2</accession>
+      <gene_id>NBS1</gene_id>
+      <product>neuregulin 1 isoform HRG-beta1</product>
+      <location>14q32</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>D85376.2</accession>
+      <gene_id>NBS1</gene_id>
+      <product>neuregulin 1 isoform HRG-beta2</product>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>D90160.1</accession>
+      <gene_id>NBS1</gene_id>
+      <product>neuregulin 1 isoform HRG-beta3</product>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>DQ083390.1</accession>
       <gene_id>NBS1</gene_id>
-      <product>neuregulin 1 isoform HRG-alpha</product>
-      <location> Homo sapiens (human) </location>
+      <product>neuregulin 1 isoform HRG-gamma</product>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>DQ194260.1</accession>
       <gene_id>NBS1</gene_id>
-      <product>neuregulin 1 isoform HRG-beta1</product>
-      <location> Homo sapiens (human) </location>
+      <product>neuregulin 1 isoform ndf43</product>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>DQ194261.1</accession>
       <gene_id>NBS1</gene_id>
-      <product>neuregulin 1 isoform HRG-beta2</product>
-      <location> Homo sapiens (human) </location>
+      <product>neuregulin 1 isoform SMDF</product>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>DQ243706.1</accession>
       <gene_id>NBS1</gene_id>
-      <product>neuregulin 1 isoform HRG-beta3</product>
-      <location> Homo sapiens (human) </location>
+      <product>neuregulin 1 isoform SMDF</product>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>DQ384438.1</accession>
       <gene_id>NBS1</gene_id>
-      <product>neuregulin 1 isoform HRG-gamma</product>
-      <location> Homo sapiens (human) </location>
+      <product>basic helix-loop-helix protein 5</product>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>DQ384439.1</accession>
-      <gene_id>NBS1</gene_id>
-      <product>neuregulin 1 isoform ndf43</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>DECR</gene_id>
+      <product>basic helix-loop-helix protein 5</product>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>DQ384440.1</accession>
-      <gene_id>NBS1</gene_id>
-      <product>neuregulin 1 isoform SMDF</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>DECR</gene_id>
+      <product>TNF-related apoptosis-inducing ligand receptor 3</product>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>DQ384441.1</accession>
-      <gene_id>NBS1</gene_id>
-      <product>neuregulin 1 isoform SMDF</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>DECR</gene_id>
+      <product>TNF-related apoptosis-inducing ligand receptor 3</product>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>DQ384442.1</accession>
-      <gene_id>NBS1</gene_id>
-      <product>basic helix-loop-helix protein 5</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>DECR</gene_id>
+      <product>telomeric repeat binding factor 1</product>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>DQ422139.1</accession>
       <gene_id>DECR</gene_id>
-      <product>basic helix-loop-helix protein 5</product>
-      <location> Homo sapiens (human) </location>
+      <product>telomeric repeat binding factor 1</product>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>DQ422140.1</accession>
       <gene_id>DECR</gene_id>
-      <product>TNF-related apoptosis-inducing ligand receptor 3</product>
-      <location> Homo sapiens (human) </location>
+      <product>telomeric repeat binding factor 1</product>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>DQ422141.1</accession>
       <gene_id>DECR</gene_id>
-      <product>TNF-related apoptosis-inducing ligand receptor 3</product>
-      <location> Homo sapiens (human) </location>
+      <product>myelin P2 protein</product>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>DQ422142.1</accession>
       <gene_id>DECR</gene_id>
-      <product>telomeric repeat binding factor 1</product>
-      <location> Homo sapiens (human) </location>
+      <product>myelin P2 protein</product>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>DQ422143.1</accession>
-      <gene_id>DECR</gene_id>
-      <product>telomeric repeat binding factor 1</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>CALB1</gene_id>
+      <product>5-oxo-L-prolinase</product>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>DQ821473.1</accession>
-      <gene_id>DECR</gene_id>
-      <product>telomeric repeat binding factor 1</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>CALB1</gene_id>
+      <product>5-oxo-L-prolinase</product>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>EF094937.1</accession>
-      <gene_id>DECR</gene_id>
-      <product>myelin P2 protein</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>CALB1</gene_id>
+      <product>voltage-dependent anion channel VDAC3</product>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>EF453363.1</accession>
-      <gene_id>DECR</gene_id>
-      <product>myelin P2 protein</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>CALB1</gene_id>
+      <product>voltage-dependent anion channel VDAC3</product>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>EF453364.1</accession>
       <gene_id>CALB1</gene_id>
-      <product>5-oxo-L-prolinase</product>
-      <location> Homo sapiens (human) </location>
+      <product>carbonic anhydrase</product>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>EU236683.1</accession>
-      <gene_id>CALB1</gene_id>
-      <product>5-oxo-L-prolinase</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>HBD2</gene_id>
+      <product>lysosomal apyrase-like protein (LALP70)</product>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>EU360452.1</accession>
-      <gene_id>CALB1</gene_id>
-      <product>voltage-dependent anion channel VDAC3</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>HBD2</gene_id>
+      <product>IkappaBR</product>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>EU391644.1</accession>
-      <gene_id>CALB1</gene_id>
-      <product>voltage-dependent anion channel VDAC3</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>HBD2</gene_id>
+      <product>RPB10alpha</product>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>EU391645.1</accession>
-      <gene_id>CALB1</gene_id>
-      <product>carbonic anhydrase</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>KCNQ3</gene_id>
+      <product>arylamine N-acetyltransferase-1</product>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>EU391646.1</accession>
-      <gene_id>HBD2</gene_id>
-      <product>lysosomal apyrase-like protein (LALP70)</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>KCNQ3</gene_id>
+      <product>putative myotubularin related protein 8</product>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>EU391647.1</accession>
-      <gene_id>HBD2</gene_id>
-      <product>IkappaBR</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>KCNQ3</gene_id>
+      <product>arylamine N-acetyltransferase 1</product>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>EU391648.1</accession>
-      <gene_id>HBD2</gene_id>
-      <product>RPB10alpha</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>KCNQ3</gene_id>
+      <product>beta-defensin 4</product>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>EU391649.1</accession>
       <gene_id>KCNQ3</gene_id>
-      <product>arylamine N-acetyltransferase-1</product>
-      <location> Homo sapiens (human) </location>
+      <product>beta-defensin 4</product>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>EU391650.1</accession>
-      <gene_id>KCNQ3</gene_id>
-      <product>putative myotubularin related protein 8</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>NAT1</gene_id>
+      <product>hypothetical protein</product>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>EU391651.1</accession>
-      <gene_id>KCNQ3</gene_id>
-      <product>arylamine N-acetyltransferase 1</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>NAT1</gene_id>
+      <product>steroid 11-beta-hydroxylase</product>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>EU391652.1</accession>
-      <gene_id>KCNQ3</gene_id>
-      <product>beta-defensin 4</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>NAT1</gene_id>
+      <product>phosphodiesterase 7A</product>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>FR695902.1</accession>
-      <gene_id>KCNQ3</gene_id>
-      <product>beta-defensin 4</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>JH8</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>GU201906.1</accession>
-      <gene_id>NAT1</gene_id>
-      <product>hypothetical protein</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>JH8</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>14q32</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>J00123.1</accession>
+      <gene_id>SRD5A1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>J00317.1</accession>
+      <gene_id>SRD5A1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>J03890.1</accession>
+      <gene_id>SRD5A1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>14q32</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>JQ411654.1</accession>
-      <gene_id>NAT1</gene_id>
-      <product>steroid 11-beta-hydroxylase</product>
-      <location> Homo sapiens (human) </location>
+      <gene_id>SRD5A1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>t(8;14)(q24;q32)</location>
    </gene_identifiers>
    <gene_identifiers>
       <accession>JQ511945.1</accession>
+      <gene_id>SRD5A1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>K03021.1</accession>
+      <gene_id>SRD5A1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>14q32</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>L31529.1</accession>
       <gene_id>NAT1</gene_id>
-      <product>phosphodiesterase 7A</product>
-      <location> Homo sapiens (human) </location>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>M29053.1</accession>
+      <gene_id>NAT1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U10526.1</accession>
+      <gene_id>NAT1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>14q32</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U16860.1</accession>
+      <gene_id>NAT1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U18745.1</accession>
+      <gene_id>NAT1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U23052.1</accession>
+      <gene_id>NAT1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>14q32</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U23434.1</accession>
+      <gene_id>SLUG</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U28835.1</accession>
+      <gene_id>SLUG</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U29105.1</accession>
+      <gene_id>SLUG</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>14q32</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U32674.1</accession>
+      <gene_id>FEZ1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U42359.1</accession>
+      <gene_id>FEZ1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U42360.1</accession>
+      <gene_id>FEZ1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>14q32</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U49691.1</accession>
+      <gene_id>MYBL1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U50133.1</accession>
+      <gene_id>MYBL1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U50931.1</accession>
+      <gene_id>MYBL1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>14q32</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U53473.1</accession>
+      <gene_id>MYBL1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U63610.1</accession>
+      <gene_id>MYBL1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U63630.4</accession>
+      <gene_id>MYBL1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>14q32</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U66579.1</accession>
+      <gene_id>RP1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U66711.1</accession>
+      <gene_id>RP1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U66837.1</accession>
+      <gene_id>RP1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>14q32</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U70539.1</accession>
+      <gene_id>RP1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U70732.1</accession>
+      <gene_id>CYP7B1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U78302.1</accession>
+      <gene_id>CYP7B1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>14q32</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U85252.1</accession>
+      <gene_id>CYP7B1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U86283.1</accession>
+      <gene_id>CYP7B1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U86284.1</accession>
+      <gene_id>IMPA1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>14q32</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U86285.1</accession>
+      <gene_id>IMPA1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U86286.1</accession>
+      <gene_id>IMPA1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U86287.1</accession>
+      <gene_id>WRN</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>14q32</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U90415.1</accession>
+      <gene_id>WRN</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U94174.1</accession>
+      <gene_id>WRN</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>U96629.1</accession>
+      <gene_id>WRN</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>14q32</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>X00364.2</accession>
+      <gene_id>CBFA2T1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>X15215.1</accession>
+      <gene_id>CBFA2T1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>X72861.1</accession>
+      <gene_id>CBFA2T1</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>14q32</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>X74614.1</accession>
+      <gene_id>Em:AF233439.6</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>X77531.1</accession>
+      <gene_id>Em:AF233439.6</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>X78351.1</accession>
+      <gene_id>DEFA6</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>14q32</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>X82554.1</accession>
+      <gene_id>DEFA6</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>X97367.1</accession>
+      <gene_id>DEFA6</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>Y08831.1</accession>
+      <gene_id>DEFA6</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>14q32</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>Y10260.1</accession>
+      <gene_id>DEFA6</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>Y11360.1</accession>
+      <gene_id>Em:AF200455.3</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>Y12642.1</accession>
+      <gene_id>Em:AF200455.3</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>14q32</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>Z11901.1</accession>
+      <gene_id>Em:AF200455.3</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>t(8;14)(q24;q32)</location>
+   </gene_identifiers>
+   <gene_identifiers>
+      <accession>Z54367.1</accession>
+      <gene_id>Em:AF200455.3</gene_id>
+      <product>N-acylsphingosine amidohydrolase 1</product>
+      <location>8q24</location>
    </gene_identifiers>
 </gene>
