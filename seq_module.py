@@ -37,6 +37,8 @@ V1.2            21.04.18    Combined translate function         JJS
 V1.2            24.04.18    Debugging of exon annotation        JJS
 V1.3            26.04.18    Simplified parameters               JJS
 V1.4            01.05.18    Debugging/unkn bp, exon boundaries  JJS
+V1.5            07.05.18    Linking to data access scripts      JJS
+                            Changing coding info scripts        JJS
 """
 #*****************************************************************************
 # Import libraries
@@ -44,6 +46,8 @@ V1.4            01.05.18    Debugging/unkn bp, exon boundaries  JJS
 
 import re
 import sys
+from data_access import seq_query
+from data_access import coding_query
 
 #****************************************************************************
 
@@ -72,33 +76,45 @@ def help():
 #**********************************************************************************
 
 def getSeq(acc):
-    """Return genomic sequence, exon list and coding start.
+    """Query database for  genomic sequence and test for valid sequence.
     Input           acc                 Accession ID
     Output          gen_seq             Genomic dna sequence
-                    exon_list           List of exon boundaries
-                    code_start          Codon start point
     """
+
     ## use pymysql script with accession number to access database for 'sequence'
-    # gene = sequence[0]
-    ## check to see accession number requested matches return
-    ## extract sequence
-    # if gene == acc:
-    #    seq = sequence[1]
-    # else:
-    #   print('Error: Sequence not found')
-    #   exit(0)
+    results = seq_query.seq_query(acc)
+
+    # ## check to see accession number requested matches return
+    # ## extract sequence
+    gene = results[0]
+    if gene == acc:
+        seq = results[1]
+    else:
+        print('Error: Sequence not found')
+        exit(0)
 
     ## check to see if sequence is valid (made up of valid nucleotide symbols (a,c,t,g,n)
-    # nucleotides = {'a': True, 'c': True, 't': True, 'g': True, 'n': True}
-    # for letter in seq:
-    #     try:
-    #         nucleotides[letter]
-    #     except KeyError:
-    #         print('Sequence not valid')
-    #         exit(0)
+    nucleotides = {'a': True, 'c': True, 't': True, 'g': True, 'n': True}
+    for letter in seq:
+        try:
+            nucleotides[letter]
+        except KeyError:
+            print('Sequence not valid')
+            exit(0)
 
 
-    return gen_seq, exon_list, code_start
+    return results
+
+#**********************************************************************************
+
+def getCoding(acc):
+    """Return genomic sequence, exon list and coding start.
+        Input           acc                 Accession ID
+        Output          gen_seq             Genomic dna sequence
+                        exon_list           List of exon boundaries
+                        code_start          Codon start point
+        """
+
 
 #****************************************************************************
 
@@ -109,30 +125,13 @@ def numSequence(acc):
     Output              num_seq             Dictionary of numbered bp for requested sequence
     """
     ## use function, getSeq(acc) to get sequence info from pymysql script
-    # seq_info = getSeq(acc)
-    # seq = seq_info[0]
-
-    ## dummy sequence until have data
-    # with open ('AB007516.1_out.txt', 'r') as f:
-    #     file = f.read().splitlines()
-    # f.close()
-    # seq = ''
-    # for x in file:
-    #     seq += x
-    seq = 'atggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacgagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaa'
+    seq_info = getSeq(acc)
+    acc = seq_info[0]
+    seq = seq_info[1]
 
     ## format sequence in unbroken, uppercase form
     seq = seq.replace(' ', '')
     seq = seq.upper()
-
-    ## test to make sure sequence is made of valid nucleotides or 'n' (once we have real data can happen in getSeq function)
-    nucleotides = {'A': True, 'C': True, 'T': True, 'G': True, 'N': True}
-    for letter in seq:
-        try:
-            nucleotides[letter]
-        except KeyError:
-            print('Sequence not valid')
-            exit(0)
 
     num_seq = {}
     count = 0
@@ -149,52 +148,47 @@ def annotateSeq(acc):
 
     Output              exon_seq            Annotated sequence with inserted *exon/exon* boundaries (string)
     """
-    ## use function, getSeq(acc) to get sequence info from pymysql script
-    # seq_info      = getSeq(acc)
-    # seq           = seq_info[1]
-    # exon_list     = seq_info[2]
 
-    # ## dummy sequence until have data
-    # with open ('AB007516.1_out.txt', 'r') as f:
-    #     file = f.read().splitlines()
-    # f.close()
-    # seq = ''
-    # for x in file:
-    #     seq += x
-    seq = 'tgaaaggaccagttcgaatgcctaccaaggtaaagtaaatcggaggggcaggaagtaggagttgcttccggatgttgcataaattcaggttctttaaggagttcggctgcccaaaattgttaacactgatgctgtctacaaacgcacatagaaatcggtggtagattgcggttcctagtaagtagctaatgtttagatatgattgttgaattattgttgctgtgttcttggtgtgcttnggtgcttaacaggcgcaagctctaagggtggtgtcctagcacagtgaaaacagacctggcattttcaacccatggtacctgaaaatctattagtgtaaattggaatcataccaaagggaaactaatgaaatgattagaagtaatgattttccagatgttctagggataagtataaaacgataaacacttggtttcctttgtcttttgttacagactttgagaatcactacaagaaaaactccttgtggtgaaggttctaagacgtgggatcgtttccagatgagaattcacaagcgactcattgacttgcacagtccttctgagattgttaagcagattacttccatcagtattgagccaggagttga'
-    #seq = 'atggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacgagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaa'
-    #exon_list = [('AB371373.1', 2125, 2215), ('AB371373.1', 3642, 3728), ('AB371373.1', 6222, 6300),
-     #            ('AB371373.1', 9012, 9086), ('AB371373.1', 10313, 10358), ('AB371373.1', 11120, 11264)]
-    #exon_list = [('U16860.1', 1, 219)]
-    exon_list = [('AB007516.1', 1, 29), ('AB007516.1', 453, 607)]
+    ## use function, getSeq(acc) to get sequence info from pymysql script
+    seq_info    = getSeq(acc)
+    acc         = seq_info[0]
+    seq         = seq_info[1]
 
     ## format sequence into unbroken uppercase string
     seq = seq.replace(' ', '')
     seq = seq.upper()
 
-    ## test to make sure sequence is made of valid nucleotides or 'N' (once we have real data can happen in getSeq function)
-    nucleotides = {'A': True, 'C': True, 'T': True, 'G': True, 'N': True}
-    for letter in seq:
-        try:
-            nucleotides[letter]
-        except KeyError:
-            print('Sequence not valid')
-            exit(0)
+    ## use getCoding(acc) function to get code start and exon boundaries from pymysql script
+    code_info       = coding_query.coding_query(acc)
+    gene            = code_info[0]
 
+    code_start  = code_info[1]
+    positions   = code_info[2]
+
+    ## use regex to extract exon boundaries
+    p = re.compile(r'\d+')
+    exon_list = p.findall(positions)
+
+    ## make list of start/end pairs
+    new_list = []
+    for i in range(0, len(exon_list),2):
+        exon_pair  = (int(exon_list[i]), int(exon_list[i+1]))
+        new_list.append(exon_pair)
+   
     ## create new sequence string and identify index for exon start and end
     exon_seq        = ''
     base_count      = 0
-    if exon_list   != None:
+    if new_list   != None:
         for base in seq:
             base_count  += 1
             exon_seq    += base
-            for x in exon_list:
-                start   = (x[1]) -1         #correction for indexing
-                end     = x[2]
-                ## insert 'exon' markers at start/end of exons
-                if base_count == start:
+            for pair in new_list:
+                exon_start = (pair[0]) -1           #correction for indexing
+                exon_end = pair[1]
+            ## insert 'exon' markers at start/end of exons
+                if base_count == exon_start:
                     exon_seq += '*exon'
-                elif base_count == end:
+                elif base_count == exon_end:
                     exon_seq += 'exon*'
     else:
         exon_seq = seq
@@ -208,6 +202,12 @@ def codingSeq(acc):
 
     Output          coding_seq          Coding sequence
     """
+
+    ## use function, getSeq(acc) to get sequence info from pymysql script
+    seq_info = coding_query(acc)
+    acc = seq_info[0]
+    seq = seq_info[1]
+
 
     # use function, getSeq(acc) to get sequence info from pymysql script (not sure of final output)
     #seq_info       = getSeq(acc)
@@ -345,11 +345,12 @@ def enz_cut(acc, seq=None, enzyme=None):
     ## sequence parameter will be utilised when checking coding sequence in 'getEnzymes' program
     if seq == None:
         ## use function, getSeq(acc) to get sequence info from pymysql script
-        # seq_info = getSeq(acc)
-        # seq = seq_info[1]
+        seq_info = getSeq(acc)
+        acc = seq_info[0]
+        seq = seq_info[1]
 
         ## dummy sequence
-        seq = 'atggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacgagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaa'
+        #seq = 'atggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacgagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaa'
         #seq = 'tgaaaggaccagttcgaatgcctaccaaggtaaagtaaatcggaggggcaggaagtaggagttgcttccggatgttgcataaattcaggttctttaaggagttcggctgcccaaaattgttaacactgatgctgtctacaaacgcacatagaaatcggtggtagattgcggttcctagtaagtagctaatgtttagatatgattgttgaattattgttgctgtgttcttggtgtgcttnggtgcttaacaggcgcaagctctaagggtggtgtcctagcacagtgaaaacagacctggcattttcaacccatggtacctgaaaatctattagtgtaaattggaatcataccaaagggaaactaatgaaatgattagaagtaatgattttccagatgttctagggataagtataaaacgataaacacttggtttcctttgtcttttgttacagactttgagaatcactacaagaaaaactccttgtggtgaaggttctaagacgtgggatcgtttccagatgagaattcacaagcgactcattgacttgcacagtccttctgagattgttaagcagattacttccatcagtattgagccaggagttga'
         # with open('AB007516.1_out.txt', 'r') as f:
         #     file = f.read().splitlines()
@@ -456,11 +457,11 @@ def getEnzyme(acc, enzyme=None):
 if __name__ == "__main__":
 
 ## dummy data
-    gene = 'AB007516.1'
+    gene = 'AB000381.1'
 
 ## get genomic sequence
     line_seq = numSequence(gene)
-    #print(line_seq)
+    print(line_seq)
 
 ## print divided into numbered rows of 60
     # for i in range(1, len(line_seq), 60):
@@ -474,6 +475,7 @@ if __name__ == "__main__":
 ## get annotated sequence with exon boundaries indicated
     ann_seq = annotateSeq(gene)
     print(ann_seq)
+
 ## get coding sequence
     code_seq = codingSeq(gene)
     print(code_seq)
