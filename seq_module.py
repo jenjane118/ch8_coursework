@@ -115,6 +115,25 @@ def getCoding(acc):
                         code_start          Codon start point
         """
 
+    ## use getCoding(acc) function to get code start and exon boundaries from pymysql script
+    code_info   = coding_query.coding_query(acc)
+    gene        = code_info[0]
+    code_start  = code_info[1]
+    positions   = code_info[2]
+
+    ## use regex to extract exon boundaries
+    p = re.compile(r'\d+')
+    exon_list = p.findall(positions)
+
+    ## make list of start/end pairs
+    new_list = []
+    for i in range(0, len(exon_list),2):
+        exon_pair  = (int(exon_list[i]), int(exon_list[i+1]))
+        new_list.append(exon_pair)
+
+    coding_dict = {gene: (code_start, new_list)}
+
+    return coding_dict
 
 #****************************************************************************
 
@@ -174,7 +193,8 @@ def annotateSeq(acc):
     for i in range(0, len(exon_list),2):
         exon_pair  = (int(exon_list[i]), int(exon_list[i+1]))
         new_list.append(exon_pair)
-   
+
+
     ## create new sequence string and identify index for exon start and end
     exon_seq        = ''
     base_count      = 0
@@ -204,49 +224,23 @@ def codingSeq(acc):
     """
 
     ## use function, getSeq(acc) to get sequence info from pymysql script
-    seq_info = coding_query(acc)
-    acc = seq_info[0]
-    seq = seq_info[1]
-
-
-    # use function, getSeq(acc) to get sequence info from pymysql script (not sure of final output)
-    #seq_info       = getSeq(acc)
-    #seq            = seq_info[0]
-    #exon_list      = seq_info[1]
-    #codon_start    = seqinfo[2]
-
-
-    dummy_tuples = [('AB007516.1', 3, 1,29),('AB007516.1', 3, 453, 607)]
-    ## dummy sequences and exon boundaries until have data
-    #seq = 'atggcggcgctgtgtcggacccgtgctgggggtaggcgcgcgcgcgcgcggtaggcactgagagtggtacatatttttagggatatcgctcgagagagagagacacacacacacaccacaccacaatatattatattatattagggagaggaatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacgagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaa'
-    seq = 'tgaaaggaccagttcgaatgcctaccaaggtaaagtaaatcggaggggcaggaagtaggagttgcttccggatgttgcataaattcaggttctttaaggagttcggctgcccaaaattgttaacactgatgctgtctacaaacgcacatagaaatcggtggtagattgcggttcctagtaagtagctaatgtttagatatgattgttgaattattgttgctgtgttcttggtgtgcttnggtgcttaacaggcgcaagctctaagggtggtgtcctagcacagtgaaaacagacctggcattttcaacccatggtacctgaaaatctattagtgtaaattggaatcataccaaagggaaactaatgaaatgattagaagtaatgattttccagatgttctagggataagtataaaacgataaacacttggtttcctttgtcttttgttacagactttgagaatcactacaagaaaaactccttgtggtgaaggttctaagacgtgggatcgtttccagatgagaattcacaagcgactcattgacttgcacagtccttctgagattgttaagcagattacttccatcagtattgagccaggagttga'
-    #exon_list = [('AB007516.1', 1, 29), ('AB007516.1', 453, 607)]
-    #with open('AB007516.1_out.txt', 'r') as f:
-    #    file = f.read().splitlines()
-    #f.close()
-    #seq = ''
-    #for x in file:
-    #seq += x
-    #exon_list = [('AB371373.1', 2125, 2215), ('AB371373.1', 3642, 3728), ('AB371373.1', 6222, 6300), ('AB371373.1', 9012, 9086), ('AB371373.1', 10313, 10358), ('AB371373.1', 11120, 11264)]
-    #exon_list = [('U16860.1', 1, 219)]
-    #exon_list = [('AB007516.1', 1, 29), ('AB007516.1', 453, 607)]
-    #codon_start = 3        # will be 1,2 or 3
-    info_list = []
-    codon_start = 0
-    exon = ()
-    exon_list = []
-    for x in dummy_tuples:
-        info_list.append(x)
-    print(info_list)
-    for x in info_list:
-        acc = x[0]
-        codon_start = x[1]
-        exon = (x[2:])
-        exon_list.append(exon)
+    seq_info = getSeq(acc)
+    seq_gene = seq_info[0]
+    seq      = seq_info[1]
 
     ## reformat sequence into unbroken uppercase string
     seq = seq.replace(' ', '')
     seq = seq.upper()
+
+    ## use getCoding(acc) function to get code start and exon boundaries from pymysql script
+    coding      = getCoding(acc)
+    try:
+        coding[seq_gene]
+        codon_start = coding[seq_gene][0]
+        exon_list   = coding[seq_gene][1]
+    except KeyError:
+        print('Gene not found.')
+        exit(0)
 
     ## assemble coding sequence by using exon boundaries as index start/end
     if exon_list       != None:
@@ -456,8 +450,9 @@ def getEnzyme(acc, enzyme=None):
 
 if __name__ == "__main__":
 
-## dummy data
     gene = 'AB000381.1'
+    coding = getCoding(gene)
+    print(coding)
 
 ## get genomic sequence
     line_seq = numSequence(gene)
