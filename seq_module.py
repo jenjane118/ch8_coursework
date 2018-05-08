@@ -86,8 +86,9 @@ def getSeq(acc):
     gen_seq = seq_query.seq_query(acc)
 
 
-    # ## check to see accession number requested matches return
-    # ## extract sequence
+    ## check to see accession number requested matches return
+    ## extract sequence
+
     try:
         gene = gen_seq[0]
     except TypeError:
@@ -96,8 +97,8 @@ def getSeq(acc):
     if gene == acc:
         seq = gen_seq[1]
     else:
-        print('Error: Sequence not found')
-        exit(0)
+        #print('Error: Sequence not found')
+        #exit(0)
 
     ## check to see if sequence is valid (made up of valid nucleotide symbols (a,c,t,g,n)
     nucleotides = {'a': True, 'c': True, 't': True, 'g': True, 'n': True}

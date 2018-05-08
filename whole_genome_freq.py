@@ -41,6 +41,7 @@ V1.3           4.05.18          added bias function     JJS
 import gene_module
 import seq_module
 import codon_usage
+from data_access import list_query
 
 from xml.dom import minidom
 
@@ -71,35 +72,43 @@ def total_usage():
                                                         Dictionary of codon: ratio, percent usage statistics
 
     """
+    genbank = list_query.genbank_query()
+    for gene in genbank:
+        acc = gene[0]
+        genid = gene[1]
+        product = gene[2]
+        location = gene[3]
 
-    ## once we have data from database:
-    ## Create a dictionary of gene objects
-    #object_dict = {}
+        ## Uses initialisation function to create a gene object for each listing from database
+        gene_object = gene_module.Gene(acc, genid, product, location)
 
-    #for object in gene_module.Gene._registry:
-    #    object_dict = gene_module.Gene.geneList(object)
-    #    for k in object_dict:
-    #        gene = object_dict[k]
-    ## use coding seq function to determine coding sequence for each gene
-    #        see below--all should be nested
-
-    gene = 'AB371373.1'     # dummy gene
-    #coding_dna = seq_module.codingSeq(gene)
-    ## dummy data for display
-    coding_dna = 'atggcggcgctgtgtcggacccgtgctgggggtaggcgcgcgcgcgcgcggtaggcactgagagtggtacatatttttagggatatcgctcgagagagagagacacacacacacaccacaccacaatatattatattatattagggagaggaatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacgagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaa'
-        ##  call function to determine codon frequency for each gene
-    codon_table = codon_usage.codonFreq(coding_dna)
-        ##  add each to total codon frequency dictionary
+    object_dict = {}  # individual object dictionary of identifiers
+    chrom_dict = {}  # chromosome dictionary of all gene objects
     total_freq = {}
-    for key in codon_table:
-        if key in total_freq:
-            total_freq[key] += codon_table[key]
-        else:
-            total_freq[key] = codon_table[key]
+    ## Create a dictionary of gene objects
+    for object in gene_module.Gene._registry:
+        object_dict = gene_module.Gene.geneList(object)
 
+        ## use coding seq function to determine coding sequence for each gene
+        for k, v in object_dict.items():
+            chrom_dict[k] = v
+
+    for k in chrom_dict:
+        coding_dna = seq_module.codingSeq(k)
+
+        ##  call function to determine codon frequency for each gene
+        codon_table = codon_usage.codonFreq(coding_dna)
+
+        ##  add each to total codon frequency dictionary
+        for key in codon_table:
+            if key in total_freq:
+                total_freq[key] += codon_table[key]
+            else:
+                total_freq[key] = codon_table[key]
+
+    print(total_freq)
     ## calculate codon usage ratio for whole genome (returns dictionary, 'whole_genome_ratio')
     gene = 'total'
-
     whole_genome_ratio = codon_usage.usageRatio(total_freq)
 
     SynCodons = {
@@ -156,8 +165,7 @@ def codon_compare(acc):
     """
 
     # for gene of interest
-    gene = 'AB371373.1'
-    results = codon_usage.getCodonusage(gene)
+    results = codon_usage.getCodonusage(acc)
     gene_stats = results[1]
 
     codons_dictionary = total_usage()
@@ -184,7 +192,7 @@ if __name__ =="__main__":
     print(codons_dictionary[0])
     print(codons_dictionary[1])
 
-    gene = 'test'
+    gene = 'AB000381.1'
     results = codon_compare(gene)
 
     for x in results:

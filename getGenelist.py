@@ -48,8 +48,6 @@ from data_access import list_query
 #******************************************************************************
 ## Main Program ##
 
-##  once we have database parser up and running will import python object (tuple)
-
 genbank = list_query.genbank_query()
 
 for gene in genbank:
@@ -61,12 +59,6 @@ for gene in genbank:
 ## Uses initialisation function to create a gene object for each listing from database
     gene_object = gene_module.Gene(acc, genid, product, location)
 
-## dummy data:
-# genbank =[('AB061209', 'MRPS28', 'mitochondrial ribosomal protein s28', '8q21.1-q21.2'),
-#             ('AB098765', 'genid1', 'product1', 'location1'),
-#             ('AC012345', 'genid2', 'product2', 'location2'),
-#             ('AC034567', 'genid3', 'product3', 'location3'),
-#             ('AR456789', 'genid4', 'product4', 'location4')]
 
 object_dict = {}         #individual object dictionary of identifiers
 chrom_dict  = {}         #chromosome dictionary of all gene objects
