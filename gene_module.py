@@ -11,6 +11,8 @@ Date:       15.03.18
 Function:   Create gene object for genbank database
 
 Author:     Jennifer J. Stiens
+            j.j.stiens@gmail.com
+            
 
 Course:     MSc Bioinformatics, Birkbeck University of London
             Biocomputing2 Coursework Assignment
