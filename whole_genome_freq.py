@@ -12,6 +12,8 @@ Date:           18.04.18
 Function:       Returns codon usage ratio and percentage for entire chromosome.
 
 Author:         Jennifer J Stiens
+                j.j.stiens@gmail.com
+                https://github.com/jenjane118/ch8_coursework
 
 Course:         MSc Bioinformatics, Birkbeck University of London
                 Biocomputing 2 Coursework

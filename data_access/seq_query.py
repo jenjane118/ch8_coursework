@@ -10,6 +10,8 @@ Date:       07.05.18
 Function:   Query database for sequence for a specific gene using accession number
 
 Author:     Jennifer J. Stiens
+            j.j.stiens@gmail.com
+            https://github.com/jenjane118/ch8_coursework
 
 Course:     MSc Bioinformatics, Birkbeck University of London
             Biocomputing2 Coursework Assignment

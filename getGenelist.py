@@ -11,6 +11,8 @@ Date:       15.03.18
 Function:   Retrieve all gene identifier info for every gene from database and returns as a list
 
 Author:     Jennifer J. Stiens
+            j.j.stiens@gmail.com
+            https://github.com/jenjane118/ch8_coursework
 
 Course:     MSc Bioinformatics, Birkbeck University of London
             Biocomputing2 Coursework Assignment

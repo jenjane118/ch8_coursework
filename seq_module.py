@@ -9,7 +9,10 @@ File:           Seq_module.py
 Version:        1.0
 Date:           22.03.18
 Function:       Includes all sequence-related functions.
+
 Author:         Jennifer J Stiens
+                j.j.stiens@gmail.com
+                https://github.com/jenjane118/ch8_coursework
 
 Course:         MSc Bioinformatics, Birkbeck University of London
                 Biocomputing 2 Coursework

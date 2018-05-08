@@ -11,6 +11,8 @@ Date:           22.03.18
 Function:       Module for calculating codon frequency,codon usage ratio and percentage for a particular sequence.
 
 Author:         Jennifer J Stiens
+                j.j.stiens@gmail.com
+                https://github.com/jenjane118/ch8_coursework
 
 Course:         MSc Bioinformatics, Birkbeck University of London
                 Biocomputing 2 Coursework

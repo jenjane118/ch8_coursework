@@ -11,6 +11,8 @@ Date:       07.05.18
 Function:   Query database for genebank identifiers for all genes on human chromosome 8
 
 Author:     Jennifer J. Stiens
+            j.j.stiens@gmail.com
+            https://github.com/jenjane118/ch8_coursework
 
 Course:     MSc Bioinformatics, Birkbeck University of London
             Biocomputing2 Coursework Assignment
@@ -20,10 +22,11 @@ _____________________________________________________________________________
 Description:
 ============
 This program will access database using pymysql to obtain list of all genes and gene identifiers from chromosome 8.
+Returns tuples containing four identifiers (accession number, gene name, product, chromosomal location).
 
 Usage:
 ======
-list_query       ACC
+list_query
 
 
 Revision History:

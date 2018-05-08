@@ -12,6 +12,7 @@ Function:   Create gene object for genbank database
 
 Author:     Jennifer J. Stiens
             j.j.stiens@gmail.com
+            https://github.com/jenjane118/ch8_coursework
             
 
 Course:     MSc Bioinformatics, Birkbeck University of London
