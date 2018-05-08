@@ -86,19 +86,18 @@ def getSeq(acc):
     gen_seq = seq_query.seq_query(acc)
 
 
-    ## check to see accession number requested matches return
+    ## check to see accession number requested is found in database
+    ## (if using test set of sequences, not all accession numbers are present)
     ## extract sequence
-
     try:
         gene = gen_seq[0]
     except TypeError:
-        print('Gene not found in database')
-        exit(0)
-    if gene == acc:
+        gene = 'not found'
+    try:
+        gene == acc
         seq = gen_seq[1]
-    else:
-        print('Error: Sequence not found')
-        exit(0)
+    except TypeError:
+        seq = 'nnn'
 
     ## check to see if sequence is valid (made up of valid nucleotide symbols (a,c,t,g,n)
     nucleotides = {'a': True, 'c': True, 't': True, 'g': True, 'n': True}
@@ -122,9 +121,14 @@ def getCoding(acc):
 
     ## use getCoding(acc) function to get code start and exon boundaries from pymysql script
     code_info   = coding_query.coding_query(acc)
-    gene        = code_info[0]
-    code_start  = code_info[1]
-    positions   = code_info[2]
+    try:
+        gene        = code_info[0]
+        code_start = code_info[1]
+        positions = code_info[2]
+    except TypeError:
+        gene        = 'not found'
+        code_start  = 1
+        positions   = ''
 
     ## use regex to extract exon boundaries
     p = re.compile(r'\d+')
@@ -220,9 +224,14 @@ def codingSeq(acc):
     """
 
     ## use function, getSeq(acc) to get sequence info from pymysql script
+    ## (if using test set of sequences, not all accession numbers are present)
     seq_info = getSeq(acc)
-    seq_gene = seq_info[0]
-    seq      = seq_info[1]
+    try:
+        seq_gene = seq_info[0]
+        seq      = seq_info[1]
+    except TypeError:
+        seq_gene    = 'not found'
+        seq         = 'nnn'
 
     ## reformat sequence into unbroken uppercase string
     seq = seq.replace(' ', '')
@@ -234,7 +243,7 @@ def codingSeq(acc):
         coding[seq_gene]
         codon_start = coding[seq_gene][0]
         exon_list   = coding[seq_gene][1]
-    except KeyError:
+    except TypeError:
         print('Gene not found.')
         exit(0)
 
