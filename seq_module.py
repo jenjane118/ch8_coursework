@@ -82,13 +82,13 @@ def getSeq(acc):
     """
 
     ## use pymysql script with accession number to access database for 'sequence'
-    results = seq_query.seq_query(acc)
+    gen_seq = seq_query.seq_query(acc)
 
     # ## check to see accession number requested matches return
     # ## extract sequence
-    gene = results[0]
+    gene = gen_seq[0]
     if gene == acc:
-        seq = results[1]
+        seq = gen_seq[1]
     else:
         print('Error: Sequence not found')
         exit(0)
@@ -102,17 +102,15 @@ def getSeq(acc):
             print('Sequence not valid')
             exit(0)
 
-
-    return results
+    return gen_seq
 
 #**********************************************************************************
 
 def getCoding(acc):
-    """Return genomic sequence, exon list and coding start.
+    """Return genomic sequence, codon start, exon positions.
         Input           acc                 Accession ID
-        Output          gen_seq             Genomic dna sequence
-                        exon_list           List of exon boundaries
-                        code_start          Codon start point
+        Output          coding_dict         {acc: codon start, exon positions}
+
         """
 
     ## use getCoding(acc) function to get code start and exon boundaries from pymysql script
@@ -170,7 +168,7 @@ def annotateSeq(acc):
 
     ## use function, getSeq(acc) to get sequence info from pymysql script
     seq_info    = getSeq(acc)
-    acc         = seq_info[0]
+    seq_gene    = seq_info[0]
     seq         = seq_info[1]
 
     ## format sequence into unbroken uppercase string
@@ -178,31 +176,22 @@ def annotateSeq(acc):
     seq = seq.upper()
 
     ## use getCoding(acc) function to get code start and exon boundaries from pymysql script
-    code_info       = coding_query.coding_query(acc)
-    gene            = code_info[0]
-
-    code_start  = code_info[1]
-    positions   = code_info[2]
-
-    ## use regex to extract exon boundaries
-    p = re.compile(r'\d+')
-    exon_list = p.findall(positions)
-
-    ## make list of start/end pairs
-    new_list = []
-    for i in range(0, len(exon_list),2):
-        exon_pair  = (int(exon_list[i]), int(exon_list[i+1]))
-        new_list.append(exon_pair)
-
+    coding = getCoding(acc)
+    try:
+        coding[seq_gene]
+        exon_list = coding[seq_gene][1]
+    except KeyError:
+        print('Gene not found.')
+        exit(0)
 
     ## create new sequence string and identify index for exon start and end
     exon_seq        = ''
     base_count      = 0
-    if new_list   != None:
+    if exon_list   != None:
         for base in seq:
             base_count  += 1
             exon_seq    += base
-            for pair in new_list:
+            for pair in exon_list:
                 exon_start = (pair[0]) -1           #correction for indexing
                 exon_end = pair[1]
             ## insert 'exon' markers at start/end of exons
@@ -343,16 +332,6 @@ def enz_cut(acc, seq=None, enzyme=None):
         acc = seq_info[0]
         seq = seq_info[1]
 
-        ## dummy sequence
-        #seq = 'atggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacgagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaaatggcggcgctgtgtcggacccgtgctgtggctgccgagagccattttctgcgagtgtttctcttcttcaggccctttcggggtgtaggcactgagagtggatccgaaagtggtagttccaatgccaaggagcctaagacgcgcgcaggcggtttcgcgagcgcgttggagcggcactcggagcttctacagaaggtggagcccctacagaagggttctccaaaaaatgtggaatcctttgcatctatgctgagacattctcctcttacacagatgggacctgcaaaggataaactggtcattggacggatctttcatattgtggagaatgatctgtacatagattttggtggaaagtttcattgtgtatgtagaagaccagaagtggatggagagaaataccagaaaggaaccagggtccggttgcggctattagatcttgaacttacgtctaggttcctgggagcaacaacagatacaactgtactagaggctaatgcagttctcttgggaatccaggagagtaaagactcaagatcgaaagaagaacatcatgaaaaa'
-        #seq = 'tgaaaggaccagttcgaatgcctaccaaggtaaagtaaatcggaggggcaggaagtaggagttgcttccggatgttgcataaattcaggttctttaaggagttcggctgcccaaaattgttaacactgatgctgtctacaaacgcacatagaaatcggtggtagattgcggttcctagtaagtagctaatgtttagatatgattgttgaattattgttgctgtgttcttggtgtgcttnggtgcttaacaggcgcaagctctaagggtggtgtcctagcacagtgaaaacagacctggcattttcaacccatggtacctgaaaatctattagtgtaaattggaatcataccaaagggaaactaatgaaatgattagaagtaatgattttccagatgttctagggataagtataaaacgataaacacttggtttcctttgtcttttgttacagactttgagaatcactacaagaaaaactccttgtggtgaaggttctaagacgtgggatcgtttccagatgagaattcacaagcgactcattgacttgcacagtccttctgagattgttaagcagattacttccatcagtattgagccaggagttga'
-        # with open('AB007516.1_out.txt', 'r') as f:
-        #     file = f.read().splitlines()
-        # f.close()
-        # seq = ''
-        # for x in file:
-        #     seq += x
-
     ## reformat sequence into unbroken upperclass string
     seq = seq.replace(' ', '')
     seq = seq.upper()
@@ -456,7 +435,6 @@ if __name__ == "__main__":
 
 ## get genomic sequence
     line_seq = numSequence(gene)
-    print(line_seq)
 
 ## print divided into numbered rows of 60
     # for i in range(1, len(line_seq), 60):
@@ -469,7 +447,6 @@ if __name__ == "__main__":
 
 ## get annotated sequence with exon boundaries indicated
     ann_seq = annotateSeq(gene)
-    print(ann_seq)
 
 ## get coding sequence
     code_seq = codingSeq(gene)
@@ -483,10 +460,6 @@ if __name__ == "__main__":
 
 ## get translation
     aa_seq = translate(gene)
-    #print(aa_seq[0])
-    #print(aa_seq[1])
-
-
 
 ## line up codons and amino acids
     for x in aa_seq[0]:
