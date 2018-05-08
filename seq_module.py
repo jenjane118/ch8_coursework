@@ -97,8 +97,8 @@ def getSeq(acc):
     if gene == acc:
         seq = gen_seq[1]
     else:
-        #print('Error: Sequence not found')
-        #exit(0)
+        print('Error: Sequence not found')
+        exit(0)
 
     ## check to see if sequence is valid (made up of valid nucleotide symbols (a,c,t,g,n)
     nucleotides = {'a': True, 'c': True, 't': True, 'g': True, 'n': True}
