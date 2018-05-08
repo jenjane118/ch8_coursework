@@ -82,9 +82,7 @@ def getSeq(acc):
     """
 
     ## use pymysql script with accession number to access database for 'sequence'
-
     gen_seq = seq_query.seq_query(acc)
-
 
     ## check to see accession number requested is found in database
     ## (if using test set of sequences, not all accession numbers are present)
@@ -119,7 +117,7 @@ def getCoding(acc):
 
         """
 
-    ## use getCoding(acc) function to get code start and exon boundaries from pymysql script
+    ## use coding_query data access function to get code start and exon boundaries from pymysql script
     code_info   = coding_query.coding_query(acc)
     try:
         gene        = code_info[0]
