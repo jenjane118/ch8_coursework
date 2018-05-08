@@ -82,11 +82,17 @@ def getSeq(acc):
     """
 
     ## use pymysql script with accession number to access database for 'sequence'
+
     gen_seq = seq_query.seq_query(acc)
+
 
     # ## check to see accession number requested matches return
     # ## extract sequence
-    gene = gen_seq[0]
+    try:
+        gene = gen_seq[0]
+    except TypeError:
+        print('Gene not found in database')
+        exit(0)
     if gene == acc:
         seq = gen_seq[1]
     else:
